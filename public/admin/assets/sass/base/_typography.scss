@@ -1,0 +1,77 @@
+body {
+	font-family: $font-text;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1.5;
+	color: $color-body;
+  }
+/* --------------------- titles ---------------------- */
+.section-heading{ margin-bottom:40px; margin-top:0;
+	p{ max-width:600px; margin:auto; }}
+.section-title{ font-weight:500;   }
+.title-text{margin-top:45px; margin-bottom:20px;}
+.b{font-weight:600;}
+/* ==================  title helpers ================ */
+.rtl{direction:rtl;}
+.ltr{direction:ltr;}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-heading;
+  color: $color-heading;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 18px;
+}
+
+h5 {
+  font-size: 15px;
+}
+
+h6 {
+  font-size: 14px;
+}
+
+p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  margin-bottom: 5px;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+a,
+button {
+  text-decoration: none;
+  cursor: pointer;
+}
+b {font-weight: 500;}
+.card-title {
+  color: $gray-700 !important;
+}
+.text-body {
+  color: $color-body !important;
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>PixelPerfect- your camera Experts</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="/user/assets/imgs/theme/pp_favicon.svg"
+    />
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/user/assets/css/main.css?v=3.4" />
+  </head>
+
+  <body>
+    <header class="header-area header-style-3 header-height-2">
+      <div class="header-top header-top-ptb-1 d-none d-lg-block"></div>
+      <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
+        <div class="container">
+          <div class="header-wrap">
+            <div class="logo logo-width-1">
+              <a href="/"
+                ><img src="/user/assets/imgs/theme/logo_pp.svg" alt="logo"
+              /></a>
+            </div>
+            <div class="header-right">
+              <div class="search-style-2">
+                <form action="/api/user/filterSearch" method="post">
+                  <input
+                    type="text"
+                    name="search"
+                    placeholder="Search for items..."
+                  />
+                  <button class="btn btn-sm" type="submit">Search</button>
+                </form>
+              </div>
+              <a class=data-bs-toggle="dropdown" href="/" id="dropdownAccount" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
+              </svg> </a>
+    </header>
+    <hr>
+
+    <main class="main">>
+      <section class=" pb-150">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3"></div>
+
+            <div class="col-lg-6">
+              <div
+                class="login_wrap widget-taber-content p-30 background-white border-radius-10 mb-md-5 mb-lg-0 mb-sm-5"
+              >
+                <div class="padding_eight_all bg-white">
+                  <div class="heading_s1">
+                    <h3 class="mb-30">Login</h3>
+                  </div>
+                  <form
+                    method="post"
+                    action="/login"
+                    onsubmit="return validateForm()"
+                  >
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        required
+                        id="email"
+                        name="email"
+                        placeholder="Email"
+                      />
+                      <p style="color: red" id="emailError"></p>
+                    </div>
+                    <div class="form-group">
+                      <input
+                        required
+                        id="password"
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                      />
+                      <p style="color: red" id="passwordError"></p>
+                    </div>
+                    <br />
+                    <% if ( message ){%>
+                    <div class="alert-message" role="alert" style="color: red">
+                      <%- message %>
+                    </div>
+                    <%}%>
+                    <div class="login_footer form-group">
+                      <a class="text-muted" href="#">Forgot password?</a>
+                      <a class="text-muted" href="/register"
+                        >Create an account?</a
+                      >
+                    </div>
+                    <div class="form-group">
+                      <button
+                        type="submit"
+                        class="btn btn-fill-out btn-block hover-up"
+                        name="login"
+                      >
+                        Log in
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      function validateForm() {
+        const email = document.getElementById("email");
+        const password = document.getElementById("password");
+        const emailError = document.getElementById("emailError");
+        const passwordError = document.getElementById("passwordError");
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+        // Email field
+        if (email.value.trim() === "") {
+          emailError.innerHTML = "Email field is required";
+          setTimeout(() => {
+            emailError.innerHTML = "";
+          }, 5000);
+          return false;
+        } else if (!emailRegex.test(email.value)) {
+          emailError.innerHTML = "Please enter a valid email";
+          setTimeout(() => {
+            emailError.innerHTML = "";
+          }, 5000);
+          return false;
+        }
+
+        // Password field
+        if (password.value.trim() === "") {
+          passwordError.innerHTML = "Password field is required";
+          setTimeout(() => {
+            passwordError.innerHTML = "";
+          }, 5000);
+          return false;
+        }
+
+        return true; // Form is valid
+      }
+    </script>
+  </body>
+</html>

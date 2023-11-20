@@ -1,0 +1,103 @@
+/*COMPONENTS -> CARD*/
+.card-1 {
+    position: relative;
+    background: #fff;
+    text-align: center;
+    border: 1px solid #cce7d0;
+    border-radius: 20px;
+    figure {
+        overflow: hidden;
+        margin: 10px;
+        border-radius: 10px;
+        display: flex;
+        img {
+            border-radius: 10px;
+        }
+    }
+
+    h5 {
+        margin:20px 0;
+        a {
+            color: $color-text            
+        }
+    }
+    &:hover {
+        a {color: $color-brand}
+    }
+}
+
+.hero-card {
+	width: 100%;
+	position: relative;
+	background: #fff;
+	padding: 30px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+    border: 1px solid #eee;
+    &:hover {
+        border: 1px solid $color-brand;
+    }
+    .hero-card-icon {
+        width: 65px;
+        height: 65px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        margin-bottom: 20px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        -webkit-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+        &.icon-left {
+            width: 135px;
+            -webkit-box-align: start;
+            -webkit-align-items: start;
+            -ms-flex-align: start;
+            align-items: start;
+        }
+        &.icon-left-2 {
+            width: 265px;
+            -webkit-box-align: start;
+            -webkit-align-items: start;
+            -ms-flex-align: start;
+            align-items: start;
+        }
+        i {
+            font-size: 25px;
+            color: #6143f7;
+        }
+    }
+}
+.card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	word-wrap: break-word;
+	background-color: #fff;
+	background-clip: border-box;
+	border: 1px solid #e2e9e1;
+	border-radius: .25rem;
+    .card-header {
+        padding: 1rem;
+        margin-bottom: 0;
+        background-color: #f7f8f9;
+        border-bottom: 1px solid #e2e9e1;
+    }
+}
+.border-radius {
+    border-radius: 4px;
+}

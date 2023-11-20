@@ -1,0 +1,50 @@
+@font-face {
+    font-family: "evara-font";
+    src: url("../../fonts/evara-font/evara-font.ttf?5ff2f70882bedebb09d812961feeb5e7") format("truetype"),
+        url("../../fonts/evara-font/evara-font.woff?5ff2f70882bedebb09d812961feeb5e7") format("woff"),
+        url("../../fonts/evara-font/evara-font.woff2?5ff2f70882bedebb09d812961feeb5e7") format("woff2"),
+        url("../../fonts/evara-font/evara-font.eot?5ff2f70882bedebb09d812961feeb5e7#iefix") format("embedded-opentype"),
+        url("../../fonts/evara-font/evara-font.svg?5ff2f70882bedebb09d812961feeb5e7#evara-font") format("svg");
+}
+
+i[class^="evara-font-"]:before, i[class*=" evara-font-"]:before {
+    font-family: evara-font !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.evara-font-cpu:before {
+    content: "\f101";
+}
+.evara-font-desktop:before {
+    content: "\f102";
+}
+.evara-font-diamond:before {
+    content: "\f103";
+}
+.evara-font-dress:before {
+    content: "\f104";
+}
+.evara-font-high-heels:before {
+    content: "\f105";
+}
+.evara-font-home:before {
+    content: "\f106";
+}
+.evara-font-kite:before {
+    content: "\f107";
+}
+.evara-font-smartphone:before {
+    content: "\f108";
+}
+.evara-font-teddy-bear:before {
+    content: "\f109";
+}
+.evara-font-tshirt:before {
+    content: "\f10a";
+}

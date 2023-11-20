@@ -1,0 +1,94 @@
+
+
+
+
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>PixelPerfect-Dashboard</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/admin/assets/imgs/theme/favicon.svg">
+    <!-- Template CSS -->
+    <link href="/admin/assets/css/main.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <main>
+        <header class="main-header style-2 navbar">
+            <div class="col-brand">
+                <a href="index.html" class="brand-wrap">
+                    <img src="/admin/assets/imgs/theme/logo.svg" class="logo" alt="Evara Dashboard">
+                </a>
+            </div>
+            <div class="col-nav">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon" href="#">
+                            <i class="material-icons md-notifications animation-shake"></i>
+                            <span class="badge rounded-pill">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="requestfullscreen nav-link btn-icon"><i class="material-icons md-cast"></i></a>
+                    </li>
+                  
+                    <li class=" nav-item">
+                        <a class="" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false"> <img class="img-xs rounded-circle" src="/admin/assets/imgs/people/avatar2.jpg" alt="User"></a>
+                       
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <section class="content-main mt-80 mb-80">
+            <div class="card mx-auto card-login">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Admin-Sign in</h4>
+                    <form method="post" action="/admin/login" onsubmit="return validateLoginForm()">
+                        <div class="mb-3">
+                            <input class="form-control" name="email" placeholder="Email" type="text" id="email">
+                            <div class="error-message" id="email-error"></div>
+                        </div>
+                    
+                        <div class="mb-3">
+                            <input class="form-control" name="password" placeholder="Password" type="password" id="password">
+                            <div class="error-message" id="password-error"></div>
+                        </div>
+                    
+                        <div class="mb-3">
+                            <a href="#" class="float-end font-sm text-muted">Forgot password?</a>
+                            <br>
+                        </div>
+                    
+                        <div class="mb-4">
+                            <button type="submit" class="btn btn-primary w-100">Login</button>
+                        </div>
+                    </form>
+                    
+                    
+                    
+                    <!-- <p class="text-center mb-4">Don't have account? <a href="#">Sign up</a></p> -->
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    <script src="/admin/assets/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="/admin/assets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="/admin/assets/js/vendors/jquery.fullscreen.min.js"></script>
+    <!-- Main Script -->
+    <script src="/admin/assets/js/main.js" type="text/javascript"></script>
+</body>
+
+</html>

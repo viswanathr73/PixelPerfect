@@ -1,0 +1,99 @@
+<%- include('header') %>
+
+<div class="container">
+    <div class="row justify-content-center center-content">
+        <div class="col-lg-4">
+            <form action="/admin/updateCategory" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+              
+
+
+<input type="hidden" name="id" value="<%= category.id  %>">
+                <div class="mb-4">
+                    <label for="product_name" class="form-label">Name</label>
+                    <input type="text" name="name" placeholder="Type here" value="<%= category.name %>" class="form-control" id="product_name" />
+                    <div class="error-message" id="name-error"></div>
+                </div>
+            
+                <div class="mb-4">
+                    <label class="form-label">Image</label>
+                    <input type="file" name="image" placeholder="Image" class="form-control" value="<%= category.image %>" id="image" accept="image/*" />
+                    <div class="error-message" id="image-error"></div>
+                </div>
+            
+                <div class="mb-4">
+                    <label class="form-label">Description</label>
+                    <textarea name="description" placeholder="Type here" value="<%=category.description %>" class="form-control"> <%=category.description %> </textarea>
+                    <div class="error-message" id="description-error"></div>
+                </div>
+            
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Edit category</button>
+                </div>
+
+
+
+
+            </form>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        </div>
+        
+
+    </div>
+</div>
+
+<script>
+function validateForm() {
+    // Reset any existing error messages
+    clearErrorMessages();
+    
+    const name = document.getElementById('product_name').value;
+    const imageElement = document.getElementById('image');
+    const image = imageElement.files[0];
+    const description = document.getElementsByName('description')[0].value;
+    const existingImageValue = imageElement.getAttribute('value');  // Get existing image value
+    
+    let isValid = true; 
+    
+    // Check if name is empty
+    if (name.trim() === '') {
+        displayErrorMessage('name-error', 'Please enter a category name.');
+        isValid = false;
+    }
+    
+    // Only enforce new image validation if there's no existing image
+    if (!existingImageValue) {
+        if (!image) {
+            displayErrorMessage('image-error', 'Please select an image.');
+            isValid = false;
+        } else if (!image.type.startsWith('image/')) {
+            displayErrorMessage('image-error', 'Please select a valid image file.');
+            isValid = false;
+        }
+    } else if (image && !image.type.startsWith('image/')) {
+        // If there's an existing image but user uploads a new one, validate the new image
+        displayErrorMessage('image-error', 'Please select a valid image file.');
+        isValid = false;
+    }
+    
+    // Check if description is empty
+    if (description.trim() === '') {
+        displayErrorMessage('description-error', 'Please enter a category description.');
+        isValid = false;
+    }
+    
+    return isValid;  // Only returns true if all validations passed
+}
+
+</script>
+
+<%- include('footer') %>

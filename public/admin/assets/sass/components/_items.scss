@@ -1,0 +1,81 @@
+
+a[class*='card']{
+    color:initial;
+    &:hover{
+        .title{ color:$primary;  }
+    }
+}
+
+/* ITEM LIST */
+.itemlist{
+    border-bottom:1px solid $border-color; align-items:center;
+    width:100%; padding:$spacer/2 $spacer/2; 
+    &:hover{
+        background-color:$table-hover-bg;
+    }
+}
+
+/* ITEMSIDE */
+.itemside{ position:relative;  display:flex; width:100%; align-items:center;
+    .aside, .left{position:relative; flex-shrink: 0;}
+    .info{padding-left:15px;  padding-right:7px;  }
+    
+    p{margin-bottom:0;}
+    .title{  display: block; margin-bottom:5px;  }
+    a.title:hover{ color: $primary }
+}
+
+a.itemside{color: initial;  text-decoration:none;  
+    &:hover .title{ text-decoration:underline; }
+}
+
+/* BASE STYLE FOR PRODUCT ITEM */
+[class*='card-product']{
+    border:1px solid $border-color; 
+    p{margin-bottom: 0;}
+    .img-wrap{ text-align: center; display:block;
+        overflow:hidden; position:relative; background:white;
+        img{ height:100%; max-width:100%; width:auto; display:inline-block; object-fit:cover;}
+    }
+}
+
+/* GRID STYLE PRODUCT ITEM */
+.card-product-grid{ margin-bottom:20px;
+
+
+    .info-wrap{ padding:$spacer }
+    
+    a.title{color:$gray-600; display: block; text-decoration:none;
+        &:hover{ color:$primary; }
+    }
+
+    &:hover{ border-color:#eee;-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);}
+}
+
+/* LARGE LIST STYLE PRODUCT ITEM */
+.card-product-list{ margin-bottom:20px; 
+    .img-wrap{ height:220px; border-radius:$border-radius 0 0 $border-radius; }
+    .info-main{ padding:1.5rem 1rem}
+    .info-aside{ padding:1.5rem 1rem; border-left:1px solid $border-color; height: 100%  }
+}
+
+
+.card-user{ margin-bottom:20px;
+    .card-header{
+        position:relative;
+        height:100px;
+        background-color:$primary-light !important;
+        text-align:center;
+    }
+    .img-avatar{
+        position:absolute;
+        transform: translate(-50%, -50%);
+        top:100%;
+    }
+    .card-body{
+        text-align:center;
+    }
+}
+
+

@@ -1,0 +1,108 @@
+/*COMPONENTS -> TABS*/
+.nav-tabs {
+    margin-bottom: 25px;
+    border: 0;
+    .nav-link {
+        background-color: rgb(238, 238, 238);
+        font-size: 15px;
+        margin: 0 10px;
+        margin-left: 10px;
+        color: #444;
+        border-radius: 4px;
+        padding: 15px 24px;
+        -webkit-transition: 0.2s;
+        transition: 0.2s;
+        border: 0;
+        border-top-color: currentcolor;
+        border-right-color: currentcolor;
+        border-bottom-color: currentcolor;
+        border-left-color: currentcolor;
+        font-family: $font-heading;
+        font-weight: 600;
+        line-height: 1;
+        &.active {
+           color: $color-brand;
+           background-color: #fde1bd;
+        }
+        &:hover {
+            color: $color-brand;
+            background-color: #fde1bd;
+            transform: translateY(-3px);
+            transition: 0.2s;
+         }
+
+        &:first-child {margin-left: 0 !important;}
+    }
+    &.no-border {
+        border: none;
+    }
+    &.right {
+        .nav-item:last-child {
+            .nav-link {
+                margin-right: 0;
+            }
+        }
+    }
+}
+.nav {
+    &.right {
+        justify-content: end;
+    }
+}
+
+.dashboard-menu {
+    border: 1px solid #e2e9e1;
+    border-radius: 5px;
+    overflow: hidden;
+    ul {
+        padding: 0;
+        margin: 0;
+        li {
+           position: relative;
+            a {
+                font-size: 14px;
+                color: $color-grey-2;
+                padding: 15px 30px;
+                i {
+                    color: $color-grey-4;
+                    font-size: 12px;
+                }
+                &.active {
+                    color: #fff;
+                    background-color: $color-brand;
+                    i {
+                        color: #fff;
+                    }
+                }
+            }
+            &:not(:last-child) {
+                border-bottom: 1px solid #e2e9e1;
+            }
+        }
+    }
+}
+
+.tab-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .view-more {
+        font-family: $font-heading;
+        font-size: 13px;
+        font-weight: 700;
+        display: flex;
+        border-bottom: 2px solid #cce7d0;
+        margin-bottom: 20px;
+        i {
+            margin-left: 5px;
+            margin-top: 5px;
+            transition: 0.5s;
+        }
+        &:hover {
+            i {
+                transform: translateX(5px);
+                transition: 0.5s;
+            }
+        }
+    }
+}

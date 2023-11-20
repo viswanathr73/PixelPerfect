@@ -1,0 +1,57 @@
+//1.FONT
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@300;400;500;600;700&display=swap');
+
+$font-heading: 'Spartan', sans-serif;
+$font-text: 'Lato', sans-serif;
+
+$font-xxs: 12px;
+$font-xs: 13px;
+$font-sm: 14px;
+$font-md: 15px;
+$font-lg: 17px;
+$font-xl: 19px;
+$font-xxl: 58px;
+
+//2.COLOR
+$color-brand: #088178;
+$color-brand-dark: #046963;
+$color-primary: #3f81eb;
+$color-secondary: #41506b;
+$color-warning: #ffb300;
+$color-danger: #ff3551;
+$color-success: #3ed092;
+$color-info: #18a1b7;
+$color-text: #4f5d77;
+$color-heading: #222222;
+$color-grey-1: #1a1a1a;
+$color-grey-2: #242424;
+$color-grey-4: #90908e;
+$color-grey-9: #f4f5f9;
+$color-muted: #8e8e90;
+$color-body: #161c27;
+
+$color-1: #fddde4;
+$color-2: #cdebbc;
+$color-3: #d1e8f2;
+$color-4: #cdd4f8;
+$color-5: #f6dbf6;
+$color-6: #fff2e5;
+$color-7: #d77f7a;
+$color-8: #63a2c1 ;
+
+$color-hot: #ff75a0;
+$color-new: #99bbad;
+$color-sale: #a1cae2;
+$color-best: #ffab73;
+
+//3.Boxshadow
+$box-shadown-1: 0 4px 8px rgba(0,0,0,.09);;
+$box-shadown-2: 0 8px 16px rgba(0, 0, 0, 0.12);
+$box-shadown-3: 20px 20px 54px rgba(0, 0, 0, 0.03);
+$box-shadown-3-hover: 20px 20px 54px rgba(0, 0, 0, 0.05);
+
+
+//4. Border
+$border-color: #cce7d0;
+

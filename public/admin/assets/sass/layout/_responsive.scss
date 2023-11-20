@@ -1,0 +1,127 @@
+.mobile-block{ display:none }
+.btn-mobile{ display:none; }
+
+@media (max-width: 1200px) {
+	/* tablet devices */
+
+	.main-wrap{
+	    margin-left: 220px;
+	}
+	.navbar-aside{
+		max-width: 220px;
+	}
+
+}
+
+@media (max-width: 992px) {
+	/* small tablet devices */
+
+
+	.itemlist{
+		.col-price{ text-align:right}
+		.col-check{ display:none;}
+	}
+	.card-header{
+		.col-check{ display:none;}
+	}
+
+	
+}
+
+@media all and (max-width:768px) {   
+	/* mobile devices */
+	.mobile-block{ display: block!important }
+	.mobile-hide{ display:none!important }
+	.btn-mobile{ display:inline-block!important; }
+
+	.navbar-aside{
+		z-index: 900; 
+		transform:translateX(-100%);
+	    overflow-x: hidden;
+	    transition: visibility .2s ease-in-out, transform .2s ease-in-out;
+	    .aside-top{
+	    	.logo{ height:40px; }
+	    }
+	}
+	.navbar-aside.show{
+		visibility: visible;
+    	transform: translateX(0);
+	}
+
+	.mobile-offcanvas{
+		visibility: hidden;
+		transform:translateX(-100%);
+	    border-radius:0; 
+		display:block;
+	    position: fixed;
+	    top: 0; left:0;
+	    height: 100%;
+	    z-index: 1200;
+	    width:80%;
+	    overflow-y: scroll;
+	    overflow-x: hidden;
+	    transition: visibility .2s ease-in-out, transform .2s ease-in-out;
+	}
+
+	.mobile-offcanvas.show{
+		visibility: visible;
+    	transform: translateX(0);
+	}
+
+	.main-header{
+		padding-left:$spacer/2;
+    	padding-right:$spacer/2;
+		.col-nav{ order:1;  width:100%;  margin-bottom:$spacer * 0.8; margin-left:auto;}
+		.col-search { flex-grow: 1; width:100%; order:2; }
+
+		&.style-2 {
+			display: flex;
+			justify-content: space-between;
+			.col-nav {
+				width: unset;
+			}
+		}
+	}
+
+
+	.main-wrap{
+	    margin-left:0!important;
+	}
+
+	.content-header{
+		flex-direction: column;
+    	align-items: flex-start;
+    	margin-bottom:$spacer;
+    	.content-title{ margin-bottom:$spacer}
+	}
+
+	.card-header input.form-control{ margin-bottom:$spacer}
+
+	.order-info-wrap{
+		.icontext{ margin-bottom:$spacer}
+	}
+	.btn.btn-xs {
+		font-size: 10px;
+		padding: 5px 4px;
+	}
+}
+@media all and (max-width:480px) { 
+	.table-responsive table{
+		min-width: unset;
+		td {
+			display: block;
+			width: 100%;
+			text-align: center;
+			&::before {
+				content: attr(data-title) " ";
+				float: left;
+				text-transform: capitalize;
+				margin-right: 15px;
+				font-weight: bold;
+			}
+		}
+		thead {
+			display: none;
+		}
+	}
+}

@@ -1,0 +1,113 @@
+.btn {	
+	&.btn-primary {
+		font-size: 14px;
+		font-weight: 500;
+		padding: 10px 40px;
+		color: #ffffff;
+		border: none;
+		background-color: $brand;
+		border-radius: 4px;
+		i {
+			color: #fff !important;
+			margin-right: 5px;
+			margin-top: -4px;
+		}
+		&:hover {
+			background-color: $brand-dark;
+		}
+	}
+	&.btn-secondary {
+		font-size: 14px;
+		font-weight: 500;
+		padding: 10px 40px;
+		color: #fff;
+		background-color: #6c757d;
+		border:none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+		&.print {
+			padding: 7px 15px;
+		}
+	}
+	&.btn-md {
+		padding: 0.5rem 0.95rem;
+		font-weight: 500;
+		background-color: $brand;
+		color: #ffffff;
+		&:hover {
+			background-color: $brand-dark;
+		}
+	}
+	&.btn-xs {
+		background-color: $brand;
+		color: #ffffff;
+		border: none;
+		font-size: 11px;
+		font-weight: 400;
+		border-radius: 4px;
+		display: inline-block;
+		padding: 6px 19px;
+		i {
+			font-size: 11px;
+		}
+	}	
+}
+.btn-facebook{background-color: #405D9D; color:#fff; &:hover{color:#fff} }
+.btn-instagram{background-color:#E52D27 ; color:#fff; &:hover{color:#fff}}
+.btn-youtube{background-color: #C8046C; color:#fff; &:hover{color:#fff}}
+.btn-twitter{background-color:#42AEEC; color:#fff; &:hover{color:#fff}}
+.btn-google{  background-color:#ff7575; color:#fff; &:hover{color:#fff} }
+
+.btn-icon{ text-align: center;
+	padding-left:0.5em; padding-right:0.5em;
+	&:hover{
+		 background-color:rgba($gray-600, .15);
+	}
+	&:focus{ box-shadow:none;}
+}
+
+.btn-light{ 
+	background-color:transparent; 
+	border-color:#c0dbd9;
+	box-shadow: none;
+	padding: 0.5rem 0.95rem;
+	&:hover {
+		background-color: $brand;
+		color: #fff !important;
+		i {
+			color: #fff;
+		}
+	}
+	i{ color:$gray-500; }
+	
+}
+.rounded {
+	border-radius: 4px !important;
+}
+.btn-drag{
+	padding:5px 2px; display: inline-block;
+	cursor: ns-resize!important;
+}
+
+.btn-sm{
+	padding: 5px 10px;
+	i{ 
+		font-size: 13px;
+    	line-height: 0.7;
+    	vertical-align: bottom;
+	}
+}
+.btn-brand {
+	background-color: $brand;
+	border: 0;
+	color: #fff;
+	&:hover {
+		background-color: $brand-dark;
+		color: #fff;
+	}
+}
+.btn-check:focus + .btn, .btn:focus {
+	outline: 0;
+	-webkit-box-shadow: none;
+	box-shadow:  none;
+}

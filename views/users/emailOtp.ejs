@@ -1,0 +1,141 @@
+<%- include('header') %>
+<div class="container">
+  <br />
+  <br />
+  <br />
+
+  <div class="row text-center">
+    <br />
+    <br />
+    <br />
+    <h4 class="">Verify OTP</h4>
+
+    <br />
+    <br />
+  </div>
+  <div class="row mt-5 justify-content-center">
+    <div class="col-lg-6">
+      <div
+        class="container height-100 d-flex justify-content-center align-items-center"
+      >
+        <div class="position-relative">
+          <div class="card p-2 text-center">
+            <h6>
+              Please enter the one time password <br /><br />
+              to verify your account
+            </h6>
+            <br />
+            <div>
+              <span>A code has been sent to</span>
+              <small>*******@gmail.com</small>
+            </div>
+            <br />
+            <form action="/emailVerified" method="post">
+              <div
+                id="otp"
+                class="inputs d-flex flex-row justify-content-center mt-2"
+              >
+                <input
+                  class="m-6 text-center form-control rounded"
+                  type="text"
+                  id="first"
+                  name="otp"
+                />
+                <!-- <input class="m-2 text-center form-control rounded" type="text" id="second"maxlength="1" name="second"/> 
+                                <input class="m-2 text-center form-control rounded" type="text"id="third" maxlength="1" name="third"/> 
+                                <input class="m-2 text-center form-control rounded"type="text" id="fourth" maxlength="1" name="fourth"/>
+                                 <input class="m-2 text-center form-control rounded" type="text" id="fifth" maxlength="1" name="fifth" />
+                                <input class="m-2 text-center form-control rounded" type="text" id="sixth"maxlength="1" name="sixth" />  -->
+              </div>
+              <div class="mt-4">
+                <button type="submit" class="btn btn-danger px-4 validate">
+                  Validate
+                </button>
+              </div>
+            </form>
+            <br />
+            <div class="container mt-5">
+              <!-- The Resend OTP Button -->
+              <button
+                id="resendButton"
+                class="btn btn-secondary btn-sm"
+                onclick="requestResendOTP('<%= locals.email %>')"
+                disabled
+              >
+                Resend OTP
+              </button>
+
+              <!-- Countdown Timer Display -->
+              <p id="timer" class="mt-3">
+                Please wait 20 seconds before resending OTP.
+              </p>
+            </div>
+          </div>
+          <!-- <div class="card-2">
+                            <div class="content d-flex justify-content-center align-items-center"> <span>Didn't get the
+                                    code</span> <a href="#" class="text-decoration-none ms-3">Resend(1/3)</a> </div>
+                        </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  let countdown = 20;
+
+  function updateTimer() {
+    document.getElementById(
+      "timer"
+    ).innerText = `Please wait ${countdown} seconds before resending OTP.`;
+    if (countdown <= 0) {
+      clearInterval(interval);
+      document.getElementById("resendButton").disabled = false;
+      document.getElementById("timer").innerText =
+        "You can now request a new OTP.";
+    } else {
+      countdown--;
+    }
+  }
+
+  const interval = setInterval(updateTimer, 1000);
+
+  function requestResendOTP(email) {
+    // const email = document.getElementById('emailInput').value;
+    // Call your backend API to resend OTP
+    fetch("/resendOTP", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: email }), // The user's email should be captured and sent for resend
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          countdown = 20;
+          document.getElementById("resendButton").disabled = true;
+
+          setInterval(updateTimer, 1000);
+          Swal.fire({
+            title: "Resend OTP",
+            text: "Your Otp resended",
+            icon: "success",
+            timer: 1000,
+            showConfirmButton: false, // This removes the button
+          });
+        } else {
+          alert(data.message);
+        }
+      });
+  }
+</script>
+
+<%- include('footer') %>

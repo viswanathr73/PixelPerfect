@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>PixelPerfect- your camera Experts</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="/user/assets/imgs/theme/pp_favicon.svg"
+    />
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/user/assets/css/main.css?v=3.4" />
+  </head>
+
+  <body>
+    <header class="header-area header-style-3 header-height-2">
+      <div class="header-top header-top-ptb-1 d-none d-lg-block"></div>
+      <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
+        <div class="container">
+          <div class="header-wrap">
+            <div class="logo logo-width-1">
+              <a href="/"
+                ><img src="/user/assets/imgs/theme/logo_pp.svg" alt="logo"
+              /></a>
+            </div>
+            <div class="header-right">
+              <div class="search-style-2">
+                <form action="/api/user/filterSearch" method="post">
+                  <input
+                    type="text"
+                    name="search"
+                    placeholder="Search for items..."
+                  />
+                  <button class="btn btn-sm" type="submit">Search</button>
+                </form>
+              </div>
+              <a class=data-bs-toggle="dropdown" href="/" id="dropdownAccount" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
+              </svg> </a>
+    </header>
+    <hr>
+<main class="main">
+<section class="pt-15 pb-300">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 m-auto">
+                <div class="row" align-items-centre>
+                    <div class="col-lg-1"></div>           
+                            <div class="col-lg-6">
+                                <div class="login_wrap widget-taber-content p-30 background-white border-radius-5">
+                                    <div class="padding_eight_all bg-white">
+                                        <div class="heading_s1">
+                                            <h3 class="mb-30">Create an Account</h3>
+                                        </div>
+                                        <p class="mb-50 font-sm">
+                                            Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy
+                                        </p>
+                                        <form method="post" action="/register" onsubmit="return validate()">
+                                            <div class="form-group">
+                                                
+                                                <input type="text" id="name" required="" name="username" value="" placeholder="Username" oninput="nameError">
+                                                <p  id="nameError" style="color: red;"></p>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" id="email" required="" name="email" value="" placeholder="Email">
+                                                <p style="color: red;" id="emailError"></p>
+                                            </div>
+                                            <div class="form-group">
+                                                <input required="" id="mobile" type="number" name="mobile" value="" placeholder="Phone">
+                                                <p id="mobileError" style="color: red;"></p>
+                                            </div>
+                                            <div class="form-group">
+                                                <input required="" id="password" type="password" name="password" value=""  placeholder="Password">
+                                                <p id="passwordError" style="color: red;"></p>
+    
+                                               <br>
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-fill-out btn-block hover-up" name="login">Register</button>
+                                                </div> 
+    
+                                            </div>
+                                        </form>
+                                        <div class="divider-text-center mt-15 mb-15">
+                                            <span> or</span>
+                                        </div>
+                                        
+                                        <div class="text-muted text-center">Already have an account? <a href="/login">Sign in now</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>     
+    </div>       
+</section>
+<hr>
+</main>
+<script>
+    function validate() {
+        const name = document.getElementById('name')
+const email = document.getElementById('email')
+const password = document.getElementById('password')
+const mobile = document.getElementById('mobile')
+
+// Error feilds
+const nameError = document.getElementById('nameError')
+const emailError = document.getElementById('emailError')
+const passwordError = document.getElementById('passwordError')
+const mobileError = document.getElementById('mobileError');
+
+// Regex   
+const nameRegex = /^[A-Z]/;
+const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail+\.[a-zA-Z]{3}$/;
+const passwordRegex = /^(?=.[a-z])(?=.[A-Z])(?=.*\d).{8,}$/;
+const mobileRegex = /^[0-9]{10}$/;
+
+
+//name feild
+if (name.value.trim() === '') {
+   nameError.innerHTML = 'Field is required'
+   setTimeout(() => {
+      nameError.innerHTML = ''
+   }, 5000)
+   return false;
+}
+if(!nameRegex.test(name.value)){
+   nameError.innerHTML = 'First letter should be capital'
+   setTimeout(()=>{
+      nameError.innerHTML = ''
+   },5000)
+   return false;
+}
+
+// email feild   
+if (email.value.trim() === '') {
+   emailError.innerHTML = 'Field is required'
+   setTimeout(() => {
+      emailError.innerHTML = ''
+   }, 5000)
+   return false;
+}
+if (!emailRegex.test(email.value)) {
+   emailError.innerHTML = "Please enter a valid email"
+   setTimeout(() => {
+      emailError.innerHTML = ''
+   }, 5000);
+   return false;
+}
+
+// password feild
+if (password.value.trim() === '') {
+   passwordError.innerHTML = 'Field is required'
+   setTimeout(() => {
+      passwordError.innerHTML = ''
+   }, 5000)
+   return false;
+}
+// if (!passwordRegex.test(password.value)) {
+//    passwordError.innerHTML = "Please enter a tight password"
+//    setTimeout(() => {
+//       passwordError.innerHTML = ''
+//    }, 5000);
+//    return false;
+// }
+
+//mobile feild
+if (mobile.value.trim() === '') {
+   mobileError.innerHTML = 'Field is required'  
+   setTimeout(() => {
+      mobileError.innerHTML = ''
+   }, 5000)
+   return false;
+}
+
+if(!mobileRegex.test(mobile.value)){
+   mobileError.innerHTML = 'Please enter a valid number'
+   setTimeout(()=>{
+      mobileError.innerHTML = ''
+   },5000)
+   return false;
+}
+return true;
+}
+
+
+// Input feilds
+
+</script>
+      

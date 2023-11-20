@@ -1,0 +1,200 @@
+<%- include('header') %>
+<section class="content-main">
+    <form action="/admin/productEdited" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+        <div class="row">
+            <div class="col-6">
+                <div class="content-header">
+                    <h2 class="content-title">Edit Product</h2>
+                    <div>
+                        
+                        <button type="submit" class="btn btn-md rounded font-sm hover-up">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h6>1. General info</h6>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="mb-4">
+                                    <label class="form-label">Product title</label>
+                                    <input type="text" name="title" placeholder="Type here" value="<%= product.title %>" class="form-control">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">Description</label>
+                                    <textarea placeholder="Type here" name="productdesc" class="form-control" rows="4"><%= product.description %></textarea>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">Brand name</label>
+                                    <input type="text" name="brand" placeholder="brand" value="<%= product.brand %>" class="form-control">
+                                </div>
+                            </div> <!-- col.// -->
+                        </div> <!-- row.// -->
+                        <hr class="mb-4 mt-0">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h6>2. Pricing</h6>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="mb-4">
+                                    <label class="form-label">Cost in USD</label>
+                                    <input type="text" name="price" placeholder="$00.0" value="<%= product.price %>" class="form-control">
+                                </div>
+                            </div> <!-- col.// -->
+                        </div> <!-- row.// -->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h6>3. Color</h6>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="mb-4">
+                                    <label class="form-label">Color</label>
+                                    <input type="text" name="color" placeholder="Black" value="<%= product.color %>" class="form-control">
+                                </div>
+                                <input type="hidden" name="id" value="<%= product._id %>">
+                            </div> <!-- col.// -->
+                        </div> <!-- row.// -->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h6>4. Quantity</h6>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="mb-4">
+                                    <label class="form-label">Quantity</label>
+                                    <input type="text" name="quantity" placeholder="Enter quantity" value="<%= product.quantity %>" class="form-control">
+                                </div>
+                            </div> <!-- col.// -->
+                        </div> <!-- row.// -->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h6>5. Size </h6>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="mb-4">
+                                    <label class="form-label">Size</label>
+                                    <input type="text" name="size" placeholder="Enter size" value="<%= product.size %>" class="form-control">
+                                </div>
+                            </div> 
+                        <hr class="mb-4 mt-0">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h6>6. Category</h6>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="mb-4">
+                                    <select name="category" class="form-select">
+                                        <% categories.forEach((cat) => { %>
+                                            <option value="<%= cat.name %>" <%= product.category === cat.name ? 'selected' : '' %>><%= cat.name %></option>
+                                        <% }); %>
+                                    </select>
+                                    
+                                </div>   
+
+
+                            </div> <!-- col.// -->
+                        </div> <!-- row.// -->
+                        <hr class="mb-4 mt-0">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h6>7. Media</h6>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="mb-4">
+                                    <label for="images" class="form-label">Images</label>
+                                    <input class="form-control" type="file" accept="image/*" name="images" multiple>
+                                </div>
+                            </div> <!-- col.// -->
+                        </div> <!-- .row end// -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section> <!-- content-main end// -->
+<script>
+
+function validateForm() {
+
+    
+clearErrorMessages();
+
+const title = document.getElementsByName('title')[0].value;
+
+const description = document.getElementsByName('productdesc')[0].value;
+const brand = document.getElementsByName('brand')[0].value;
+const price = document.getElementsByName('price')[0].value;
+const color = document.getElementsByName('color')[0].value;
+const quantity = document.getElementsByName('quantity')[0].value;
+const size = document.getElementsByName('size')[0].value;
+const images = document.getElementsByName('images')[0].files;
+
+
+
+
+
+
+
+let isValid = true;
+
+if (!title.trim()) {
+    displayErrorMessage('title', 'Please enter a product title.');
+    isValid = false;
+}
+if (!description.trim()) {
+    displayErrorMessage('productdesc', 'Please enter a product description.');
+    isValid = false;
+}
+if (!brand.trim()) {
+    displayErrorMessage('brand', 'Please enter a brand name.');
+    isValid = false;
+}
+if (!price.trim() || isNaN(price)) {
+    displayErrorMessage('price', 'Please enter a valid product price.');
+    isValid = false;
+}
+if (!color.trim()) {
+    displayErrorMessage('color', 'Please enter a product color.');
+    isValid = false;
+}
+if (!quantity.trim() || isNaN(quantity) || quantity <= 0) {
+    displayErrorMessage('quantity', 'Please enter a valid product quantity.');
+    isValid = false;
+}
+if (!size.trim()) {
+    displayErrorMessage('size', 'Please specify a size.');
+    isValid = false;
+}
+if (images.length === 0) {
+    displayErrorMessage('images', 'Please select at least one image.');
+    isValid = true;
+}
+
+
+return isValid;
+}
+
+function displayErrorMessage(fieldName, message) {
+const field = document.getElementsByName(fieldName)[0];
+const errorDiv = document.createElement('div');
+errorDiv.className = 'error-message';
+errorDiv.innerText = message;
+field.insertAdjacentElement('afterend', errorDiv); // This places the error message right after the field.
+}
+
+function clearErrorMessages() {
+const errorMessages = document.querySelectorAll('.error-message');
+errorMessages.forEach((errorMessage) => {
+    errorMessage.remove();
+});
+}
+
+
+</script>
+
+
+<%- include('footer') %>

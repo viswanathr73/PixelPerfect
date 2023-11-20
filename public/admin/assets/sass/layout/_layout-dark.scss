@@ -1,0 +1,212 @@
+
+body.dark{
+	background-color:$bg-dark-body; color:$white;
+    .content-main {
+        background-color:$bg-dark-body; color:#f6f6f6;
+    }
+    .card-title {
+        color: #f6f6f6 !important;
+    }
+
+    .bg-light { background-color:$gray-800 !important;  }
+
+    .brand-wrap{
+         .logo{ filter: brightness(2); }
+    }
+    .navbar-aside{
+        background-color:$gray-800;
+        border-right:1px solid $gray-700; 
+        .aside-top {
+            border-bottom: 1px solid $gray-700;
+        }
+    }
+    h1, h2, h3, h4, h5, h6 {
+        color: #f6f6f6;
+    }
+    /// menu-darken
+    .menu-aside{
+        .menu-item{
+            .icon{
+                color:rgba($gray-500, .7); 
+            }
+            &.active{
+                .icon{
+                    color:$white;
+                }
+                .menu-link{
+                    background-color:$gray-700;
+                }
+            }
+        }
+        .menu-link{  color:$light;  }
+        .menu-link:hover{ background-color:$gray-700; color:$light; }
+        .submenu{
+            background-color:$gray-800; border-color:$dark;
+            a{ color:$gray-400; 
+                &:hover{ color:$white;} 
+            }
+        }  
+    }
+
+    .main-header{
+        background-color:$gray-800;
+        border-bottom:1px solid $gray-800;
+        .nav-item > a{ color: $white; }
+        
+        .nav-link:hover, .nav-link.active{
+            background-color:$gray-700;  color: $white
+        }
+    }
+    
+
+    /// card-darken
+    .card, .card-header{
+        background-color:#2a3042; 
+    }
+    .card{ border:1px solid #303547 }
+    .card-header{ border-color: $gray-700; }
+
+    .box{
+        background:$gray-800;
+    }
+
+
+    //table
+    .table{
+        --bs-table-hover-bg: black;
+        --bs-table-hover-color:#fff;
+        color:$white;
+        border-color:$gray-700;
+    }
+
+
+
+    .form-control, .form-select{
+        background-color:$dark; 
+        border-color:$gray-700;
+        color:$white;
+    }
+
+    .btn{ color:white; }
+    .btn-light{ background-color:$gray-700; border-color:$gray-700; 
+        color:$white;
+        i{ color:$gray-200; }
+        &:hover{ background-color:$gray-800;  border-color:lighten($gray-700, 5%);  }
+    }
+
+
+    //itemside
+    .itemside{
+        color: $white;
+    }
+    a.itemside{color: $white;}
+
+    // nav-pills
+    .nav-pills{
+        .nav-link{ color:$white; 
+            &:hover{ color:$white;  }
+        }
+        .nav-link.active{ color:$white; background-color:$gray-700;  }
+    }
+
+
+    .card-product-grid{
+        .title{ color:$white;}
+    }
+
+    hr {
+        color: $gray-700 !important;
+        opacity: 1;
+    }
+    .custom_select .select2-container--default .select2-selection--single {
+        background-color: #32394e;
+        border: 2px solid #32394e;
+    }
+    table  {
+        color: #a6b0cf;
+        thead {
+            background: #32394e !important;
+        }
+        
+    }
+    .table-light {
+        --bs-table-bg: #32394e;
+        --bs-table-striped-bg: #ecedee;
+        --bs-table-striped-color: #000;
+        --bs-table-active-bg: #dfe0e1;
+        --bs-table-active-color: #000;
+        --bs-table-hover-bg: #e5e6e7;
+        --bs-table-hover-color: #000;
+        color: #f6f6f6 !important;
+        border-color: #dfe0e1;
+    }
+    .pagination-area .page-link {
+        background-color: #2a3042;
+        color: #f6f6f6;
+    }
+    .itemlist {
+        border-bottom:1px solid rgba(222, 226, 230, 0.1) ;
+    }
+
+    .form-check-input {
+        background-color: #32394e;
+        border: 1px solid #a6b0cf;
+    }
+    .btn-light {
+        box-shadow: none;
+    }
+    .itemlist:hover {
+        background-color: rgba(88, 151, 251, 0.075);
+    }
+    .table-hover > tbody > tr:hover {
+        --bs-table-accent-bg: rgba(88, 151, 251, 0.075);
+        color: var(--bs-table-hover-color);
+    }
+    .box {
+        border: 1px solid $gray-700;
+    }
+    .card-user .card-header {
+        background:  $gray-700 !important;
+    }
+    table {
+        color: #ccc !important;
+    }
+    .card-header.bg-primary {
+        background:  $gray-700 !important;
+    }
+    .form-control, .form-select {
+        border: 1px solid $gray-700;
+    }
+    .border-end {
+        border-right: 1px solid $gray-700 !important;
+    }
+    .border-bottom {
+        border-bottom: 1px solid $gray-700 !important;
+    }
+    main {
+        display: block;
+        background-color: #222736;
+    }
+
+    .dropdown-menu {
+        color: #a6b0cf;
+        background-color: #2a3042;
+        border: 1px solid #32394e;
+        a {
+            color: #a6b0cf;
+        }
+        .dropdown-item {
+            &:focus, &:hover{
+                color: #e9ecef;              
+                background-color: #32394e;  
+            }
+            &.text-danger {
+                color: #f6f6f6 !important;
+            }
+        } 
+       
+    }
+    
+
+}
+// body.dark end

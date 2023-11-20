@@ -1,0 +1,98 @@
+<%- include('header') %>
+        <section class="content-main">
+            <div class="content-header">
+                <div>
+                    <h2 class="content-title card-title">Users</h2>
+                    
+                </div>
+                
+            </div>
+            <div class="card mb-4">
+                <header class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col col-check flex-grow-0">
+                           
+                        </div>
+                        
+                       
+                    
+                    </div>
+                </header> <!-- card-header end// -->
+
+
+                <div class="card-body">
+                <% if (users.length > 0) { %>
+
+                    <% for (let i = 0; i < users.length; i++) { %>
+                        <article class="itemlist">
+                            <div class="row align-items-center">
+                                <div class="col col-check flex-grow-0">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-4 col-8 flex-grow-1 col-name">
+                                    <a class="itemside" href="#">
+                                        <div class="left">
+                                            <img src="/admin/assets/imgs/items/1.jpg" class="img-sm img-thumbnail" alt="Item">
+                                        </div>
+                                        <div class="info">
+                                            <h6 class="mb-0"><%= users[i].username %></h6>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-lg-3 col-sm-2 col-4 col-price"> <span><%= users[i].email %></span> </div>
+                                <div class="col-lg-2 col-sm-2 col-4 col-status">
+                                    <% if (users[i].isBlocked === true) { %>
+                                        <span class="badge rounded-pill alert-danger">Inactive</span>
+                                        <% } else { %>
+                                            <span class="badge rounded-pill alert-success">Active</span>
+                                            <% } %>
+                                    
+                                </div>
+                                <div class="col-lg-2 col-sm-2 col-4 col-date">
+                                    <span><%= users[i].mobile %></span>
+                                </div>
+                               
+                                <% if (users[i].isBlocked === true) { %>
+                                    <div class="col-lg-1 col-sm-2 col-4 col-action text-end">
+                                        <a href="/admin/unblock?id=<%= users[i]._id %>" class="btn btn-sm font-sm btn-light rounded">
+                                            <i class="material-icons md-delete_forever"></i> Unblock
+                                        </a>
+                                    </div>
+                                <% } else { %>
+                                    <div class="col-lg-1 col-sm-2 col-4 col-action text-end">
+                                        <a href="/admin/block?id=<%= users[i]._id %>" class="btn btn-sm font-sm btn-light rounded">
+                                            <i class="material-icons md-delete_forever"></i> Block
+                                        </a>
+                                    </div>
+                                <% } %>
+                            </div> <!-- row .// -->
+                        </article> <!-- itemlist  .// -->
+                       
+                    <% } %>
+                
+                <% } else { %>
+                    <tr>
+                        <td colspan="2">Users not found</td>
+                    </tr>
+                <% } %>
+
+
+
+                    
+                <div>
+                    <% if (page > 1) { %>
+                        <a href="/admin/users?page=<%= page - 1 %>">Previous</a>
+                    <% } %>
+                    <span>Page <%= page %> of <%= totalPages %></span>
+                    <% if (page < totalPages) { %>
+                        <a href="/admin/users?page=<%= page + 1 %>">Next</a>
+                    <% } %>
+                </div>
+                    
+                </div> <!-- card-body end// -->
+            </div> <!-- card end// -->
+           
+        </section> <!-- content-main end// -->
+        <%- include('footer') %>
