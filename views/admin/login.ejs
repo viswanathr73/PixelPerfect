@@ -55,17 +55,20 @@
             <div class="card mx-auto card-login">
                 <div class="card-body">
                     <h4 class="card-title mb-4">Admin-Sign in</h4>
-                    <form method="post" action="/admin/login" onsubmit="return validateLoginForm()">
+                    <form method="post" action="/admin/login" onsubmit="return validateForm()">
                         <div class="mb-3">
                             <input class="form-control" name="email" placeholder="Email" type="text" id="email">
+                            <p style="color: red" id="emailError"></p>
                             <div class="error-message" id="email-error"></div>
                         </div>
                     
                         <div class="mb-3">
                             <input class="form-control" name="password" placeholder="Password" type="password" id="password">
+                            <p style="color: red" id="passwordError"></p>
                             <div class="error-message" id="password-error"></div>
                         </div>
-                    
+                        <br>
+                        
                         <div class="mb-3">
                             <a href="#" class="float-end font-sm text-muted">Forgot password?</a>
                             <br>
@@ -90,5 +93,39 @@
     <!-- Main Script -->
     <script src="/admin/assets/js/main.js" type="text/javascript"></script>
 </body>
+<script>
+    function validateForm() {
+      const email = document.getElementById("email");
+      const password = document.getElementById("password");
+      const emailError = document.getElementById("emailError");
+      const passwordError = document.getElementById("passwordError");
+      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
+      // Email field
+      if (email.value.trim() === "") {
+        emailError.innerHTML = "Email field is required";
+        setTimeout(() => {
+          emailError.innerHTML = "";
+        }, 5000);
+        return false;
+      } else if (!emailRegex.test(email.value)) {
+        emailError.innerHTML = "Please enter a valid email";
+        setTimeout(() => {
+          emailError.innerHTML = "";
+        }, 5000);
+        return false;
+      }
+
+      // Password field
+      if (password.value.trim() === "") {
+        passwordError.innerHTML = "Password field is required";
+        setTimeout(() => {
+          passwordError.innerHTML = "";
+        }, 5000);
+        return false;
+      }
+
+      return true; // Form is valid
+    }
+  </script>
 </html>

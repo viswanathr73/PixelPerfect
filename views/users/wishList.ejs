@@ -1,0 +1,114 @@
+<%- include('header') %>
+
+<main class="main">
+  <div class="page-header breadcrumb-wrap">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="/" rel="nofollow">Home</a>
+        <span></span> Shop <span></span> Wishlist
+      </div>
+    </div>
+  </div>
+  <section class="mt-50 mb-50">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="table-responsive">
+            <table class="table shopping-summery text-center">
+              <thead>
+                <tr class="main-heading">
+                  <th scope="col" colspan="2">Product</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Stock Status</th>
+                  <th scope="col">Action</th>
+                  <th scope="col">Remove</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if (products.length> 0) { %> <% for (let i=0; i <
+                products.length;i++) { %>
+                <tr>
+                  <td class="image product-thumbnail">
+                    <img
+                      src="/admin/assets/imgs/category/<%= products[i].images[0] %>"
+                      alt="#"
+                    />
+                  </td>
+                  <td class="product-des product-name">
+                    <h5 class="product-name">
+                      <a href="#"> <%=products[i].title %> </a>
+                    </h5>
+                    <p class="font-xs">
+                      <%=products[i].catogary %><br />
+                      <%=products[i].brand %>
+                    </p>
+                  </td>
+                  <td class="price" data-title="Price">
+                    <span>$<%=products[i].price %> </span>
+                  </td>
+                  <td class="text-center" data-title="Stock">
+                    <% if (products[i].status) { %>
+                    <span class="color3 font-weight-bold">In Stock</span>
+                    <% } else { %>
+                    <span class="color3 font-weight-bold">Out of Stock</span>
+
+                    <% } %>
+                  </td>
+                  <td class="text-right" data-title="Cart">
+                    <a
+                      class="btn btn-sm"
+                      onclick="addToCart('<%= products[i].id %>')"
+                      ><i class="fi-rs-shopping-bag mr-5"></i>Add to cart</a
+                    >
+                  </td>
+
+                  <td class="action" data-title="Remove">
+                    <a href="/deleteWishlistItem?id=<%=products[i]._id %>"
+                      ><i class="fi-rs-trash"></i
+                    ></a>
+                  </td>
+                </tr>
+
+                <% } %> <% } else { %>
+                <tr>
+                  <td colspan="2">No item found in shop-wishlist</td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('footer') %>
+
+<script>
+  function addToCart(id) {
+    $.ajax({
+      url: `/addToCart?id=${id}`,
+      method: "get",
+      success: (response) => {
+        if (response.status) {
+          Swal.fire({
+            title: "ADD TO CART",
+            text: "Product Added to cart",
+            icon: "success",
+            timer: 1000,
+            showConfirmButton: false, // This removes the button
+          });
+        } else {
+          Swal.fire({
+            title: "OUT OFF STOK",
+            text: "The Product out off Stoke",
+            icon: "error",
+            timer: 1000,
+            showConfirmButton: false, // This removes the button
+          });
+        }
+      },
+    });
+  }
+</script>

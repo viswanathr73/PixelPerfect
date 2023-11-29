@@ -1,0 +1,142 @@
+<%- include('header') %>
+
+    <section class="content-main">
+        <div class="content-header">
+            <div>
+                <h2 class="content-title card-title">Order List </h2>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card mb-4">
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>SL No</th>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                        <th class="text-end"> Action </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+
+
+
+                                    <!------------------------------------------ this is a single order data -=--------------------->
+                                    <% if (orders.length> 0) { %>
+                                        <% for (let i=0; i < orders.length;i++) { %>
+                                            <% for (let j=0; j < orders[i].product.length; j++) { %>
+                                                <tr>
+                                                    <td>
+                                                        <%=i%>
+                                                    </td>
+                                                    <td><b>
+                                                            <%= orders[i].product[j].title %>
+                                                        </b></td>
+
+                                                    <td>$<%= orders[i].totalPrice %>
+                                                    </td>
+
+                                                    <% if (orders[i].status=='pending' ) { %>
+
+                                                        <td><span
+                                                                class="badge rounded-pill alert-warning">Pending</span>
+                                                        </td>
+                                                        <% } else if(orders[i].status=='conformed' ){ %>
+                                                            <td><span
+                                                                    class="badge rounded-pill alert-success">confirmed</span>
+                                                            </td>
+                                                            <% } else if(orders[i].status=='canceled' ){ %>
+                                                                <td><span
+                                                                        class="badge rounded-pill alert-danger">Cancelled</span>
+                                                                </td>
+                                                                <% } else if(orders[i].status=='shipped' ){ %>
+                                                                    <td><span
+                                                                            class="badge rounded-pill alert-success">shipped</span>
+                                                                    </td>
+                                                                    <% } else if(orders[i].status=='delivered' ){ %>
+                                                                        <td><span
+                                                                                class="badge rounded-pill alert-success">delivered</span>
+                                                                        </td>
+                                                                        <% } else if(orders[i].status=='returned' ){ %>
+                                                                            <td><span
+                                                                                    class="badge rounded-pill alert-danger">returned</span>
+                                                                            </td>
+
+                                                                            <% } %>
+
+                                                                                <td>
+                                                                                    <%= orders[i].createdOn.toLocaleDateString()
+                                                                                        %>
+                                                                                </td>
+                                                                                <td class="text-end">
+                                                                                    <a href="/admin/adminOrderDetails?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>"
+                                                                                        class="btn btn-md rounded font-sm">Detail</a>
+
+
+
+
+
+
+                                                                                </td>
+                                                </tr>
+
+                                                <% } %>
+                                                    <% } %>
+                                                        <% } else { %>
+                                                            <tr>
+                                                                <td colspan="2">No item found in Oders</td>
+                                                            </tr>
+                                                            <% } %>
+
+
+
+
+
+                                                                <!-- --------------------------end ------------------------------------ -->
+
+
+
+                                </tbody>
+                            </table>
+                        </div> <!-- table-responsive //end -->
+                    </div> <!-- card-body end// -->
+                </div> <!-- card end// -->
+                <% if (totalpages) { %>
+                    <div class="pagination justify-content-center">
+                        <% if (currentpage> 1) { %>
+                            <button class="btn btn-sm" "><a href=" /admin/adminOrderList?page=<%=currentpage - 1
+                                %>">Previous</a></button>
+                            <% } %>
+
+                                <% for (let i=1; i <=totalpages; i++) { %>
+                                    <!-- Change the loop to start from 1 and go up to totalpages -->
+                                    <button class="btn btn-sm" "><a href=" /admin/adminOrderList?page=<%=i %>" class="
+                                        <%= i===currentpage ? 'active' : '' %>"><%= i %></a>
+                                    </button>
+                                    <% } %>
+
+                                        <% if (currentpage < totalpages) { %>
+                                            <button class="btn btn-sm"><a
+                                                    href="/admin/adminOrderList?page=<%= currentpage + 1 %>">Next</a></button>
+                                            <% } %>
+                    </div>
+                    <% } %>
+            </div>
+            <div class="col-md-3">
+
+
+            </div>
+
+        </div>
+
+    </section> <!-- content-main end// -->
+    <%- include('footer') %>

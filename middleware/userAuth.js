@@ -62,7 +62,7 @@ const isLogged = (req, res, next) => {
             res.status(500).send('No User data found');
         };
     } else {
-        console.log('Haiiiiii');
+        
         res.redirect('/login');
 
     }

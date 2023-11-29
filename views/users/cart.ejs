@@ -1,0 +1,336 @@
+<%- include('header') %>
+
+  <main class="main">
+    <div class="page-header breadcrumb-wrap">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="/" rel="nofollow">Home</a>
+          <span></span> Shop <span></span> Your Cart
+        </div>
+      </div>
+    </div>
+    <section class="mt-50 mb-50">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="table-responsive">
+              <table class="table shopping-summery text-center clean">
+                <thead>
+                  <tr class="main-heading">
+                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Subtotal</th>
+                    <th scope="col">Remove</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <% if (product.length> 0) { %>
+                    
+                    <% for (let i=0; i < product.length;i++) { %> -->
+
+                  <!-- ---------------------this is the cart item ------------------------ -->
+                  <!-- <tr>
+                  <td class="image product-thumbnail">
+                      <img src="/admin/assets/imgs/category/<%= product[i].images[0] %>" alt="#" />
+                  </td> -->
+                  <!-- <td class="product-des product-name">
+                      <h5 class="product-name">
+                          <a href="shop-product-right.html"><%= product[i].title %></a>
+                      </h5>
+                      <p class="font-xs">
+                          <%= product[i].category %><br />
+                          <%= product[i].brand %>.
+                      </p>
+                  </td>
+                  <td class="price" data-title="Price"><span>$ <%= product[i].price %> </span></td>
+                  <td class="text-center" data-title="Stock">
+                      <div class="detail-qty border radius m-auto">
+                          <div class="quantity-control"> -->
+                  <!-- <button class="btn btn-sm increment-button" onclick="test('<%= product[i]._id %>','<%= cart[i].quantity %>',1,'<%= product[i].price %>')">+</button> -->
+                  <!-- <button class="btn btn-sm increment-button" onclick="test('<%= product[i]._id %>','<%= cart[i].quantity %>',1,'<%= product[i].price %>', '<%= i %>','<%= product[i].quantity %>')">+</button> -->
+
+
+                  <!-- <button class="btn btn-sm increment-button" onclick="changeQty('<%= user._id %>', '<%= product[i]._id %>', 1, '<%= i %>')">+</button> -->
+                  <!-- <input class="quantity-input<%= i %>" id="cartProductqty<%= i %>" style="width: 45px;" type="text" readonly value="<%= cart[i].quantity %>" data-product-index="<%= i %>">
+                              <button class="btn btn-sm decrement-button" onclick="testDic('<%= product[i]._id %>','<%= cart[i].quantity %>',-1,'<%= product[i].price %>', '<%= i %>')">-</button> -->
+                  <!-- </div>
+                      </div>
+                  </td> -->
+                  <!-- Span with a unique ID -->
+                  <!-- <td class="text-right" data-title="Cart">
+                    <span id="subtotal<%= i %>">$<%= (product[i].price * cart[i].quantity).toFixed(2) %></span>
+                </td>
+                  <td class="action" data-title="Remove"> -->
+                  <!-- <a href="#" class="text-muted" onclick="removeCartItem('<%= product[i]._id %>')"><i class="fi-rs-trash"></i></a> -->
+                  <!-- <button class="btn btn-sm" onclick="itemDelete('<%= product[i]._id %>')"><i class="fi-rs-trash"></i></button>
+                  </td> -->
+
+                  <!-- -----------------------cart item text-end---------------------- -->
+
+                  <!-- <% } %> 
+                <% } else { %>
+                <tr>
+                  <td colspan="2">No item found in Cart</td>
+                </tr>
+                <% } %> -->
+
+
+
+
+                  <% if (product.length> 0) { %>
+                    <% for (let i=0; i < product.length; i++) { %>
+                      <tr>
+                        <td class="image product-thumbnail">
+                          <img src="/admin/assets/imgs/category/<%= product[i].images[0] %>" alt="#" />
+                        </td>
+                        <td class="product-des product-name">
+                          <h5 class="product-name">
+                            <a href="shop-product-right.html">
+                              <%= product[i].title %>
+                            </a>
+                          </h5>
+                          <p class="font-xs">
+                            <%= product[i].category %><br />
+                              <%= product[i].brand %>.
+                          </p>
+                        </td>
+                        <td class="price" data-title="Price"><span> $<%= product[i].price %> </span></td>
+                        <td class="text-center" data-title="Stock">
+                          <div class="detail-qty border radius m-auto">
+                            <div class="quantity-control">
+                              <button class="btn btn-sm increment-button"
+                                onclick="modifyQuantity('<%= product[i]._id %>','<%= cart[i].quantity %>',1,'<%= product[i].price %>', '<%= i %>','<%= product[i].quantity %>')">+</button>
+                              <input class="quantity-input<%= i %>" id="cartProductqty<%= i %>" style="width: 45px;"
+                                type="text" readonly value="<%= cart[i].quantity %>" data-product-index="<%= i %>">
+                              <button class="btn btn-sm decrement-button"
+                                onclick="modifyQuantity('<%= product[i]._id %>','<%= cart[i].quantity %>',-1,'<%= product[i].price %>', '<%= i %>','<%= product[i].quantity %>')">-</button>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="text-right" data-title="Cart">
+                          <span id="subtotal<%= i %>">$<%= (product[i].price * cart[i].quantity).toFixed(2) %></span>
+                        </td>
+                        <td class="action" data-title="Remove">
+                          <button class="btn btn-sm" onclick="itemDelete('<%= product[i]._id %>')"><i
+                              class="fi-rs-trash"></i></button>
+                        </td>
+                      </tr>
+                      <% } %>
+                      <tr>
+                        <td colspan="6" class="text-end">
+                          <a href="/deleteCart" class="text-muted">
+                            <i class="fi-rs-cross-small"></i> Clear Cart</a>
+                        </td>
+                      </tr>
+                        
+                          
+
+
+
+
+
+
+                          
+                </tbody>
+              </table>
+            </div>
+
+
+            <div class="cart-action text-end">
+              <a href="/allOrderDetails" class="btn mr-10 mb-sm-15"><i class="fi-rs-shuffle mr-10"></i>Your Oders</a>
+              <a href="/" class="btn"><i class="fi-rs-shopping-bag mr-10"></i>Continue Shopping</a>
+            </div>
+
+
+
+
+
+
+            <% if (product.length> 0) { %>
+
+              <div class="col-lg-6 col-md-12">
+                <div class="border p-md-4 p-30 border-radius cart-totals">
+                  <div class="heading_s1 mb-3">
+                    <h4>Cart Totals</h4>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <td class="cart_total_label">Cart Subtotal</td>
+                          <td class="cart_total_amount">
+                            <span id="total" class="font-lg fw-900 text-brand">$<%= totalSubTotal %></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="cart_total_label">Shipping</td>
+                          <td class="cart_total_amount">
+                            <i class="ti-gift mr-5"></i> Free Shipping
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="cart_total_label">Total</td>
+                          <td class="cart_total_amount">
+                            <strong><span id="finaltotal" class="font-xl fw-900 text-brand">$<%= totalSubTotal %>
+                                  </span></strong>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <a href="/checkout" class="btn">
+                    <i class="fi-rs-box-alt mr-10"></i> Proceed To CheckOut</a>
+                </div>
+              </div>
+              <% } else { %>
+              <div class="container mt-5 mb-5">
+                <!-- Add 'mt-5' and 'mb-5' classes for more top and bottom margin -->
+                <div class="card mt-5 mb-5">
+                    <div class="card-body mt-5 mb-5">
+                        <h2 class="card-title text-center">Looks like your cart is empty</h2>
+                        <p class="card-text text-center">We have some more items you might like.</p>
+                        <div class="text-center">
+                            <a href="/shop" class="btn btn-primary">Continue Shopping</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+
+          </div>
+        </div>
+      </div>
+      </div>
+    
+      <% } else { %>
+        <div class="container mt-5 mb-5">
+          <!-- Add 'mt-5' and 'mb-5' classes for more top and bottom margin -->
+          <div class="card mt-5 mb-5">
+              <div class="card-body mt-5 mb-5">
+                  <h2 class="card-title text-center">Looks like your cart is empty</h2>
+                  <p class="card-text text-center">We have some more items you might like.</p>
+                  <div class="text-center">
+                      <a href="/" class="btn btn-primary">Continue Shopping</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  <% } %>
+    </section>
+  </main>
+
+
+
+
+
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script>
+
+    function modifyQuantity(productId, cartQty, count, prPrice, i, pqty) {
+      // Get the relevant HTML elements
+      const cartProductQtyElement = document.querySelector(`#cartProductqty${i}`);
+      const subtotalElement = document.querySelector(`#subtotal${i}`);
+      const totalElement = document.querySelector('#total');
+      const finalTotalElement = document.querySelector('#finaltotal');
+
+      // Get the current values from the HTML elements
+      let currentQuantity = parseInt(cartProductQtyElement.value);
+      const currentSubtotal = parseFloat(subtotalElement.innerText.replace('$', ''));
+      const currentTotal = parseFloat(totalElement.innerText.replace('$', ''));
+
+      // Calculate the new values
+      const newQuantity = currentQuantity + count;
+
+      // Prevent decrementing below 1
+      if (count === -1 && newQuantity < 1) {
+        return; // Don't update or send the AJAX request
+      }
+
+      // Prevent incrementing beyond the product's available quantity
+      if (count === 1 && newQuantity > pqty) {
+        Swal.fire({
+          title: 'STOCK!',
+          text: 'Product is out of stock.',
+          icon: 'error',
+          timer: 5000
+        });
+        return; // Don't update or send the AJAX request
+      }
+
+      const newSubtotal = newQuantity * prPrice;
+      const newTotal = currentTotal - currentSubtotal + newSubtotal;
+
+      // Update the HTML elements with the new values
+      cartProductQtyElement.value = newQuantity;
+      subtotalElement.innerHTML = `$${newSubtotal.toFixed(2)}`;
+      totalElement.innerHTML = `$${newTotal.toFixed(2)}`;
+      finalTotalElement.innerHTML = `$${newTotal.toFixed(2)}`;
+
+      // Now you can send the updated data in your AJAX request
+      $.ajax({
+        url: '/modifyCartQuantity',
+        method: 'POST',
+        data: {
+          productId: productId,
+          cartQty: newQuantity, // Send the updated quantity
+          count: count
+        },
+        success: function (response) {
+          if (response.status) {
+
+          } else {
+            alert(response.error)
+          }
+
+        },
+
+      });
+    }
+
+
+
+    function itemDelete(productId) {
+      //alert(1);
+
+      $.ajax({
+        url: `/deleteCartItem?id=${productId}`,
+        method: 'GET',
+
+        success: (response) => {
+          //alert(2);
+          if (response.status) {
+            //alert(3);
+            location.reload();
+          } else {
+            alert('fail');
+          }
+        },
+        error: (err) => {
+          alert('Error during the request. Please try again later.');
+          console.error(err);
+        }
+      });
+    }
+
+
+
+
+
+  </script>
+
+
+
+
+  <!-- Your JavaScript code -->
+
+
+
+  <%- include('footer') %>

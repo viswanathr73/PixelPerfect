@@ -4,8 +4,8 @@
             <div class="container">
                 <div class="breadcrumb">
                     <a href="index.htmln" rel="nofollow">Home</a>
-                    <span></span> Fashion
-                    <span></span> Abstract Print Patchwork Dress
+                    <span></span> Cameras
+                    <span></span> Product details
                 </div>
             </div>
         </div>
@@ -86,7 +86,8 @@
                                             <div class="product-price primary-color float-left">
                                                 <ins><span class="text-brand">$<%= product.price %></span></ins>
                                                 <ins><span class="old-price font-md ml-15">$
-                                                        <%=Math.round(product.price+50) %></span></ins>
+                                                        <%=Math.round(product.price+50) %>
+                                                    </span></ins>
                                                 <span class="save-price  font-md color3 ml-15">25% Off</span>
                                             </div>
                                         </div>
@@ -98,7 +99,7 @@
                                         </div>
                                         <div class="product_sort_info font-xs mb-30">
                                             <ul>
-                                                <li class="mb-10"><i class="fi-rs-crown mr-5"></i> 1 Year AL Jazeera
+                                                <li class="mb-10"><i class="fi-rs-crown mr-5"></i> 1 Year 
                                                     Brand Warranty</li>
                                                 <li class="mb-10"><i class="fi-rs-refresh mr-5"></i> 30 Day Return
                                                     Policy</li>
@@ -106,7 +107,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        
+
                                         <div class="bt-1 border-color-1 mt-30 mb-30"></div>
                                         <div class="detail-extralink">
 
@@ -132,7 +133,7 @@
                                         <li class="mb-5">Tags: <a href="#" rel="tag">
                                                 <%= product.category %>
                                             </a>
-                                            
+
                                         </li>
                                         <li>Availability:<span class="in-stock text-success ml-5">
                                                 <%= product.quantity %> in Stock
@@ -487,60 +488,62 @@
 
 
 
-    <!-- <script>
-    function wishList(id){
-       $.ajax({
-           url:`/addToList?id=${id}`,
-           method:"get",
-           success:(response)=>{
-               if(response.status){
-                  
-               }else{
-                   Swal.fire({
-       title: 'ALREADY SELECTED!',
-       text: 'You already selected',
-       icon: 'error',
-       timer: 3000,
-     
-   
-     })
-               }
-   
-           }
-       })
-   
-   
-   
-    }
-   
-       </script>
+    <script>
+        function wishList(id) {
+            $.ajax({
+                url: `r/addToList?id=${id}`,
+                method: "get",
+                success: (response) => {
+                    if (response.status) {
 
-<script>
+                    } else {
+                        Swal.fire({
+                            title: 'ALREADY SELECTED!',
+                            text: 'You already selected',
+                            icon: 'error',
+                            timer: 3000,
 
-function addToCart(id){
 
-let cartCountValue = parseInt($("#cart-Count").text());
-cartCountValue += 1;
+                        })
+                    }
 
-// Set the incremented value back to the span
-$("#cart-Count").text(cartCountValue);
+                }
+            })
+
+
+
+        }
+
+    </script>
+
+    <script>
+
+
+
+        function addToCart(id) {
+
+            let cartCountValue = parseInt($("#cart-Count").text());
+            cartCountValue += 1;
+
+            // Set the incremented value back to the span
+            $("#cart-Count").text(cartCountValue);
 
 
             $.ajax({
-                url:`/addToCart?id=${id}`,
-                method:"get",
-                success: (response)=>{
-                    
-                    if(response.status){
+                url: `/addToCart?id=${id}`,
+                method: "get",
+                success: (response) => {
+
+                    if (response.status) {
                         Swal.fire({
-title: 'ADD TO CART',
-text: 'Product Added to cart',
-icon: 'success',
-timer: 1000,
-showConfirmButton: false, // This removes the button
-});
-                       
-                    }else{
+                            title: 'ADD TO CART',
+                            text: 'Product Added to cart',
+                            icon: 'success',
+                            timer: 1000,
+                            showConfirmButton: false, // This removes the button
+                        });
+
+                    } else {
                         alert('errro')
                     }
 
@@ -551,43 +554,44 @@ showConfirmButton: false, // This removes the button
 
 
 
-</script>
+    </script>
 
-<script>
-function wishList(id){
-   $.ajax({
-       url:`/addToList?id=${id}`,
-       method:"get",
-       success:(response)=>{
-           if(response.status){
-            Swal.fire({
-   title: 'ADDED TO WISHLIST',
-   text: 'You seleted a Product to the wisslist',
-   icon: 'success',
-   timer: 3000,
- 
-
- })
-              
-           }else{
-               Swal.fire({
-   title: 'ALREADY SELECTED!',
-   text: 'You already selected',
-   icon: 'error',
-   timer: 3000,
- 
-
- })
-           }
-
-       }
-   })
+    <script>
+        function wishList(id) {
+            $.ajax({
+                url: `/addToList?id=${id}`,
+                method: "get",
+                success: (response) => {
+                    if (response.status) {
+                        Swal.fire({
+                            title: 'ADDED TO WISHLIST',
+                            text: 'You seleted a Product to the wisslist',
+                            icon: 'success',
+                            timer: 3000,
 
 
+                        })
 
-}
+                    } else {
+                        Swal.fire({
+                            title: 'ALREADY SELECTED!',
+                            text: 'You already selected',
+                            icon: 'error',
+                            timer: 3000,
 
-   </script> -->
+
+                        })
+                    }
+
+                }
+            })
+
+
+
+        }
+
+    </script>
+
 
 
 
@@ -609,7 +613,7 @@ function wishList(id){
                         </div>
                     </div>
                     <div class="col-lg-5">
-                        <!-- Subscribe Form -->
+                        <!-- <-- Subscribe Form -->
                         <form class="form-subcriber d-flex wow fadeIn animated">
                             <input type="email" class="form-control bg-white font-small" placeholder="Enter your email">
                             <button class="btn bg-dark text-white" type="submit">Subscribe</button>

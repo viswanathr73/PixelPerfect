@@ -1,0 +1,64 @@
+
+<!-- <%- include('header') %> -->
+
+    <main class="main">
+        <div class="page-header breadcrumb-wrap">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="index.html" rel="nofollow">Home</a>
+                    <span></span> Pages
+                    <span></span> Edit Address
+                </div>
+            </div>
+        </div>
+        <section class="pt-150 pb-150">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 m-auto">
+                        <div class="row justify-content-center">
+                           
+                            <div class="col-md-8">
+                                <div class="tab-content dashboard-content">
+                                   
+                                       
+
+                                           
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5> Edit Profile</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <form method="post" action="/updateProfile" >
+                                                    <div class="row">
+                                                        <div class="form-group col-md-12">
+                                                            <label><h5>Full Name</h5></label>
+                                                            <input required="" class="form-control square" value="<%- user.username %>" name="username" type="text">
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                            <label><h5>Mobile number</h5></label>
+                                                            <input required="" class="form-control square" value="<%= user.mobile %>"  name="mobile" type="text">
+                                                        </div>                                                    
+                                                        <div class="form-group col-md-12">
+                                                            <label><h5>Email</h5></label>
+                                                            <input required="" class="form-control square" value="<%= user.email %>"  name="email" type="text">
+                                                        </div>
+                                                        <input type="hidden" name="id" value="<%=user._id %>">
+
+                                                        <div class="col-md-12">
+                                                            <button type="submit" class="btn btn-fill-out submit" name="submit" value="Submit">Update</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                
+                                            </div>
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <%- include('footer') %>

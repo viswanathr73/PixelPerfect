@@ -2,7 +2,9 @@ const express= require("express");
 const router=express();
 const {loginAdmin, adminDashboard,adminVerifyLogin, userField, blockUser, unblockUser,logout}=require('../controllers/adminctrl');
 const { allCategory,addCategory,editCategory, deleteCategory,updateCategory,unlistCategory, listCategory } = require("../controllers/categoryctrl");
-const {allProducts,addProduct,createProduct,editProduct,productEdited,unlistProduct,listProduct,deleteProduct,searchProduct}=require("../controllers/productCtrl");
+const {allProducts,addProduct,createProduct,editProduct,productEdited,unlistProduct,listProduct,deleteProduct}=require("../controllers/productCtrl");
+const {adminOrderDetails,changeStatusPending,changeStatusConfirmed,changeStatusShipped,changeStatusCanceled,changeStatusDelivered,changeStatusReturned, adminOrderList,allOrderDetails}=require('../controllers/orderCtrl');
+
 router.set('view engine','ejs'); 
 router.set('views','./views/admin');
 const {upload}=require('../multer/multer');
@@ -44,6 +46,16 @@ router.get('/deleteCategory',deleteCategory);
 router.get('/unlistCategory',unlistCategory);
 router.get('/listCategory',listCategory);
 
+//order route-------------------------------------------------------------------------------
+
+router.get('/adminOrderList',adminOrderList);
+router.get('/adminOrderDetails',adminOrderDetails);
+router.get('/changeStatusPending',changeStatusPending);
+router.get('/changeStatusConfirmed',changeStatusConfirmed);
+router.get('/changeStatusShipped',changeStatusShipped);
+router.get('/changeStatusCanceled',changeStatusCanceled);
+router.get('/changeStatusdelivered',changeStatusDelivered);
+router.get('/changeStatusReturned',changeStatusReturned);
 
 
 module.exports=router;

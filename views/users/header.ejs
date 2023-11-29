@@ -15,14 +15,27 @@
     <link rel="shortcut icon" type="image/x-icon" href="/user/assets/imgs/theme/pp_favicon.svg">
     <!-- Template CSS -->
     <link rel="stylesheet" href="/user/assets/css/main.css?v=3.4">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 
 <body>
     <!-- Quick view -->
-    <div class="modal fade custom-modal" id="quickViewModal" tabindex="-1" aria-labelledby="quickViewModalLabel" aria-hidden="true">
+    <div class="modal fade custom-modal" id="quickViewModal" tabindex="-1" aria-labelledby="quickViewModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
-        <div class="modal-content">              
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>       
+            <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6 col-sm-12 col-xs-12">
@@ -67,10 +80,14 @@
                             <div class="social-icons single-share">
                                 <ul class="text-grey-5 d-inline-block">
                                     <li><strong class="mr-10">Share this:</strong></li>
-                                    <li class="social-facebook"><a href="#"><img src="/user/assets/imgs/theme/icons/icon-facebook.svg" alt=""></a></li>
-                                    <li class="social-twitter"> <a href="#"><img src="/user/assets/imgs/theme/icons/icon-twitter.svg" alt=""></a></li>
-                                    <li class="social-instagram"><a href="#"><img src="/user/assets/imgs/theme/icons/icon-instagram.svg" alt=""></a></li>
-                                    <li class="social-linkedin"><a href="#"><img src="/user/assets/imgs/theme/icons/icon-pinterest.svg" alt=""></a></li>
+                                    <li class="social-facebook"><a href="#"><img
+                                                src="/user/assets/imgs/theme/icons/icon-facebook.svg" alt=""></a></li>
+                                    <li class="social-twitter"> <a href="#"><img
+                                                src="/user/assets/imgs/theme/icons/icon-twitter.svg" alt=""></a></li>
+                                    <li class="social-instagram"><a href="#"><img
+                                                src="/user/assets/imgs/theme/icons/icon-instagram.svg" alt=""></a></li>
+                                    <li class="social-linkedin"><a href="#"><img
+                                                src="/user/assets/imgs/theme/icons/icon-pinterest.svg" alt=""></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -98,19 +115,27 @@
                                 </div>
                                 <div class="bt-1 border-color-1 mt-15 mb-15"></div>
                                 <div class="short-desc mb-30">
-                                    <p class="font-sm">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam rem officia, corrupti reiciendis minima nisi modi,!</p>
+                                    <p class="font-sm">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam
+                                        rem officia, corrupti reiciendis minima nisi modi,!</p>
                                 </div>
-                                
+
                                 <div class="attr-detail attr-color mb-15">
                                     <strong class="mr-10">Color</strong>
                                     <ul class="list-filter color-filter">
-                                        <li><a href="#" data-color="Red"><span class="product-color-red"></span></a></li>
-                                        <li><a href="#" data-color="Yellow"><span class="product-color-yellow"></span></a></li>
-                                        <li class="active"><a href="#" data-color="White"><span class="product-color-white"></span></a></li>
-                                        <li><a href="#" data-color="Orange"><span class="product-color-orange"></span></a></li>
-                                        <li><a href="#" data-color="Cyan"><span class="product-color-cyan"></span></a></li>
-                                        <li><a href="#" data-color="Green"><span class="product-color-green"></span></a></li>
-                                        <li><a href="#" data-color="Purple"><span class="product-color-purple"></span></a></li>
+                                        <li><a href="#" data-color="Red"><span class="product-color-red"></span></a>
+                                        </li>
+                                        <li><a href="#" data-color="Yellow"><span
+                                                    class="product-color-yellow"></span></a></li>
+                                        <li class="active"><a href="#" data-color="White"><span
+                                                    class="product-color-white"></span></a></li>
+                                        <li><a href="#" data-color="Orange"><span
+                                                    class="product-color-orange"></span></a></li>
+                                        <li><a href="#" data-color="Cyan"><span class="product-color-cyan"></span></a>
+                                        </li>
+                                        <li><a href="#" data-color="Green"><span class="product-color-green"></span></a>
+                                        </li>
+                                        <li><a href="#" data-color="Purple"><span
+                                                    class="product-color-purple"></span></a></li>
                                     </ul>
                                 </div>
                                 <div class="attr-detail attr-size">
@@ -132,21 +157,24 @@
                                     </div>
                                     <div class="product-extra-link2">
                                         <button type="submit" class="button button-add-to-cart">Add to cart</button>
-                                        <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                        <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
+                                        <a aria-label="Add To Wishlist" class="action-btn hover-up" href="/wishlist"><i
+                                                class="fi-rs-heart"></i></a>
+
                                     </div>
                                 </div>
                                 <ul class="product-meta font-xs color-grey mt-50">
                                     <li class="mb-5">SKU: <a href="#">FWM15VKT</a></li>
-                                    <li class="mb-5">Tags: <a href="#" rel="tag">Cloth</a>, <a href="#" rel="tag">Women</a>, <a href="#" rel="tag">Dress</a> </li>
-                                    <li>Availability:<span class="in-stock text-success ml-5">8 Items In Stock</span></li>
+                                    <li class="mb-5">Tags: <a href="#" rel="tag">Cloth</a>, <a href="#"
+                                            rel="tag">Women</a>, <a href="#" rel="tag">Dress</a> </li>
+                                    <li>Availability:<span class="in-stock text-success ml-5">8 Items In Stock</span>
+                                    </li>
                                 </ul>
                             </div>
                             <!-- Detail Info -->
                         </div>
                     </div>
-                </div>        
-        </div>
+                </div>
+            </div>
         </div>
     </div>
     <header class="header-area header-style-3 header-height-2">
@@ -160,115 +188,133 @@
                     </div>
                     <div class="header-right">
                         <div class="search-style-2">
-                            <form action="/api/user/filterSearch" method="post">
-                                
+                            <form action="/searchProduct" method="post">
+
                                 <input type="text" name="search" placeholder="Search for items...">
                                 <button class="btn btn-sm" type="submit">Search</button>
                             </form>
-                        </div>
-              <div class="col-xl-3 col-lg-4">
-                <div class="header-info header-info-right">
-                    <ul>
-                        
-                        <% if (locals.user) { %>
-                            <li class="dropdown nav-item">
-                                <% if (locals.user.image) { %>
-                                   
-                                            <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false"> <img style="width: 30px; height: 30px; " class="img-xs rounded-circle" src="/admin/assets/imgs/category/<%= locals.user.image %>" alt=""></a>
-                                           
+                                      
+                        </div>
+                        <div class="col-xl-3 col-lg-4">
+                            <div class="header-info header-info-right">
+                                <ul>
 
-                                   
+                                    <% if (locals.user) { %>
+                                        <li class="dropdown nav-item">
+                                            <% if (locals.user.image) { %>
 
-                                    <% } else { %>
-                                    <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-check" viewBox="0 0 16 16">
+                                                <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                                                    id="dropdownAccount" aria-expanded="false"> <img
+                                                        style="width: 30px; height: 30px; "
+                                                        class="img-xs rounded-circle"
+                                                        src="/admin/assets/imgs/category/<%= locals.user.image %>"
+                                                        alt=""></a>
+
+
+
+
+                                                <% } else { %>
+                                                    <!-- <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-check" viewBox="0 0 16 16">
                                         <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514ZM11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
                                         <path d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z"/>
-                                      </svg> </a>
+                                      </svg> </a> -->
+                                                    <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                                                        id="dropdownAccount" aria-expanded="false"> <img
+                                                            style="width: 30px; height: 30px; "
+                                                            class="img-xs rounded-circle"
+                                                            src="/admin/assets/imgs/category/<%= locals.user.image %>"
+                                                            alt=""></a>
+                                                    <% } %>
+                                                        <div class="dropdown-menu dropdown-menu-end"
+                                                            aria-labelledby="dropdownAccount">
+                                                            <a class="dropdown-item " href="/profile"><i
+                                                                    class="material-icons md-perm_identity"></i>
+                                                                Profile</a>
 
-                                        <% } %>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
-                                    <a class="dropdown-item " href="/profile"><i class="material-icons md-perm_identity"></i> Profile</a>
-                                   
-                                   
-                                    <div class="dropdown-divider"></div>
-                                    <!-- <a class="dropdown-item text-danger" href="#"><i class="material-icons md-exit_to_app"></i>Logout</a> -->
-                                   
-                                    <a class="dropdown-item text-danger" href="/logout"><i class="material-icons md-exit_to_app"></i>Logout</a>
-                                </div>
-                                    
-                                    <div class="header-action-right">
-                                        <div class="header-action-2">
-                                            <div class="header-action-icon-2">
-                                                <a href="shop-wishlist.html">
-                                                    <img class="svgInject" alt="Evara" src="/user/assets/imgs/theme/icons/icon-heart.svg">
-                                                    <span class="pro-count blue">4</span>
-                                                </a>
-                                            </div>
-                                            <div class="header-action-icon-2">
-                                                <a class="mini-cart-icon" href="shop-cart.html">
-                                                    <img alt="Evara" src="/user/assets/imgs/theme/icons/icon-cart.svg">
-                                                    <span class="pro-count blue">2</span>
-                                                </a>
-                                                <div class="cart-dropdown-wrap cart-dropdown-hm2">
-                                                    <ul>
-                                                        <li>
-                                                            <div class="shopping-cart-img">
-                                                                <a href="shop-product-right.html"><img alt="Evara" src="/user/assets/imgs/shop/thumbnail-3.jpg"></a>
-                                                            </div>
-                                                            <div class="shopping-cart-title">
-                                                                <h4><a href="shop-product-right.html">Daisy Casual Bag</a></h4>
-                                                                <h4><span>1 × </span>$800.00</h4>
-                                                            </div>
-                                                            <div class="shopping-cart-delete">
-                                                                <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="shopping-cart-img">
-                                                                <a href="shop-product-right.html"><img alt="Evara" src="/user/assets/imgs/shop/thumbnail-2.jpg"></a>
-                                                            </div>
-                                                            <div class="shopping-cart-title">
-                                                                <h4><a href="shop-product-right.html">Corduroy Shirts</a></h4>
-                                                                <h4><span>1 × </span>$3200.00</h4>
-                                                            </div>
-                                                            <div class="shopping-cart-delete">
-                                                                <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="shopping-cart-footer">
-                                                        <div class="shopping-cart-total">
-                                                            <h4>Total <span>$4000.00</span></h4>
+
+                                                            <div class="dropdown-divider"></div>
+                                                            <!-- <a class="dropdown-item text-danger" href="#"><i class="material-icons md-exit_to_app"></i>Logout</a> -->
+
+                                                            <a class="dropdown-item text-danger" href="/logout"><i
+                                                                    class="material-icons md-exit_to_app"></i>Logout</a>
                                                         </div>
-                                                        <div class="shopping-cart-button">
-                                                            <a href="shop-cart.html" class="outline">View cart</a>
-                                                            <a href="shop-checkout.html">Checkout</a>
+
+                                                        <div class="header-action-right">
+                                                            <div class="header-action-2">
+                                                                <div class="header-action-icon-2">
+                                                                    <a href="/wishlist">
+                                                                        <img class="svgInject" alt="Evara"
+                                                                            src="/user/assets/imgs/theme/icons/icon-heart.svg">
+
+                                                                        <% if (locals.user) { %>
+                                                                            <% let totalWishlistQuantity=0; %>
+
+                                                                                <% if (user.wishlist &&
+                                                                                    user.wishlist.length) {
+                                                                                    totalWishlistQuantity=user.wishlist.length;
+                                                                                    } %>
+
+                                                                                    <span class="pro-count blue"
+                                                                                        id="wishlist-Count">
+                                                                                        <%= totalWishlistQuantity %>
+                                                                                    </span>
+
+                                                                                    <% } else { %>
+                                                                                        <span
+                                                                                            class="pro-count blue">0</span>
+                                                                                        <% } %>
+
+                                                                    </a>
+                                                                </div>
+                                                                <div class="header-action-icon-2">
+                                                                    <a class="mini-cart-icon" href="/cart">
+                                                                        <img alt="Evara"
+                                                                            src="/user/assets/imgs/theme/icons/icon-cart.svg">
+                                                                        <% if (locals.user) { %>
+                                                                            <% let totalCartQuantity=0; if (user.cart &&
+                                                                                user.cart.length) {
+                                                                                totalCartQuantity=user.cart.reduce((total,
+                                                                                product)=> total + product.quantity, 0);
+                                                                                }
+                                                                                %>
+                                                                                <span class="pro-count blue"
+                                                                                    id="cart-Count">
+                                                                                    <%= totalCartQuantity %>
+                                                                                </span>
+                                                                                <% } else { %>
+                                                                                    <span
+                                                                                        class="pro-count blue">0</span>
+                                                                                    <% } %>
+                                                                    </a>
+
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <% } else { %>
-                                        
-                                        <li><a href="/login"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
-                                            <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
-                                            <path d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z"/>
-                                          </svg></a></li>
-                                    <% } %>
-                                
-                            </li>
-                            
-                        </ul>
-                      
+                            </div>
+                        </div>
+                        <% } else { %>
+
+                            <li><a href="/login"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                                        fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
+                                        <path
+                                            d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
+                                        <path
+                                            d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z" />
+                                    </svg></a></li>
+                            <% } %>
+
+                                </li>
+
+                                </ul>
 
 
-                </div>
-            </div>
-                        
+
                     </div>
                 </div>
+
             </div>
+        </div>
+        </div>
         </div>
         <div class="header-bottom header-bottom-bg-color sticky-bar">
             <div class="container">
@@ -285,11 +331,11 @@
                                 <ul>
                                     <li class="has-children">
                                         <a href="">Cameras</a>
-                                    
+
                                     </li>
                                     <li class="has-children">
                                         <a href="shop-grid-right.html">Camera Lens</a>
-                                        
+
                                     </li>
                                     <li class="has-children">
                                         <a href="shop-grid-right.html">Camera Accessories</a>
@@ -303,8 +349,8 @@
                                 <ul>
                                     <li><a class="active" href="/">Home </a>
                                         <ul class="sub-menu">
-                                            
-                                            
+
+
                                         </ul>
                                     </li>
                                     <li>
@@ -313,10 +359,10 @@
                                     <li><a href="shop-grid-right.html">Shop <i class="fi-rs-angle-down"></i></a>
                                         <ul class="sub-menu">
                                             <li><a href="shop-grid-right.html">Shop Grid – Right Sidebar</a></li>
-                                           
+
                                         </ul>
                                     </li>
-                                    
+
                                     <li><a href="blog-category-grid.html">Blog <i class="fi-rs-angle-down"></i></a>
                                         <ul class="sub-menu">
                                             <li><a href="blog-category-grid.html">Blog Category Grid</a></li>
@@ -334,10 +380,10 @@
                                     </li>
                                     <li><a href="#">Pages <i class="fi-rs-angle-down"></i></a>
                                         <ul class="sub-menu">
-                                            <li><a href="page-about.html">About Us</a></li>
+                                            <li><a href="/about">About Us</a></li>
                                             <li><a href="page-contact.html">Contact</a></li>
-                                            <li><a href="page-account.html">My Account</a></li>
-                                            <li><a href="page-login-register.html">login/register</a></li>
+                                            <li><a href="/profile">My Account</a></li>
+                                            <li><a href="/login">login/register</a></li>
                                             <li><a href="page-purchase-guide.html">Purchase Guide</a></li>
                                             <li><a href="page-privacy-policy.html">Privacy Policy</a></li>
                                             <li><a href="page-terms.html">Terms of Service</a></li>
@@ -354,17 +400,18 @@
                     <div class="hotline d-none d-lg-block">
                         <p><i class="fi-rs-headset"></i><span>Hotline</span> 1900 - 888 </p>
                     </div>
-                    <p class="mobile-promotion">Happy <span class="text-brand">Photographers's Day</span>. Big Sale Up to 40%</p>
+                    <p class="mobile-promotion">Happy <span class="text-brand">Photographers's Day</span>. Big Sale Up
+                        to 40%</p>
                     <div class="header-action-right d-block d-lg-none">
                         <div class="header-action-2">
                             <div class="header-action-icon-2">
-                                <a href="shop-wishlist.html">
+                                <a href="/wishlist">
                                     <img alt="Evara" src="/user/assets/imgs/theme/icons/icon-heart.svg">
                                     <span class="pro-count white">4</span>
                                 </a>
                             </div>
                             <div class="header-action-icon-2">
-                                <a class="mini-cart-icon" href="shop-cart.html">
+                                <a class="mini-cart-icon" href="/cart">
                                     <img alt="Evara" src="/user/assets/imgs/theme/icons/icon-cart.svg">
                                     <span class="pro-count white">2</span>
                                 </a>
@@ -372,7 +419,8 @@
                                     <ul>
                                         <li>
                                             <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="Evara" src="/user/assets/imgs/shop/thumbnail-3.jpg"></a>
+                                                <a href="shop-product-right.html"><img alt="Evara"
+                                                        src="/user/assets/imgs/shop/thumbnail-3.jpg"></a>
                                             </div>
                                             <div class="shopping-cart-title">
                                                 <h4><a href="shop-product-right.html">Plain Striola Shirts</a></h4>
@@ -384,7 +432,8 @@
                                         </li>
                                         <li>
                                             <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="Evara" src="/user/assets/imgs/shop/thumbnail-4.jpg"></a>
+                                                <a href="shop-product-right.html"><img alt="Evara"
+                                                        src="/user/assets/imgs/shop/thumbnail-4.jpg"></a>
                                             </div>
                                             <div class="shopping-cart-title">
                                                 <h4><a href="shop-product-right.html">Macbook Pro 2022</a></h4>
@@ -434,7 +483,7 @@
             </div>
             <div class="mobile-header-content-area">
                 <div class="mobile-search search-style-3 mobile-header-border">
-                    <form action="#">
+                    <form action="/searchProduct" method="post">
                         <input type="text" placeholder="Search for items…">
                         <button type="submit"><i class="fi-rs-search"></i></button>
                     </form>
@@ -446,14 +495,20 @@
                         </a>
                         <div class="categori-dropdown-wrap categori-dropdown-active-small">
                             <ul>
-                                <li><a href="shop-grid-right.html"><i class="evara-font-dress"></i>Women's Clothing</a></li>
-                                <li><a href="shop-grid-right.html"><i class="evara-font-tshirt"></i>Men's Clothing</a></li>
-                                <li> <a href="shop-grid-right.html"><i class="evara-font-smartphone"></i> Cellphones</a></li>
-                                <li><a href="shop-grid-right.html"><i class="evara-font-desktop"></i>Computer & Office</a></li>
-                                <li><a href="shop-grid-right.html"><i class="evara-font-cpu"></i>Consumer Electronics</a></li>
+                                <li><a href="shop-grid-right.html"><i class="evara-font-dress"></i>Women's Clothing</a>
+                                </li>
+                                <li><a href="shop-grid-right.html"><i class="evara-font-tshirt"></i>Men's Clothing</a>
+                                </li>
+                                <li> <a href="shop-grid-right.html"><i class="evara-font-smartphone"></i> Cellphones</a>
+                                </li>
+                                <li><a href="shop-grid-right.html"><i class="evara-font-desktop"></i>Computer &
+                                        Office</a></li>
+                                <li><a href="shop-grid-right.html"><i class="evara-font-cpu"></i>Consumer
+                                        Electronics</a></li>
                                 <li><a href="shop-grid-right.html"><i class="evara-font-home"></i>Home & Garden</a></li>
                                 <li><a href="shop-grid-right.html"><i class="evara-font-high-heels"></i>Shoes</a></li>
-                                <li><a href="shop-grid-right.html"><i class="evara-font-teddy-bear"></i>Mother & Kids</a></li>
+                                <li><a href="shop-grid-right.html"><i class="evara-font-teddy-bear"></i>Mother &
+                                        Kids</a></li>
                                 <li><a href="shop-grid-right.html"><i class="evara-font-kite"></i>Outdoor fun</a></li>
                             </ul>
                         </div>
@@ -461,7 +516,8 @@
                     <!-- mobile menu start -->
                     <nav>
                         <ul class="mobile-menu">
-                            <li class="menu-item-has-children"><span class="menu-expand"></span><a href="index.html">Home</a>
+                            <li class="menu-item-has-children"><span class="menu-expand"></span><a
+                                    href="index.html">Home</a>
                                 <ul class="dropdown">
                                     <li><a href="index.html">Home 1</a></li>
                                     <li><a href="index-2.html">Home 2</a></li>
@@ -469,14 +525,16 @@
                                     <li><a href="index-4.html">Home 4</a></li>
                                 </ul>
                             </li>
-                            <li class="menu-item-has-children"><span class="menu-expand"></span><a href="shop-grid-right.html">shop</a>
+                            <li class="menu-item-has-children"><span class="menu-expand"></span><a
+                                    href="shop-grid-right.html">shop</a>
                                 <ul class="dropdown">
                                     <li><a href="shop-grid-right.html">Shop Grid – Right Sidebar</a></li>
                                     <li><a href="shop-grid-left.html">Shop Grid – Left Sidebar</a></li>
                                     <li><a href="shop-list-right.html">Shop List – Right Sidebar</a></li>
                                     <li><a href="shop-list-left.html">Shop List – Left Sidebar</a></li>
                                     <li><a href="shop-fullwidth.html">Shop - Wide</a></li>
-                                    <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Single Product</a>
+                                    <li class="menu-item-has-children"><span class="menu-expand"></span><a
+                                            href="#">Single Product</a>
                                         <ul class="dropdown">
                                             <li><a href="shop-product-right.html">Product – Right Sidebar</a></li>
                                             <li><a href="shop-product-left.html">Product – Left Sidebar</a></li>
@@ -484,15 +542,17 @@
                                         </ul>
                                     </li>
                                     <li><a href="shop-filter.html">Shop – Filter</a></li>
-                                    <li><a href="shop-wishlist.html">Shop – Wishlist</a></li>
-                                    <li><a href="shop-cart.html">Shop – Cart</a></li>
+                                    <li><a href="/wishlist">Shop – Wishlist</a></li>
+                                    <li><a href="/cart">Shop – Cart</a></li>
                                     <li><a href="shop-checkout.html">Shop – Checkout</a></li>
-                                    <li><a href="shop-compare.html">Shop – Compare</a></li>
+
                                 </ul>
                             </li>
-                            <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Mega menu</a>
+                            <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Mega
+                                    menu</a>
                                 <ul class="dropdown">
-                                    <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Women's Fashion</a>
+                                    <li class="menu-item-has-children"><span class="menu-expand"></span><a
+                                            href="#">Women's Fashion</a>
                                         <ul class="dropdown">
                                             <li><a href="shop-product-right.html">Dresses</a></li>
                                             <li><a href="shop-product-right.html">Blouses & Shirts</a></li>
@@ -500,14 +560,16 @@
                                             <li><a href="shop-product-right.html">Women's Sets</a></li>
                                         </ul>
                                     </li>
-                                    <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Men's Fashion</a>
+                                    <li class="menu-item-has-children"><span class="menu-expand"></span><a
+                                            href="#">Men's Fashion</a>
                                         <ul class="dropdown">
                                             <li><a href="shop-product-right.html">Jackets</a></li>
                                             <li><a href="shop-product-right.html">Casual Faux Leather</a></li>
                                             <li><a href="shop-product-right.html">Genuine Leather</a></li>
                                         </ul>
                                     </li>
-                                    <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Technology</a>
+                                    <li class="menu-item-has-children"><span class="menu-expand"></span><a
+                                            href="#">Technology</a>
                                         <ul class="dropdown">
                                             <li><a href="shop-product-right.html">Gaming Laptops</a></li>
                                             <li><a href="shop-product-right.html">Ultraslim Laptops</a></li>
@@ -518,13 +580,15 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="menu-item-has-children"><span class="menu-expand"></span><a href="blog-category-fullwidth.html">Blog</a>
+                            <li class="menu-item-has-children"><span class="menu-expand"></span><a
+                                    href="blog-category-fullwidth.html">Blog</a>
                                 <ul class="dropdown">
                                     <li><a href="blog-category-grid.html">Blog Category Grid</a></li>
                                     <li><a href="blog-category-list.html">Blog Category List</a></li>
                                     <li><a href="blog-category-big.html">Blog Category Big</a></li>
                                     <li><a href="blog-category-fullwidth.html">Blog Category Wide</a></li>
-                                    <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Single Product Layout</a>
+                                    <li class="menu-item-has-children"><span class="menu-expand"></span><a
+                                            href="#">Single Product Layout</a>
                                         <ul class="dropdown">
                                             <li><a href="blog-post-left.html">Left Sidebar</a></li>
                                             <li><a href="blog-post-right.html">Right Sidebar</a></li>
@@ -559,7 +623,7 @@
                 </div>
                 <div class="mobile-header-info-wrap mobile-header-border">
                     <div class="single-mobile-header-info mt-30">
-                        <a  href="page-contact.html"> Our location </a>
+                        <a href="page-contact.html"> Our location </a>
                     </div>
                     <div class="single-mobile-header-info">
                         <a href="page-login-register.html">Log In / Sign Up </a>

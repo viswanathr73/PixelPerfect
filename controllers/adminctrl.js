@@ -45,33 +45,6 @@ const adminVerifyLogin=asyncHandler(async(req,res)=>{
     }
 });
 
-//pagination
-// const userField = asyncHandler(async(req,res)=>{
-//     try{
-//         const page = parseInt(req.query.page) || 1;
-//         const limit = parseInt(req.query.limit) ||4;
-      
-//         // Calculate the skip value to detemine
-//         const skip = (page - 1) *limit;
-       
-//         const user = await User.find({isAdmin:{$ne:1}})
-//         .skip(skip)
-//         .limit(limit);
-       
-//         //Get the total number of products in the database
-//         const  totalProductsCount = await User.countDocuments();
-
-//         //calculate the total number of pages based on the total products and limit
-//         const totalPages = Math.ceil(totalProductsCount/limit);
-//         res.render('users',{users:user,page, totalPages ,limit });
-//         if(blockUser){
-//             res.redirect('/admin/user');
-//         }
-//     } catch (error) {
-//         console.log("user field error in dashboard",error);
-        
-//     }
-// })
 
 // user page rendering and show details of all users--------------------------------------
 

@@ -1,0 +1,731 @@
+<%- include('header') %>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <main class="main">
+        <div class="page-header breadcrumb-wrap">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="index.html" rel="nofollow">Home</a>
+                    <span></span> Pages
+                    <span></span> Account
+                </div>
+            </div>
+        </div>
+        <section class="pt-150 pb-150">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 m-auto">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="dashboard-menu">
+                                    <ul class="nav flex-column" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="dashboard-tab" data-bs-toggle="tab"
+                                                href="#dashboard" role="tab" aria-controls="dashboard"
+                                                aria-selected="false"><i
+                                                    class="fi-rs-settings-sliders mr-10"></i>Dashboard</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="orders-tab" data-bs-toggle="tab" href="#orders"
+                                                role="tab" aria-controls="orders" aria-selected="false"><i
+                                                    class="fi-rs-shopping-bag mr-10"></i>Orders</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="track-orders-tab" data-bs-toggle="tab"
+                                                href="#track-orders" role="tab" aria-controls="track-orders"
+                                                aria-selected="false"><i
+                                                    class="fi-rs-shopping-cart-check mr-10"></i>Wallet Transactions</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="address-tab" data-bs-toggle="tab" href="#address"
+                                                role="tab" aria-controls="address" aria-selected="true"><i
+                                                    class="fi-rs-marker mr-10"></i>My Address</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab"
+                                                href="#account-detail" role="tab" aria-controls="account-detail"
+                                                aria-selected="true"><i class="fi-rs-user mr-10"></i>Add new address</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/logout"><i
+                                                    class="fi-rs-sign-out mr-10"></i>Logout</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="tab-content dashboard-content">
+                                    <div class="tab-pane fade active show" id="dashboard" role="tabpanel"
+                                        aria-labelledby="dashboard-tab">
+                                        <div class="card">
+                                            <div class="row">
+
+                                                <!-- ------------wallet ------------->
+                                                <% if(user.wallet==0){%>
+                                                    <div class="col-lg-4">
+                                                        <div class="card card-body mb-4">
+                                                            <article class="icontext">
+                                                                <span
+                                                                    class="icon icon-sm rounded-circle bg-primary-light"><i
+                                                                        class="text-primary material-icons md-monetization_on"></i></span>
+                                                                <div class="text">
+                                                                    <h6 class="mb-1 card-title">Wallet</h6>
+                                                                    <span>$0.00</span>
+                                                                    <span class="text-sm">
+                                                                        <br>
+                                                                        <br>
+                                                                        <br>
+
+                                                                    </span>
+                                                                </div>
+                                                            </article>
+                                                        </div>
+                                                    </div>
+                                                    <% }else{%>
+                                                        <div class="col-lg-4">
+                                                            <div class="card card-body mb-4">
+                                                                <article class="icontext">
+                                                                    <span
+                                                                        class="icon icon-sm rounded-circle bg-primary-light"><i
+                                                                            class="text-primary material-icons md-monetization_on"></i></span>
+                                                                    <div class="text">
+                                                                        <h3 class="mb-1 card-title">Wallet</h3>
+                                                                        <br>
+
+                                                                        <br>
+
+                                                                        <span>
+                                                                            <h5>Ballence: </h5>
+
+                                                                        </span>
+                                                                        <br>
+                                                                        <br>
+                                                                        <span class="text-sm">
+                                                                            <br>
+                                                                        </span>
+
+
+                                                                    </div>
+                                                                </article>
+                                                            </div>
+                                                        </div>
+                                                        <% }%>
+                                                            <div class="col-lg-4 col-md-4 mb-md-3 mb-lg-0">
+                                                                <div
+                                                                    class="banner-features wow fadeIn animated hover-up">
+                                                                    <img src="/user/assets/imgs/theme/icons/feature-3.png"
+                                                                        alt="">
+                                                                    <a href="#" data-toggle="modal"
+                                                                        data-target="#addMoneyModal">
+                                                                        <h4 class="bg-2">Add Money</h4>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+
+
+
+                                            </div>
+
+                                            <!-- Add Money Modal -->
+                                            <div class="modal fade" id="addMoneyModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="addMoneyModalTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="addMoneyModalTitle">Add Money
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form id="addMoneyForm">
+                                                                <div class="form-group">
+                                                                    <label for="moneyAmount">Amount ($)</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="moneyAmount" placeholder="Enter amount">
+
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary"
+                                                                id="addMoneyButton">Add Money</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- ----------------------------------------------------------- -->
+
+
+
+                                            <div class="card-body">
+                                                <div class="card mb-4">
+                                                    <div class="card-header bg-primary" style="height:150px">
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-xl col-lg flex-grow-0"
+                                                                style="flex-basis:230px">
+                                                                <div class="img-thumbnail shadow w-100 bg-white position-relative text-center"
+                                                                    style="height:190px; width:200px; margin-top:-120px">
+
+
+
+
+
+
+                                                                    <img style="width: auto; height: 100px;"
+                                                                        src="/admin/assets/imgs/category/<%= user.image %>"
+                                                                        class="center-xy img-fluid" alt="Logo Brand">
+
+
+
+                                                                    <% if(!user.image){%>
+
+                                                                        <li class="dropdown nav-item">
+                                                                            <a class="dropdown-toggle"
+                                                                                data-bs-toggle="dropdown" href="#"
+                                                                                id="dropdownAccount"
+                                                                                aria-expanded="false">Add Profile
+                                                                                Pic</a>
+                                                                            <div class="dropdown-menu dropdown-menu-end"
+                                                                                aria-labelledby="dropdownAccount">
+                                                                                <form action="/addProfilePic"
+                                                                                    enctype="multipart/form-data"
+                                                                                    method="post"> <a
+                                                                                        class="dropdown-item"
+                                                                                        href="#"><input
+                                                                                            class="form-control"
+                                                                                            type="file" accept="image/*"
+                                                                                            name="image"></a> <input
+                                                                                        type="hidden" name="id"
+                                                                                        value="<%=user._id %>">
+                                                                                    <a class="dropdown-item" href="#"><i
+                                                                                            class="material-icons md-receipt"></i><button
+                                                                                            style="height: 20px; width: 20px; display: flex; align-items: center; justify-content: center;"
+                                                                                            type="submit">Add</button></a>
+                                                                                </form>
+
+                                                                            </div>
+                                                                        </li>
+
+
+
+                                                                        <% }else{%>
+                                                                            <li class="dropdown nav-item">
+                                                                                <a class="dropdown-toggle"
+                                                                                    data-bs-toggle="dropdown" href="#"
+                                                                                    id="dropdownAccount"
+                                                                                    aria-expanded="false">Edit Profile
+                                                                                    Pic</a>
+                                                                                <div class="dropdown-menu dropdown-menu-end"
+                                                                                    aria-labelledby="dropdownAccount">
+                                                                                    <form action="/addProfilePic"
+                                                                                        enctype="multipart/form-data"
+                                                                                        method="post"> <a
+                                                                                            class="dropdown-item"
+                                                                                            href="#"><input
+                                                                                                class="form-control"
+                                                                                                type="file"
+                                                                                                accept="image/*"
+                                                                                                name="image"></a> <input
+                                                                                            type="hidden" name="id"
+                                                                                            value="<%=user._id %>">
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#"><i
+                                                                                                class="material-icons md-receipt"></i><button
+                                                                                                style="height: 20px; width: 20px; display: flex; align-items: center; justify-content: center;"
+                                                                                                type="submit">Edit</button></a>
+                                                                                    </form>
+
+                                                                                </div>
+                                                                            </li>
+
+                                                                            <% }%>
+
+
+
+
+
+                                                                </div>
+                                                            </div> <!--  col.// -->
+                                                            <div class="col-xl col-lg">
+                                                                <h3>
+                                                                    <%= user.username %>
+                                                                </h3>
+                                                                <p>
+                                                                    <%= user.email %>,
+                                                                </p>
+                                                            </div>
+
+                                                        </div> <!-- card-body.// -->
+                                                        <hr class="my-4">
+                                                        <div class="row g-4">
+
+                                                            <div class="col-sm-6 col-lg-4 col-xl-3">
+                                                                <h6>Contacts</h6>
+
+                                                                <p>
+                                                                    <%= user.mobile %>
+                                                                </p>
+                                                            </div><!-----col-->
+                                                            <div class="col-sm-8 col-lg-6 col-xl-5">
+                                                                <h6>Address</h6>
+                                                                <% if (user.address && user.address.length> 0) { %>
+                                                                    <p>
+                                                                        <%= user.address[0].addressLine %>
+                                                                    </p>
+                                                                    <% } else { %>
+                                                                        <div class="col-sm-12">
+                                                                            <!-- <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="fi-rs-user mr-10"></i>Add new Address</a> -->
+                                                                            <p> <i class="fi-rs-x-circle mr-10"></i>No
+                                                                                Address Add Your address</p>
+                                                                        </div>
+                                                                        <% } %>
+
+
+
+                                                            </div> <!--  col.// -->
+                                                            <div class="col-lg-3"> <a
+                                                                    href="/editProfile?id=<%=user._id %>">Edit
+                                                                    Profile</a></div>
+
+                                                        </div> <!--  row.// -->
+                                                    </div> <!--  card-body.// -->
+                                                </div> <!--  card.// -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="mb-0">Your Orders</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table col-lg-9">
+                                                    <table class="table table-hover"> <!-- Set the desired width -->
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#ID</th>
+                                                                <th scope="col">Name</th>
+
+                                                                <th scope="col">Total</th>
+                                                                <th scope="col">Status</th>
+                                                                <th scope="col">Date</th>
+                                                                <th scope="col" class="text-end"> Action </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <% if (orders.length> 0) { %>
+                                                                <% for (let i=0; i < orders.length;i++) { %>
+                                                                    <% for (let j=0; j < orders[i].product.length; j++)
+                                                                        { %>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <%=orders[i]._id %>
+                                                                            </td>
+                                                                            <td><b>
+                                                                                    <%= orders[i].product[j].title %>
+                                                                                </b></td>
+
+                                                                            <td>$<%= orders[i].totalPrice %>
+                                                                            </td>
+
+                                                                            <% if (orders[i].status=='pending' ) { %>
+
+                                                                                <td><span
+                                                                                        class="badge rounded-pill alert-warning">Pending</span>
+                                                                                </td>
+                                                                                <% } else
+                                                                                    if(orders[i].status=='conformed' ){
+                                                                                    %>
+                                                                                    <td><span
+                                                                                            class="badge rounded-pill alert-success">conformed</span>
+                                                                                    </td>
+                                                                                    <% } else
+                                                                                        if(orders[i].status=='canceled'
+                                                                                        ){ %>
+                                                                                        <td><span
+                                                                                                class="badge rounded-pill alert-danger">Cancelled</span>
+                                                                                        </td>
+                                                                                        <% } else
+                                                                                            if(orders[i].status=='shipped'
+                                                                                            ){ %>
+                                                                                            <td><span
+                                                                                                    class="badge rounded-pill alert-success">shipped</span>
+                                                                                            </td>
+                                                                                            <% } else
+                                                                                                if(orders[i].status=='delivered'
+                                                                                                ){ %>
+                                                                                                <td><span
+                                                                                                        class="badge rounded-pill alert-success">delivered</span>
+                                                                                                </td>
+                                                                                                <% } else
+                                                                                                    if(orders[i].status=='returned'
+                                                                                                    ){ %>
+                                                                                                    <td><span
+                                                                                                            class="badge rounded-pill alert-danger">returned</span>
+                                                                                                    </td>
+
+                                                                                                    <% } %>
+
+
+                                                                                                        <td>
+                                                                                                            <%= orders[i].createdOn.toLocaleDateString()
+                                                                                                                %>
+                                                                                                        </td>
+                                                                                                        <td
+                                                                                                            class="text-end">
+                                                                                                            <a href="/orderDetails?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>"
+                                                                                                                class="btn btn-md rounded font-sm">Detail</a>
+                                                                                                            <% if
+                                                                                                                (orders[i].status=='pending'
+                                                                                                                ) { %>
+                                                                                                                <a href="/cancelOrder?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>"
+                                                                                                                    class="
+                                                                                                                        btn
+                                                                                                                        btn-md
+                                                                                                                        rounded
+                                                                                                                        font-sm">Cancel</a>
+                                                                                                                <% } else
+                                                                                                                    if(orders[i].status=='conformed'
+                                                                                                                    ){
+                                                                                                                    %>
+                                                                                                                    <a href="/cancelOrder?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>"
+                                                                                                                        class="
+                                                                                                                            btn
+                                                                                                                            btn-md
+                                                                                                                            rounded
+                                                                                                                            font-sm">Cancel</a>
+
+
+                                                                                                                    <% } else
+                                                                                                                        if(orders[i].status=='canceled'
+                                                                                                                        ){
+                                                                                                                        %>
+                                                                                                                        <% } else
+                                                                                                                            if(orders[i].status=='shipped'
+                                                                                                                            ){
+                                                                                                                            %>
+                                                                                                                            <a href="/cancelOrder?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>"
+                                                                                                                                class="
+                                                                                                                                    btn
+                                                                                                                                    btn-md
+                                                                                                                                    rounded
+                                                                                                                                    font-sm">Cancel</a>
+                                                                                                                            <% } else
+                                                                                                                                if(orders[i].status=='delivered'
+                                                                                                                                ){
+                                                                                                                                %>
+                                                                                                                                <a href="/return?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>"
+                                                                                                                                    class="
+                                                                                                                                        btn
+                                                                                                                                        btn-md
+                                                                                                                                        rounded
+                                                                                                                                        font-sm">Return</a>
+                                                                                                                                <% } else
+                                                                                                                                    if(orders[i].status=='returned'
+                                                                                                                                    ){
+                                                                                                                                    %>
+
+                                                                                                                                    <% }
+                                                                                                                                        %>
+
+
+                                                                                                        </td>
+                                                                        </tr>
+
+                                                                        <% } %>
+                                                                            <% } %>
+                                                                                <% } else { %>
+                                                                                    <tr>
+                                                                                        <td colspan="2">No item found in
+                                                                                            Oders</td>
+                                                                                    </tr>
+                                                                                    <% } %>
+
+
+                                                        </tbody>
+                                                    </table>
+
+                                                </div> <!-- table-responsive //end -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="track-orders" role="tabpanel"
+                                        aria-labelledby="track-orders-tab">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="mb-0">Wallet Transaction</h5>
+                                            </div>
+                                            <div class="card-body contact-from-area">
+                                                <p>To track your order please enter your OrderID in the box below and
+                                                    press "Track" button. This was given to you on your receipt and in
+                                                    the confirmation email you should have received.</p>
+                                                <div class="row">
+                                                    <div class="col-lg-8">
+                                                        <form class="contact-form-style mt-30 mb-50" action="#"
+                                                            method="post">
+                                                            <div class="input-style mb-20">
+                                                                <label>Order ID</label>
+                                                                <input name="order-id"
+                                                                    placeholder="Found in your order confirmation email"
+                                                                    type="text" class="square">
+                                                            </div>
+                                                            <div class="input-style mb-20">
+                                                                <label>Billing email</label>
+                                                                <input name="billing-email"
+                                                                    placeholder="Email you used during checkout"
+                                                                    type="email" class="square">
+                                                            </div>
+                                                            <button class="submit submit-auto-width"
+                                                                type="submit">Track</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="address" role="tabpanel"
+                                        aria-labelledby="address-tab">
+                                        <div class="row">
+                                            <% if (user.address.length> 0) { %>
+                                                <% for (let i=0; i < user.address.length; i++) { %>
+
+                                                    <div class="col-lg-6">
+                                                        <div class="card">
+                                                            <div class="card-header">
+                                                                <h5 class="mb-0">Shipping Address</h5>
+
+
+                                                            </div>
+
+
+                                                            <div class="card-body">
+
+
+                                                                <address>
+                                                                    Name: <%= user.address[i].fullName %><br>
+                                                                        Pin: <%= user.address[i].pinCode %>
+                                                                            <%= user.address[i].townCity %><br>
+                                                                                Landmark: <%= user.address[i].ladmark %>
+                                                                                    <br>
+                                                                                    House: <%=
+                                                                                        user.address[i].addressLine %>
+                                                                                        <br>
+                                                                                        Street: <%=
+                                                                                            user.address[i].areaStreet
+                                                                                            %><br>
+                                                                                            Phone: <%=
+                                                                                                user.address[i].mobile
+                                                                                                %>
+                                                                </address>
+                                                                <p>
+                                                                    <%= user.address[i].region %>
+                                                                </p>
+                                                                <a href="/editAddress?id=<%=user.address[i]._id %>"
+                                                                    class="btn-small">Edit</a> <span> || </span>
+                                                                <a href="/deleteAddress?id=<%=user.address[i]._id %>"
+                                                                    class="btn-small">Delete</a>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                    <% } %>
+
+                                                        <% } else { %>
+
+
+
+
+
+                                                            <div class="col-lg-6">
+                                                                <div class="card">
+                                                                    <div class="card-header">
+                                                                        <h5 class="mb-0">Shipping Address</h5>
+                                                                    </div>
+                                                                    <div class="card-body">
+
+                                                                        <p>No address found. Please add an address.</p>
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <% } %>
+
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="tab-pane fade" id="account-detail" role="tabpanel"
+                                        aria-labelledby="account-detail-tab">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Add New Address</h5>
+                                            </div>
+                                            <div class="card-body">
+
+                                                <form method="post" action="/addUserAddress">
+                                                    <div class="row">
+                                                        <div class="form-group col-md-12">
+                                                            <label>
+                                                                <h5>Full Name</h5>
+                                                            </label>
+                                                            <input required="" class="form-control square"
+                                                                name="fullName" type="text">
+                                                        </div>
+
+                                                        <div class="form-group col-md-12">
+                                                            <label>
+                                                                <h5>Mobile number</h5>
+                                                            </label>
+                                                            <input required="" class="form-control square" name="mobile"
+                                                                type="text">
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                            <label>
+                                                                <h5>Region</h5>
+                                                            </label>
+                                                            <input required="" class="form-control square" name="region"
+                                                                type="text">
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                            <label>
+                                                                <h5>Pincode</h5>
+                                                            </label>
+                                                            <input required="" class="form-control square"
+                                                                name="pinCode" type="text">
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                            <label>
+                                                                <h5>Flat, House no., Building, Company, Apartment</h5>
+                                                            </label>
+                                                            <input required="" class="form-control square"
+                                                                name="addressLine" type="text">
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                            <label>
+                                                                <h5>Area, Street, Sector, Village</h5>
+                                                            </label>
+                                                            <input required="" class="form-control square"
+                                                                name="areaStreet" type="text">
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                            <label>
+                                                                <h5>Landmark</h5>
+                                                            </label>
+                                                            <input required="" class="form-control square"
+                                                                name="ladmark" type="text">
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                            <label>
+                                                                <h5>Town/City</h5>
+                                                            </label>
+                                                            <input required="" class="form-control square"
+                                                                name="townCity" type="text">
+
+                                                            <div class="form-group col-md-6">
+                                                                <label>
+                                                                    <h5>State</h5>
+                                                                </label>
+                                                                <select required="" class="form-control square"
+                                                                    name="state">
+                                                                    <option value="">--Select State--</option>
+                                                                    <option value="Andhra Pradesh">Andhra Pradesh
+                                                                    </option>
+                                                                    <option value="Arunachal Pradesh">Arunachal Pradesh
+                                                                    </option>
+                                                                    <option value="Assam">Assam</option>
+                                                                    <option value="Bihar">Bihar</option>
+                                                                    <option value="Chhattisgarh">Chhattisgarh</option>
+                                                                    <option value="Goa">Goa</option>
+                                                                    <option value="Gujarat">Gujarat</option>
+                                                                    <option value="Haryana">Haryana</option>
+                                                                    <option value="Himachal Pradesh">Himachal Pradesh
+                                                                    </option>
+                                                                    <option value="Jharkhand">Jharkhand</option>
+                                                                    <option value="Karnataka">Karnataka</option>
+                                                                    <option value="Kerala">Kerala</option>
+                                                                    <option value="Madhya Pradesh">Madhya Pradesh
+                                                                    </option>
+                                                                    <option value="Maharashtra">Maharashtra</option>
+                                                                    <option value="Manipur">Manipur</option>
+                                                                    <option value="Meghalaya">Meghalaya</option>
+                                                                    <option value="Mizoram">Mizoram</option>
+                                                                    <option value="Nagaland">Nagaland</option>
+                                                                    <option value="Odisha">Odisha</option>
+                                                                    <option value="Punjab">Punjab</option>
+                                                                    <option value="Rajasthan">Rajasthan</option>
+                                                                    <option value="Sikkim">Sikkim</option>
+                                                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                                                    <option value="Telangana">Telangana</option>
+                                                                    <option value="Tripura">Tripura</option>
+                                                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                                    <option value="Uttarakhand">Uttarakhand</option>
+                                                                    <option value="West Bengal">West Bengal</option>
+                                                                    <option value="Andaman and Nicobar Islands">Andaman
+                                                                        and Nicobar Islands</option>
+                                                                    <option value="Chandigarh">Chandigarh</option>
+                                                                    <option
+                                                                        value="Dadra and Nagar Haveli and Daman and Diu">
+                                                                        Dadra and Nagar Haveli and Daman and Diu
+                                                                    </option>
+                                                                    <option value="Lakshadweep">Lakshadweep</option>
+                                                                    <option value="Delhi">Delhi</option>
+                                                                    <option value="Puducherry">Puducherry</option>
+                                                                </select>
+                                                            </div>
+
+
+
+                                                            <div class="form-group col-md-6">
+                                                                <label for="addressType">
+                                                                    <h5>Address Type</h5>
+                                                                </label>
+                                                                <select id="addressType" class="form-control square"
+                                                                    name="addressType" required>
+                                                                    <option value="">Select Address Type</option>
+                                                                    <option value="Home">Home</option>
+                                                                    <option value="Work">Work</option>
+                                                                    <option value="Other">Other</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <button type="submit" class="btn btn-fill-out submit"
+                                                                    name="submit" value="Submit">Save</button>
+                                                            </div>
+                                                        </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+
+
+
+
+
+
+    <%- include('footer') %>

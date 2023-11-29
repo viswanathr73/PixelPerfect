@@ -1,0 +1,382 @@
+
+<%- include('header') %>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <section class="content-main">
+            <div class="content-header">
+                <div>
+                    <h2 class="content-title card-title">Order details</h2>
+                    <p>Details for Order ID: <%=order._id %></p>
+                </div>
+            </div>
+            <div class="card">
+                <header class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 col-md-6 mb-lg-0 mb-15">
+                            <span>
+                                <i class="material-icons md-calendar_today"></i> <b><%=order.createdOn.toDateString() %></b>
+                            </span> <br>
+                            <small class="text-muted"> <%=order._id %></small>
+                        </div>
+                        <div class="col-lg-6 col-md-6 ms-auto text-md-end">
+
+
+                            <% if (order.status) { %>
+
+
+                                <% if (order.status=='pending') { %>
+                                    <select class="form-select d-inline-block mb-lg-0 mb-15 mw-200" id="statusSelect">
+                                        <option>pending</option>
+                                        <option>Confirmed</option>
+                                        <option>Shipped</option>
+                                        <option>Delivered</option>
+                                        <option>Canceled</option>
+        
+        
+                                    </select>
+                                  <button class="btn btn-primary" onclick="statusChange()">Save</button>
+        
+    
+    
+    
+
+                                <% } else if(order.status=='conformed'){ %>
+                                    <select class="form-select d-inline-block mb-lg-0 mb-15 mw-200" id="statusSelect">
+                                      
+                                        <option>Confirmed</option>
+                                        <option>Shipped</option>
+                                        <option>Delivered</option>
+                                        <option>Canceled</option>
+        
+        
+                                    </select>
+                                  <button class="btn btn-primary" onclick="statusChange()">Save</button>
+        
+    
+    
+    
+                                <% } else if(order.status=='shipped'){ %>
+                                    <select class="form-select d-inline-block mb-lg-0 mb-15 mw-200" id="statusSelect">
+                                       
+                                        <option>Shipped</option>
+                                        <option>Delivered</option>
+                                        <option>Canceled</option>
+        
+        
+                                    </select>
+                                  <button class="btn btn-primary" onclick="statusChange()">Save</button>
+        
+    
+    
+    
+                                <% } else if(order.status=='delivered'){ %>
+                                   
+                                  <button class="btn btn-primary">Delivered</button>
+        
+
+                                <% } else if(order.status=='returned'){ %>
+                                  <button class="btn btn-primary">Returned</button>
+
+
+                                <% } else if(order.status=='canceled'){ %>
+
+                                  <button class="btn btn-primary">Cancelled</button>
+                                            
+                                <% } %>
+                                         
+                                          
+
+
+                                
+
+                                <% } else { %>
+                                    <tr>
+                                      <td colspan="2"><p>hai</p></td>
+                                    </tr>
+                                    <% } %>
+
+
+                           
+
+                          
+
+
+
+
+                            <a class="btn btn-secondary print ms-2" href="#"><i class="icon material-icons md-print"></i></a>
+                        </div>
+                    </div>
+                </header> <!-- card-header end// -->
+                <div class="card-body">
+                    <div class="row mb-50 mt-20 order-info-wrap">
+                        <div class="col-md-4">
+                            <article class="icontext align-items-start">
+                                <span class="icon icon-sm rounded-circle bg-primary-light">
+                                    <i class="text-primary material-icons md-person"></i>
+                                </span>
+                                <div class="text">
+                                    <h6 class="mb-1">Customer</h6>
+                                    <p class="mb-1">
+                                        <%= user.username %> <br> <%= user.email %> <br> +1<%= user.mobile %>
+                                    </p>
+                                    
+                                </div>
+                            </article>
+                        </div> <!-- col// -->
+                        <div class="col-md-4">
+                            <article class="icontext align-items-start">
+                                <span class="icon icon-sm rounded-circle bg-primary-light">
+                                    <i class="text-primary material-icons md-local_shipping"></i>
+                                </span>
+                                <div class="text">
+                                    <h6 class="mb-1">Order info</h6>
+                                    <p class="mb-1">
+                                        Shipping: <%= order.address[0].adressType %> <br> Pay method: <%= order.payment %> <br> Status:  <%= order.status %> 
+                                    </p>
+                                    <!-- <a href="#">Download info</a> -->
+                                </div>
+                            </article>
+                        </div> <!-- col// -->
+                        <div class="col-md-4">
+                            <article class="icontext align-items-start">
+                                <span class="icon icon-sm rounded-circle bg-primary-light">
+                                    <i class="text-primary material-icons md-place"></i>
+                                </span>
+                                <div class="text">
+                                    <h6 class="mb-1">Deliver to</h6>
+                                    <p class="mb-1">
+                                        City:<%= order.address[0].townCity %> <br><%= order.address[0].addressLine %> <br> Po Box : <%= order.address[0]. pinCode %>
+                                    </p>
+                                
+                                </div>
+                            </article>
+                        </div> <!-- col// -->
+                    </div> <!-- row // -->
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th width="40%">Product</th>
+                                            <th width="20%">Unit Price</th>
+                                            <th width="20%">Quantity</th>
+                                            <th width="20%" class="text-end">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+
+                                         <% for (let i=0; i < order.product.length;i++) { %>
+                                            <tr>
+                                                <td>
+                                                    <a class="itemside" href="#">
+                                                        <div class="left">
+                                                            <img src="/admin/assets/imgs/category/<%=order.product[i].image %>" width="40" height="40" class="img-xs" alt="Item">
+                                                        </div>
+                                                        <div class="info"> <%= order.product[i].title %> </div>
+                                                    </a>
+                                                </td>
+                                                <td> $<%= order.product[i].price %> </td>
+                                                <td> <%=order.product[i].quantity  %> </td>
+                                                <td class="text-end"> $<%= (order.product[i].price * order.product[i].quantity).toFixed(2) %> </td>
+
+                                            </tr>
+
+                                            <% } %> 
+                                        
+                                       
+                                       
+                                        <tr>
+                                            <td colspan="4">
+                                                <article class="float-end">
+                                                    <dl class="dlist">
+                                                        <dt>Subtotal:</dt>
+                                                        <dd>$<%= (order.totalPrice).toFixed(2) %></dd>
+                                                    </dl>
+                                                    <dl class="dlist">
+                                                        <dt>Shipping cost:</dt>
+                                                        <dd>$10.00</dd>
+                                                    </dl>
+                                                    <dl class="dlist">
+                                                        <dt>Grand total:</dt>
+                                                        <dd> <b class="h5">$<%= (order.totalPrice+10.00).toFixed(2) %></b> </dd>
+                                                    </dl>
+                                                    <dl class="dlist">
+                                                        <dt class="text-muted">Status:</dt>
+                                                        <dd>
+                                                            <span class="badge rounded-pill alert-success text-success"><%= order.status %></span>
+                                                        </dd>
+                                                    </dl>
+                                                </article>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div> <!-- table-responsive// -->
+                            <a class="btn btn-primary" href="page-orders-tracking.html">View Order Tracking</a>
+                        </div> <!-- col// -->
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-4">
+                            <div class="box shadow-sm bg-light">
+                                <h6 class="mb-15">Payment info</h6>
+                                <p>
+                                    <img src="/admin/assets/imgs/card-brands/2.png" class="border" height="20"> <%= order.payment %> <br>
+                                    Business name: <%= user.username %> <br>
+                                    Phone: +1 <%= user.mobile %>
+                                </p>
+                            </div>
+                            <div class="h-25 pt-4">
+                                <div class="mb-3">
+                                    <label>Notes</label>
+                                    <textarea class="form-control" name="notes" id="notes" placeholder="Type some note"></textarea>
+                                </div>
+                                <button class="btn btn-primary">Save note</button>
+                            </div>
+                        </div> <!-- col// -->
+                    </div>
+                </div> <!-- card-body end// -->
+            </div> <!-- card end// -->
+
+
+        </section>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+           
+
+///------------------function hai-------------------------
+function selectedDropdownValue(){
+    const selectElement = document.getElementById('statusSelect');
+
+// Get the selected option
+const selectedOption = selectElement.options[selectElement.selectedIndex];
+
+// Get the value or text of the selected option
+const selectedValue = selectedOption.value;
+const selectedText = selectedOption.text;
+
+
+alert(selectedText)
+// Log the selected value and text
+console.log('Selected Value:', selectedValue);
+console.log('Selected Text:', selectedText);
+
+}
+            // Get the select element by its ID
+//-------------------------function end hai------------------------
+
+
+//------function cahngeStatus ---------------------------
+
+function statusChange(){
+   
+    var selectedStatus = document.getElementById("statusSelect").value;
+   
+    if(!selectedStatus){
+        alert('no vall')
+    }else{
+        
+
+        if(selectedStatus=='pending'){
+
+            $.ajax({
+                url : '/admin/changeStatusPending?orderId=<%=order._id%>',
+                method:"get",
+                success: (response)=>{
+                    if(response.status){
+                        location.reload()
+                    }
+
+                }
+
+            })
+
+           
+           
+        }else if(selectedStatus=='Confirmed'){
+            $.ajax({
+                url : '/admin/changeStatusConfirmed?orderId=<%=order._id%>',
+                method:"get",
+                success: (response)=>{
+                    if(response.status){
+                        location.reload()
+                    }
+
+                }
+
+            })
+
+           
+         
+        }else if(selectedStatus=='Shipped'){
+            $.ajax({
+                url : '/admin/changeStatusShipped?orderId=<%=order._id%>',
+                method:"get",
+                success: (response)=>{
+                    if(response.status){
+                        location.reload()
+                    }
+
+                }
+
+            })
+
+          
+        }else if(selectedStatus=='Delivered'){
+            $.ajax({
+                url : '/admin/changeStatusDelivered?orderId=<%=order._id%>',
+                method:"get",
+                success: (response)=>{
+                    if(response.status){
+                        location.reload()
+                    }
+
+                }
+
+            })
+          
+            
+        }else if(selectedStatus=='returned'){
+            $.ajax({
+                url : '/admin/changeStatusReturned?orderId=<%=order._id%>',
+                method:"get",
+                success: (response)=>{
+                    if(response.status){
+                        location.reload()
+                    }
+
+                }
+
+            })
+
+           
+        }
+        else if(selectedStatus=='canceled'){
+            $.ajax({
+                url : '/admin/changeStatusCanceled?orderId=<%=order._id%>',
+                method:"get",
+                success: (response)=>{
+                    if(response.status){
+                        location.reload()
+                    }
+
+                }
+
+            })
+
+           
+        }
+
+
+
+
+    }
+}
+
+//-------------------change status end----------------
+
+
+
+        </script>
+        <%- include('footer') %>
+        
