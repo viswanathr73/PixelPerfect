@@ -128,7 +128,6 @@
     clearErrorMessages();
 
     const title = document.getElementsByName('title')[0].value;
-    
     const description = document.getElementsByName('description')[0].value;
     const brand = document.getElementsByName('brand')[0].value;
     const price = document.getElementsByName('price')[0].value;
@@ -176,7 +175,18 @@
     if (images.length === 0) {
         displayErrorMessage('images', 'Please select at least one image.');
         isValid = false;
-    }
+    }else {
+            // Validate image types (JPG or PNG)
+            const allowedImageTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+
+            for (const image of images) {
+                if (!allowedImageTypes.includes(image.type)) {
+                    displayErrorMessage('images', 'Please select images with JPG or PNG formats.');
+                    isValid = false;
+                    break; // Stop checking once an invalid image type is found
+                }
+            }
+        }
 
     
     return isValid;

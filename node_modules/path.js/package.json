@@ -1,0 +1,61 @@
+{
+  "name": "path.js",
+  "description": "Browser-friendly enhanced path fully compatible with standard node.js",
+  "homepage": "https://github.com/snowyu/path.js",
+  "version": "1.0.7",
+  "author": {
+    "name": "Riceball LEE",
+    "email": "snowyu.lee@gmail.com"
+  },
+  "files": [
+    "README.md",
+    "LICENSE-MIT",
+    "*.js",
+    "*.coffee",
+    "test",
+    "src",
+    "lib"
+  ],
+  "keywords": [
+    "path",
+    "util",
+    "browser",
+    "browserify"
+  ],
+  "main": "./index.js",
+  "repository": "git://github.com/snowyu/path.js",
+  "bugs": {
+    "url": "https://github.com/snowyu/path.js/issues"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "~2.3.0",
+    "grunt": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-coffee": "*",
+    "grunt-contrib-copy": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-mocha-test": "*",
+    "grunt-newer": "*",
+    "grunt-release": "*",
+    "grunt-saucelabs": "*",
+    "mocha": "~2.2.5",
+    "pre-commit": "~1.0.7",
+    "sinon": "~1.14.1",
+    "sinon-chai": "~2.7.0",
+    "source-map-support": "*"
+  },
+  "pre-commit": [
+    "test"
+  ],
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "escape-string-regexp": "^1.0.3",
+    "inherits-ex": "^1.1.2",
+    "util-ex": "^0.3.10"
+  }
+}

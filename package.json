@@ -21,6 +21,8 @@
     "express-async-handler": "^1.2.0",
     "express-flash": "^0.0.2",
     "express-session": "^1.17.3",
+    "mime-type": "^4.0.0",
+    "mime-types": "^2.1.35",
     "mongodb": "^6.2.0",
     "mongoose": "^8.0.0",
     "morgan": "^1.10.0",
