@@ -327,7 +327,7 @@ input[type=number]:focus,
 }
 
 .bg-primary {
-  background-color: #3f81eb !important;
+  background-color: #088178 !important;
 }
 
 .bg-warning {
@@ -944,6 +944,8 @@ button.submit:hover, button[type='submit']:hover {
   font-size: 12px;
   text-transform: none;
   line-height: 1.8;
+  /* background-color: #3f9292;
+  color: #000; */
 }
 
 .btn.btn-rounded, .button.btn-rounded {
@@ -7363,6 +7365,7 @@ span.fi-rs-apps {
 }
 
 /*Pagination*/
+
 .pagination-area .page-item {
   margin: 0 5px;
 }
@@ -7401,6 +7404,7 @@ span.fi-rs-apps {
   text-align: center;
   font-weight: 700;
 }
+
 
 .pagination-area .page-link.dot {
   background-color: transparent;

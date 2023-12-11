@@ -47,7 +47,7 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>#ID</th>
+                                        <!-- <th>#ID</th> -->
                                         <th scope="col">Name</th>
                                        
                                         <th scope="col">Total</th>
@@ -61,10 +61,10 @@
                                     <% for (let i=0; i < orders.length;i++) { %>
                                         <% for (let j = 0; j < orders[i].product.length; j++) { %>
                                         <tr>
-                                            <td><%=orders[i]._id %></td>
+                                            <!-- <td><%=orders[i]._id %></td> -->
                                             <td><b><%= orders[i].product[j].title  %></b></td>
                                            
-                                            <td>$<%= orders[i].totalPrice %></td>
+                                            <td>₹<%= orders[i].totalPrice %></td>
 
                                             <% if (orders[i].status=='pending') { %>
 

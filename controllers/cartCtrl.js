@@ -115,63 +115,83 @@ const deleteCartItem = asyncHandler(async(req,res)=>{
 
 //add and subtract product count in cart--------------------------------------------
 
-const modifyCartQuantity = asyncHandler(async(req,res)=>{
+const modifyCartQuantity=asyncHandler(async(req,res)=>{
     try {
-        const productId =req.body.productId;
-        const count = req.body.count;
+        
+        const productId=req.body.productId;
+       
+    const userId=req.session.user;
     
-        const user = await User.findById(userId);
-        const product = await product.findById(productId);
-
-        if(user)
-    
-        {
-            const cartItem = user.cart.find(items=>item.ProductId==productId);
-
-            if(cartItem)
-            {
-                let newQuantity;
-                if(count=='1') {
-                    newQuantity = cartItem.quantity + 1;
-                
-                }else if(count=='-1'){
-                    newQuantity = cartItem.quantity - 1;
-                
-                }else{
-                    res.json({ status: false, error: "Invalid count" }); 
-                }
-                if (newQuantity > 0 && newQuantity <= product.quantity) {
+    const count = req.body.count;
    
 
-                    const updated = await User.updateOne(
-                        { _id: userId, 'cart.ProductId': productId },
-                        {
-                            $set: {
-                                'cart.$.quantity': newQuantity, // Update the quantity
-                                'cart.$.subTotal': (product.price * newQuantity), // Update the subtotal
-                            },
-                        }
-                    );
-                    const updatedUser = await user.save();
-                    console.log("this is upsdated ",updatedUser);
-                       
-                        const totalAmount = product.price * newQuantity;
-                       
-                        res.json({ status: true, quantityInput: newQuantity, total: totalAmount });
-                    } else {
-          
+
+    const user=await User.findById(userId);
     
-                        res.json({ status: false, error: 'out of stock' });
-                    }
+    const product=await Product.findById(productId);
+    
+
+    if(user)
+    
+
+    {
+        const cartItem=user.cart.find(item=>item.ProductId==productId);
+    
+        if(cartItem)
+    
+
+        {
+            let newQuantity;
+            if(count=='1')
+
+            {
+               
+                newQuantity = cartItem.quantity + 1;
             }
-        }
+            else if(count=='-1')
+            {
+              
+                newQuantity = cartItem.quantity - 1;
+            }else{
     
+
+               res.json({ status: false, error: "Invalid count" });
+            }
+            if (newQuantity > 0 && newQuantity <= product.quantity) {
+   
+
+                const updated = await User.updateOne(
+                    { _id: userId, 'cart.ProductId': productId },
+                    {
+                        $set: {
+                            'cart.$.quantity': newQuantity, // Update the quantity
+                            'cart.$.subTotal': (product.price * newQuantity), // Update the subtotal
+                        },
+                    }
+                );
+                const updatedUser = await user.save();
+                console.log("this is upsdated ",updatedUser);
+                   
+                    const totalAmount = product.price * newQuantity;
+                   
+                    res.json({ status: true, quantityInput: newQuantity, total: totalAmount });
+                } else {
+      
+
+                    res.json({ status: false, error: 'out of stock' });
+                }
+        }
+    }
+
     } catch (error) {
         console.error('ERROR hapence in cart ctrl in the funtion update crt',error);
         return res.status(500).json({ status: false, error: "Server error" });
-      
     }
+
+    
+
 })
+
 
 //delete cart------------------------------------------------------------------------
 

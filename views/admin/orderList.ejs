@@ -36,13 +36,13 @@
                                             <% for (let j=0; j < orders[i].product.length; j++) { %>
                                                 <tr>
                                                     <td>
-                                                        <%=i%>
+                                                        <%=i+1%>
                                                     </td>
                                                     <td><b>
                                                             <%= orders[i].product[j].title %>
                                                         </b></td>
 
-                                                    <td>$<%= orders[i].totalPrice %>
+                                                    <td>₹<%= orders[i].totalPrice %>
                                                     </td>
 
                                                     <% if (orders[i].status=='pending' ) { %>

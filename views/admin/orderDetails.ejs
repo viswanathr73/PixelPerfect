@@ -27,7 +27,7 @@
                                 <% if (order.status=='pending') { %>
                                     <select class="form-select d-inline-block mb-lg-0 mb-15 mw-200" id="statusSelect">
                                         <option>pending</option>
-                                        <option>Confirmed</option>
+                                        <!-- <option>Confirmed</option> -->
                                         <option>Shipped</option>
                                         <option>Delivered</option>
                                         <option>Canceled</option>
@@ -43,7 +43,7 @@
                                 <% } else if(order.status=='conformed'){ %>
                                     <select class="form-select d-inline-block mb-lg-0 mb-15 mw-200" id="statusSelect">
                                       
-                                        <option>Confirmed</option>
+                                        <!-- <option>Confirmed</option> -->
                                         <option>Shipped</option>
                                         <option>Delivered</option>
                                         <option>Canceled</option>
@@ -177,9 +177,9 @@
                                                         <div class="info"> <%= order.product[i].title %> </div>
                                                     </a>
                                                 </td>
-                                                <td> $<%= order.product[i].price %> </td>
+                                                <td> ₹<%= order.product[i].price %> </td>
                                                 <td> <%=order.product[i].quantity  %> </td>
-                                                <td class="text-end"> $<%= (order.product[i].price * order.product[i].quantity).toFixed(2) %> </td>
+                                                <td class="text-end"> ₹<%= (order.product[i].price * order.product[i].quantity).toFixed(2) %> </td>
 
                                             </tr>
 
@@ -192,15 +192,15 @@
                                                 <article class="float-end">
                                                     <dl class="dlist">
                                                         <dt>Subtotal:</dt>
-                                                        <dd>$<%= (order.totalPrice).toFixed(2) %></dd>
+                                                        <dd>₹<%= (order.totalPrice).toFixed(2) %></dd>
                                                     </dl>
                                                     <dl class="dlist">
                                                         <dt>Shipping cost:</dt>
-                                                        <dd>$10.00</dd>
+                                                        <dd>₹10.00</dd>
                                                     </dl>
                                                     <dl class="dlist">
                                                         <dt>Grand total:</dt>
-                                                        <dd> <b class="h5">$<%= (order.totalPrice+10.00).toFixed(2) %></b> </dd>
+                                                        <dd> <b class="h5">₹<%= (order.totalPrice+10.00).toFixed(2) %></b> </dd>
                                                     </dl>
                                                     <dl class="dlist">
                                                         <dt class="text-muted">Status:</dt>

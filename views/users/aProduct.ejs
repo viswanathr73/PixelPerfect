@@ -84,8 +84,8 @@
                                         </div>
                                         <div class="clearfix product-price-cover">
                                             <div class="product-price primary-color float-left">
-                                                <ins><span class="text-brand">$<%= product.price %></span></ins>
-                                                <ins><span class="old-price font-md ml-15">$
+                                                <ins><span class="text-brand">₹<%= product.price %></span></ins>
+                                                <ins><span class="old-price font-md ml-15">₹
                                                         <%=Math.round(product.price+50) %>
                                                     </span></ins>
                                                 <span class="save-price  font-md color3 ml-15">25% Off</span>
@@ -123,7 +123,7 @@
                                             <div class=" ml-5"><a onclick="addToCart('<%= product.id %>')"><button
                                                         type="submit" class="button button-add-to-cart ">Add
                                                         tocart</button></a></div>
-
+                                                        <div class="col-lg-3"><a href="/buyNOw?id=<%= product.id %>"><button style="width: 100px; height: 40px;" type="submit" class="btn btn-sm button-add-to-cart">Buy Now</button></a></div>
 
                                         </div>
                                     </div>

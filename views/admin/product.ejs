@@ -2,7 +2,7 @@
         <section class="content-main">
             <div class="content-header">
                 <div>
-                    <h2 class="content-title card-title">Products</h2>
+                    <h2 class="content-title card-title">Product details</h2>
                   
                 </div>
                 <div>
@@ -28,7 +28,7 @@
                                     <a href="#" class="img-wrap"> <img style="height: 150px;" src="/admin/assets/imgs/category/<%= product[i].images[0] %>" alt="Product"> </a>
                                     <div class="info-wrap">
                                         <a href="#" class="title text-truncate"><%= product[i].title %></a>
-                                        <div class="price mb-2">$<%= product[i].price %></div> <!-- price.// -->
+                                        <div class="price mb-2">₹<%= product[i].price %></div> <!-- price.// -->
                                         <a href="/admin/editProduct?id=<%= product[i]._id %>" class="btn btn-sm font-sm rounded btn-brand">
                                             <i class="material-icons md-edit"></i> Edit
                                         </a>

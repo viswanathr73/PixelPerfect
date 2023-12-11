@@ -6,7 +6,7 @@
         <div class="page-header breadcrumb-wrap">
             <div class="container">
                 <div class="breadcrumb">
-                    <a href="index.html" rel="nofollow">Home</a>
+                    <a href="/" rel="nofollow">Home</a>
                     <span></span> Shop
                     <span></span> Checkout
                 </div>
@@ -73,7 +73,18 @@
                                         <td colspan="2" class="product-subtotal"><span id="totalValue" value="<%= sum %>" class="font-xl text-brand fw-900">₹<%= sum %></span></td>
                                       </tr>
                             </table>
-                          
+                            <% if (coupon.length > 0) { %>
+                                <div class="col-lg-3">
+                                    <button class="btn btn-sm" type="button" data-toggle="modal" data-target="#exampleModalCenter"  > Your Coupons</button>
+                                    <br><br>
+                                    
+                                    <button class="btn btn-sm" onclick="applyCoupon()"> Apply Coupons</button>
+                                      
+                                     
+                                      
+                                   </div>
+                                <% } else { %>
+                                    <% } %>
                         </div>
                         <div class="bt-1 border-color-1 mt-30 mb-30"></div>
                         <div class="payment_method">
@@ -110,7 +121,26 @@
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    
+                                                    <div class="modal-body">
+                                                        <table class="table">
+                                                            <tbody>
+                                                                <% if (coupon.length > 0) { %>
+                                                                    <% for (let i = 0; i < coupon.length; i++) { %>
+                                                                        <tr>
+                                                                            <td><%= coupon[i].name %></td>
+                                                                            <td class="text-right">
+                                                                                <button class="btn btn-sm btn-copy" data-coupon-name="<%= coupon[i].name %>">Copy</button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    <% } %>
+                                                                <% } else { %>
+                                                                    <tr>
+                                                                        <td colspan="2">No Coupon Available</td>
+                                                                    </tr>
+                                                                <% } %>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                     </div>
@@ -119,6 +149,15 @@
                                         </div>
                                           <!------------------------------------- Modal -end----------------------------------->
 
+
+
+
+                                
+                                <div class="custome-radio">
+                                    <input class="form-check-input payment" required="" value="online" type="radio" name="payment_option" id="Razorpay" checked="">
+                                    <label class="form-check-label" for="Razorpay" data-bs-toggle="collapse" data-target="#Razorpay" aria-controls="paypal">Razorpay</label>
+                                   
+                                </div>
                             </div>
                         </div>
                         
@@ -239,8 +278,97 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
+<!------------------------- coupons --------------------------------->
+<script>
 
 
+function applyCoupon() {
+  swal({
+    text: 'Apply your coupon code here !!!',
+    content: 'input',
+    button: {
+      text: 'Apply!',
+      closeModal: false,
+    },
+  })
+  .then(couponCode => {
+    if (!couponCode) {
+      throw null; // No coupon code provided, so exit without making an AJAX request
+    }
+
+    // Perform an AJAX request here with the couponCode
+    fetch('/validateCoupon', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ couponCode }), // Send the couponCode in the request body
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.isValid) {
+      
+        const displayedSum = document.getElementById('totalValue').textContent;
+    const numericValue = parseFloat(displayedSum.replace(/[^\d.]/g, ''));
+    const couponOfferPrice = parseFloat(data.coupon.offerPrice);
+    const newSum = numericValue - couponOfferPrice;
+    
+    // Update the displayedSum value on the webpage
+    const displayedSumElement = document.getElementById('totalValue');
+    displayedSumElement.textContent = '₹' + newSum.toFixed(2);
+    
+    swal('Coupon Valid!', `Coupon code '${couponCode}' is valid.`);
+
+
+      } else {
+        swal('Invalid Coupon', `Coupon code '${couponCode}' is not valid.`);
+      }
+    })
+    .catch(error => {
+      console.error('Error occurred during AJAX request:', error);
+      swal('Error', 'An error occurred while processing your request.', 'error');
+    });
+  })
+  .catch(error => {
+    if (error) {
+      swal('Oh noes!', 'An error occurred!', 'error');
+    } else {
+      swal.stopLoading();
+      swal.close();
+    }
+  });
+}
+
+
+
+</script>
+<!------------------------- coupons end--------------------------------->
+<script>
+   document.addEventListener("DOMContentLoaded", function () {
+    const copyButtons = document.querySelectorAll(".btn-copy");
+    copyButtons.forEach(copyButton => {
+        copyButton.addEventListener("click", function () {
+            const couponName = this.getAttribute("data-coupon-name");
+            copyToClipboard(couponName);
+            updateCopyButton(this); // Update the clicked copy button's appearance
+        });
+    });
+});
+
+function updateCopyButton(button) {
+    button.textContent = 'Copied';
+    button.disabled = true; 
+}
+
+async function copyToClipboard(text) {
+    try {
+        await navigator.clipboard.writeText(text);
+        console.log('Text copied to clipboard:', text);
+    } catch (error) {
+        console.error("Failed to copy:", error);
+    }
+}
+</script>
 
 
 
@@ -317,17 +445,44 @@ if(!payment){
                 
 
                     
-                    } 
-   
+                    } else if (response.method == 'online') {
+    // Replace with your Razorpay API key
+    var razorpayApiKey = 'rzp_test_8Yal8nXdU43qiq';
 
-    
+    // Calculate the amount dynamically based on the total order amount (in paise)
+    var orderAmount = Math.round(numericValue * 100);
 
-   
+    // Define the Razorpay options
+    var options = {
+        "key": razorpayApiKey,
+        "amount": orderAmount, // Dynamically calculated amount
+        "currency": "INR",
+        "name": "PixelPerfect",
+        "description": "Order Payment",
+        "order_id": response.razorpayOrder.id, // Replace with actual order ID
+        "handler": function (response) {
+            
+            verifyPayment(response);
+            
+        },
+        "prefill": {
+            "name": "Customer Name", // Set to the customer's name
+            "email": "customer@example.com", // Set to the customer's email
+            "contact": "9000090000" // Set to the customer's contact number
+        },
+        "callback_url": "/your-server-callback-url", // Replace with your server's callback URL
+        "theme": {
+            "color": "#3399cc"
+        }
+    };
+
+    // Create a new Razorpay instance and open the payment dialog
+    var rzp1 = new Razorpay(options);
+    rzp1.open();
 
 
 
-
-                    else if(response.method == 'wallet'){
+                    }else if(response.method == 'wallet'){
                          
                        
 
@@ -360,7 +515,37 @@ if(!payment){
                     }
                 }
             })
-          
+          function verifyPayment(response) {
+                
+            $.ajax({
+                url: '/verifyPayment',
+                method: 'post',
+                data: {
+                    razorpay_order_id: response.razorpay_order_id,
+                    razorpay_payment_id: response.razorpay_payment_id,
+                    razorpay_signature: response.razorpay_signature
+                },
+                success: (response) => {
+                    
+                    if (response.status) {
+                       
+                        Swal.fire({
+                            title: "Order success",
+                            text: "order placed successfully",
+                            icon: "success",
+                            showConfirmButton: false,
+                            timer: 2000,
+                           
+                        })
+                        location.href='/allOrderDetails'
+                        
+                    
+                    } else {
+                        alert("Payment failed!" + response.errMsg)
+                    }
+                }
+            })
+        }
 
         
 
@@ -375,7 +560,7 @@ if(!payment){
 //       }
 //                     const id=response.oderId
 //                     const qtyes=response.qty
-//                     const url = `/deleteCart?id=${id}&qtyes=${qtyes}`;
+//                     const url = `/api/user/deleteCart?id=${id}&qtyes=${qtyes}`;
 //                         // Redirect to the constructed URL
 //                         window.location.href = url
 
@@ -427,7 +612,7 @@ if(!payment){
 
 
 
-
+<!-- ------------------------------------------payment with razorpay----------------------------- -->
 
 
 

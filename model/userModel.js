@@ -122,14 +122,14 @@ var userSchema = new mongoose.Schema({
           ref:"Product"
       },
   },
-//   wallet: {
+  wallet: {
      
-//       type:Number,
-//       default:0,
-//       required:true
+      type:Number,
+      default:0,
+      required:true
      
       
-//   },
+  },
   history: {
       type:Array,
       amount: {

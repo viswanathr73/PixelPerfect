@@ -5,8 +5,8 @@
             <div class="container">
                 <div class="breadcrumb">
                     <a href="index.html" rel="nofollow">Home</a>
-                    <span></span> Pages
-                    <span></span> Account
+                    <span></span> Profile
+                    <!-- <span></span>  -->
                 </div>
             </div>
         </div>
@@ -69,7 +69,7 @@
                                                                         class="text-primary material-icons md-monetization_on"></i></span>
                                                                 <div class="text">
                                                                     <h6 class="mb-1 card-title">Wallet</h6>
-                                                                    <span>$0.00</span>
+                                                                    <span>₹0.00</span>
                                                                     <span class="text-sm">
                                                                         <br>
                                                                         <br>
@@ -94,7 +94,8 @@
                                                                         <br>
 
                                                                         <span>
-                                                                            <h5>Ballence: </h5>
+                                                                            <h5>Ballence:₹<%= user.wallet.toFixed(2) %>
+                                                                            </h5>
 
                                                                         </span>
                                                                         <br>
@@ -141,7 +142,7 @@
                                                         <div class="modal-body">
                                                             <form id="addMoneyForm">
                                                                 <div class="form-group">
-                                                                    <label for="moneyAmount">Amount ($)</label>
+                                                                    <label for="moneyAmount">Amount (₹)</label>
                                                                     <input type="number" class="form-control"
                                                                         id="moneyAmount" placeholder="Enter amount">
 
@@ -310,8 +311,8 @@
                                                     <table class="table table-hover"> <!-- Set the desired width -->
                                                         <thead>
                                                             <tr>
-                                                                <th>#ID</th>
-                                                                <th scope="col">Name</th>
+                                                                <!-- <th>#ID</th> -->
+                                                                <th scope="col">Order</th>
 
                                                                 <th scope="col">Total</th>
                                                                 <th scope="col">Status</th>
@@ -320,19 +321,18 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+
                                                             <% if (orders.length> 0) { %>
                                                                 <% for (let i=0; i < orders.length;i++) { %>
                                                                     <% for (let j=0; j < orders[i].product.length; j++)
                                                                         { %>
                                                                         <tr>
-                                                                            <td>
-                                                                                <%=orders[i]._id %>
-                                                                            </td>
+
                                                                             <td><b>
                                                                                     <%= orders[i].product[j].title %>
                                                                                 </b></td>
 
-                                                                            <td>$<%= orders[i].totalPrice %>
+                                                                            <td>₹<%= orders[i].totalPrice %>
                                                                             </td>
 
                                                                             <% if (orders[i].status=='pending' ) { %>
@@ -463,32 +463,36 @@
                                             <div class="card-header">
                                                 <h5 class="mb-0">Wallet Transaction</h5>
                                             </div>
-                                            <div class="card-body contact-from-area">
-                                                <p>To track your order please enter your OrderID in the box below and
-                                                    press "Track" button. This was given to you on your receipt and in
-                                                    the confirmation email you should have received.</p>
-                                                <div class="row">
-                                                    <div class="col-lg-8">
-                                                        <form class="contact-form-style mt-30 mb-50" action="#"
-                                                            method="post">
-                                                            <div class="input-style mb-20">
-                                                                <label>Order ID</label>
-                                                                <input name="order-id"
-                                                                    placeholder="Found in your order confirmation email"
-                                                                    type="text" class="square">
-                                                            </div>
-                                                            <div class="input-style mb-20">
-                                                                <label>Billing email</label>
-                                                                <input name="billing-email"
-                                                                    placeholder="Email you used during checkout"
-                                                                    type="email" class="square">
-                                                            </div>
-                                                            <button class="submit submit-auto-width"
-                                                                type="submit">Track</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>id</th>
+                                                    <th>Date</th>
+                                                    <th>Status</th>
+                                                    <th>Total</th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <% for (let i=0; i < user.history.length;i++) { %>
+                                                    <tr>
+                                                        <td><%=i+1%></td>
+                                                        <td><%= new Date(user.history[i].timestamp).toLocaleDateString() %></td>
+                                                      
+                                                        <td><%= user.history[i].status %></td>
+                                                        <td>₹<%= (user.history[i].amount ).toFixed(2)%> </td>
+                                                        
+                                                    </tr>
+
+                                                    <% } %> 
+                                                   
+                                                   
+                                               
+                                               
+                                                
+                                            </tbody>
+                                        </table>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="address" role="tabpanel"
@@ -578,7 +582,8 @@
                                             </div>
                                             <div class="card-body">
 
-                                                <form method="post" action="/addUserAddress">
+                                                <form method="post" action="/addUserAddress"
+                                                    onsubmit="return validateForm()">
                                                     <div class="row">
                                                         <div class="form-group col-md-12">
                                                             <label>
@@ -721,7 +726,199 @@
             </div>
         </section>
     </main>
-    
+    <script>
+        $(document).ready(function () {
+            // Handle form submission when "Add Money" button is clicked
+            $("#addMoneyButton").click(function () {
+                var amount = $("#moneyAmount").val(); // Get the entered amount
+                // alert(amount)
+                // if (amount.trim() === "") {
+                //     alert("Please enter a valid amount.");
+                //     return;
+                // }
+                $("#addMoneyModal").modal("hide");
+                $("#walletBalance").text("₹" + amount);
+
+
+                $.ajax({
+                    url: "/addMoneyWallet",
+                    method: "POST",
+                    data: {
+                        amount: amount
+                    },
+                    success: (response) => {
+
+
+                        if (response.status) {
+
+                            var razorpayApiKey = 'rzp_test_8Yal8nXdU43qiq';
+
+                            // Calculate the amount dynamically based on the total order amount (in paise)
+                            var orderAmount = Math.round(amount * 100);
+
+
+                            // Define the Razorpay options
+                            var options = {
+                                "key": razorpayApiKey,
+                                "amount": orderAmount, // Dynamically calculated amount
+                                "currency": "INR",
+                                "name": "PixelPerfect",
+                                "description": "Add money to wallet",
+                                "order_id": response.razorpayOrder.id, // Replace with actual order ID
+                                "handler": function (response) {
+                                    console.log(response);
+                                    verifyPayment(response);
+                                },
+
+                                "prefill": {
+                                    "name": "Customer Name", // Set to the customer's name
+                                    "email": "customer@example.com", // Set to the customer's email
+                                    "contact": "9000090000" // Set to the customer's contact number
+                                },
+                                "callback_url": "/your-server-callback-url", // Replace with your server's callback URL
+                                "theme": {
+                                    "color": "#3399cc"
+                                }
+                            };
+
+                            // Create a new Razorpay instance and open the payment dialog
+                            var rzp1 = new Razorpay(options);
+
+                            rzp1.open();
+
+
+
+
+                        }
+                        else {
+                            Swal.fire({
+                                title: 'Error Occured',
+                                text: "Can't process order error occured",
+                                icon: 'fail',
+                                timer: 5000
+                            })
+
+                        }
+                    }
+                })
+                function verifyPayment(response) {
+
+                    $.ajax({
+                        url: '/walletPayment',
+                        method: 'post',
+                        data: {
+                            razorpay_order_id: response.razorpay_order_id,
+                            razorpay_payment_id: response.razorpay_payment_id,
+                            razorpay_signature: response.razorpay_signature
+                        },
+                        success: (response) => {
+                            if (response.status) {
+
+
+                                $.ajax({
+                                    url: "/updateMongoWallet",
+                                    method: "post",
+                                    data: {
+                                        amount: amount,
+
+                                    },
+                                    success: (response) => {
+                                        if (response.status) {
+                                            Swal.fire({
+                                                title: "Added success",
+                                                text: "Add Moneney successfully",
+                                                icon: "success",
+                                                showConfirmButton: false,
+                                                timer: 2000,
+
+                                            })
+                                            location.reload()
+                                        }
+                                    }
+                                })
+
+
+                            }
+                            else {
+                                alert("Payment failed!" + response.errMsg)
+                            }
+                        }
+                    })
+                }
+            }
+            )
+        })
+
+    </script>
+    <script>
+        function validateForm() {
+            var isValid = true;
+
+            // Reset error messages
+            var errors = document.querySelectorAll('.error');
+            for (var i = 0; i < errors.length; i++) {
+                errors[i].textContent = '';
+            }
+
+            // Validate Full Name
+            var fullName = document.querySelector('[name="fullName"]').value.trim();
+            if (fullName === "") {
+                document.getElementById('fullNameError').textContent = "Full Name cannot be empty or just spaces!";
+                isValid = false;
+            }
+
+            // Validate Mobile
+            var mobile = document.querySelector('[name="mobile"]').value.trim();
+            if (mobile === "" || isNaN(mobile) || mobile.length !== 10) {
+                document.getElementById('mobileError').textContent = "Please enter a valid 10-digit mobile number!";
+                isValid = false;
+            }
+
+            // Validate Region
+            var region = document.querySelector('[name="region"]').value.trim();
+            if (region === "") {
+                document.getElementById('regionError').textContent = "Region cannot be empty or just spaces!";
+                isValid = false;
+            }
+
+            // Validate PinCode
+            var pinCode = document.querySelector('[name="pinCode"]').value.trim();
+            if (pinCode === "" || isNaN(pinCode)) {
+                document.getElementById('pinCodeError').textContent = "Please enter a valid PinCode!";
+                isValid = false;
+            }
+
+            // Validate AddressLine
+            var addressLine = document.querySelector('[name="addressLine"]').value.trim();
+            if (addressLine === "") {
+                document.getElementById('addressLineError').textContent = "Address cannot be empty or just spaces!";
+                isValid = false;
+            }
+
+            // Validate AreaStreet
+            var areaStreet = document.querySelector('[name="areaStreet"]').value.trim();
+            if (areaStreet === "") {
+                document.getElementById('areaStreetError').textContent = "Area/Street cannot be empty or just spaces!";
+                isValid = false;
+            }
+
+            // Validate Landmark
+            var ladmark = document.querySelector('[name="ladmark"]').value.trim();
+            if (ladmark === "") {
+                document.getElementById('ladmarkError').textContent = "Landmark cannot be empty or just spaces!";
+                isValid = false;
+            }
+
+            // Validate Town/City
+            var townCity = document.querySelector('[name="townCity"]').value.trim();
+            if (townCity === "") {
+                document.getElementById('townCityError').textContent = "Town/City cannot be empty or just spaces!";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
 
 
 

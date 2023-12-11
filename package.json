@@ -30,6 +30,7 @@
     "nocache": "^4.0.0",
     "nodemailer": "^6.9.7",
     "nodemon": "^3.0.1",
+    "razorpay": "^2.9.2",
     "slugify": "^1.6.6",
     "trim": "^1.0.1"
   }

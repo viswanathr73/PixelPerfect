@@ -1,0 +1,99 @@
+<%- include('header') %>
+
+        <section class="content-main">
+            <div class="content-header">
+                <div>
+                    <h2 class="content-title card-title">Coupons</h2>
+                   
+                </div>
+                
+            </div>
+            <div class="card mb-4">
+                <header class="card-header">
+                    
+                </header>
+                <!-- card-header end// -->
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    
+                                    <th>#ID</th>
+                                    <th>Discription</th>
+                                    <th>Name</th>
+                                    <th>Offer Price</th>
+                                    
+                                    <th>Minimum Amount</th>
+                                    <th>Created Date</th>
+
+                                    <th> Expiry Date</th>
+                                    <th class="text-end">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                                <% if (coupon.length > 0) { %>
+
+                                    <% for (let i = 0; i < coupon.length; i++) { %>
+                                        <tr>
+                                   
+                                            <td><%=i+1%></td>
+                                            <td><b><%=coupon[i].discription %></b></td>
+                                            <td><%=coupon[i].name %></td>
+                                            
+                                            <td><%=coupon[i].offerPrice %></td>
+                                            <td><%=coupon[i].minimumAmount %></td>
+
+
+                                            
+                                            <td><%=coupon[i].createdOn.toLocaleDateString() %></td>
+                                            <td><%=coupon[i].expiryDate.toLocaleDateString() %></td>
+                                            <td class="text-end">
+                                                <a href="/admin/deleteCoupon?id=<%=coupon[i]._id%>" class="btn btn-md rounded font-sm">Delete</a>
+                                                <a href="/admin/editCoupon?id=<%=coupon[i]._id%>" class="btn btn-md rounded font-sm">Edit</a>
+                                            </td>
+                                        </tr>
+
+
+
+                                        <% } %>
+                                        <% } else { %>
+                                            <tr>
+                                                <td colspan="2">coupon not found</td>
+                                            </tr>
+                                        <% } %>
+                               
+                                
+
+
+
+                                
+                                
+                            
+                            </tbody>
+                        </table>
+                    </div> <!-- table-responsive//end -->
+                </div>
+                <!-- card-body end// -->
+                <% if (totalpages) { %>
+                    <div class="pagination justify-content-center">
+                      <% if (currentpage > 1) { %>
+                        <button class="btn btn-sm"><a href="?page=<%= currentpage - 1 %>">Previous</a></button>
+                      <% } %>
+                  
+                      <% for (let i = 1; i <= totalpages; i++) { %> <!-- Change the loop to start from 1 and go up to totalpages -->
+                        <button class="btn btn-sm"><a href="?page=<%= i %>" class="<%= i === currentpage ? 'active' : '' %>"><%= i %></a></button>
+                      <% } %>
+                  
+                      <% if (currentpage < totalpages) { %>
+                        <button class="btn btn-sm"><a href="?page=<%= currentpage + 1 %>">Next</a></button>
+                      <% } %>
+                    </div>
+                  <% } %>
+            </div>
+            
+        </section> <!-- content-main end// -->
+        <%- include('footer') %>
+       

@@ -1,6 +1,6 @@
-<%- include('header') %>
+<%-include('header')%>
 
-<style></style>
+
 <main class="main">
   <div class="page-header breadcrumb-wrap">
     <div class="container">
@@ -17,10 +17,10 @@
           <div class="shop-product-fillter">
             <div class="totall-product"></div>
           </div>
-          <div class="row product-grid-3">
+          <div class="row product-grid-4">
             <% if (product.length > 0) { %> <% for (let i = 0; i <
             product.length; i++) { %>
-            <div class="col-lg-4 col-md-4 col-12 col-sm-6">
+            <div class="col-lg-3 col-md-4 col-12 col-sm-6">
               <a href="/aProduct?id=<%= product[i].id %>">
                 <div class="product-cart-wrap mb-30">
                   <div class="product-img-action-wrap">
@@ -40,18 +40,14 @@
                     </div>
                     <div class="product-action-1">
                       <a
-                        <a
+                        
                         aria-label="Add To Wishlist"
                         class="action-btn hover-up"
                         onclick="wishList('<%= product[i]._id %>')"
-                        ><i class="fi-rs-heart"></i
-                      ></a>
-                      <a
-                        aria-label="Compare"
-                        class="action-btn hover-up"
-                        href="#"
-                        ><i class="fi-rs-shuffle"></i
-                      ></a>
+                      ><i class="fi-rs-heart"> 
+                        </i>
+                        </a>
+                     
                     </div>
                   </div>
                   <div class="product-content-wrap">
@@ -65,9 +61,9 @@
                       </span>
                     </div>
                     <div class="product-price">
-                      <span>$<%=product[i].price %> </span>
+                      <span>₹<%=product[i].price %> </span>
                       <span class="old-price"
-                        >$<%= Math.round(product[i].price+50) %></span
+                        >₹<%= Math.round(product[i].price+50) %></span
                       >
                       <a
                         class="float-right"

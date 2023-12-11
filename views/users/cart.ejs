@@ -60,7 +60,7 @@
                   </td> -->
                   <!-- Span with a unique ID -->
                   <!-- <td class="text-right" data-title="Cart">
-                    <span id="subtotal<%= i %>">$<%= (product[i].price * cart[i].quantity).toFixed(2) %></span>
+                    <span id="subtotal<%= i %>">₹<%= (product[i].price * cart[i].quantity).toFixed(2) %></span>
                 </td>
                   <td class="action" data-title="Remove"> -->
                   <!-- <a href="#" class="text-muted" onclick="removeCartItem('<%= product[i]._id %>')"><i class="fi-rs-trash"></i></a> -->
@@ -96,7 +96,7 @@
                               <%= product[i].brand %>.
                           </p>
                         </td>
-                        <td class="price" data-title="Price"><span> $<%= product[i].price %> </span></td>
+                        <td class="price" data-title="Price"><span> ₹<%= product[i].price %> </span></td>
                         <td class="text-center" data-title="Stock">
                           <div class="detail-qty border radius m-auto">
                             <div class="quantity-control">
@@ -110,7 +110,7 @@
                           </div>
                         </td>
                         <td class="text-right" data-title="Cart">
-                          <span id="subtotal<%= i %>">$<%= (product[i].price * cart[i].quantity).toFixed(2) %></span>
+                          <span id="subtotal<%= i %>">₹<%= (product[i].price * cart[i].quantity).toFixed(2) %></span>
                         </td>
                         <td class="action" data-title="Remove">
                           <button class="btn btn-sm" onclick="itemDelete('<%= product[i]._id %>')"><i
@@ -161,7 +161,7 @@
                         <tr>
                           <td class="cart_total_label">Cart Subtotal</td>
                           <td class="cart_total_amount">
-                            <span id="total" class="font-lg fw-900 text-brand">$<%= totalSubTotal %></span>
+                            <span id="total" class="font-lg fw-900 text-brand">₹<%= totalSubTotal %></span>
                           </td>
                         </tr>
                         <tr>
@@ -173,7 +173,7 @@
                         <tr>
                           <td class="cart_total_label">Total</td>
                           <td class="cart_total_amount">
-                            <strong><span id="finaltotal" class="font-xl fw-900 text-brand">$<%= totalSubTotal %>
+                            <strong><span id="finaltotal" class="font-xl fw-900 text-brand">₹<%= totalSubTotal %>
                                   </span></strong>
                           </td>
                         </tr>
@@ -243,8 +243,8 @@
 
       // Get the current values from the HTML elements
       let currentQuantity = parseInt(cartProductQtyElement.value);
-      const currentSubtotal = parseFloat(subtotalElement.innerText.replace('$', ''));
-      const currentTotal = parseFloat(totalElement.innerText.replace('$', ''));
+      const currentSubtotal = parseFloat(subtotalElement.innerText.replace('₹', ''));
+      const currentTotal = parseFloat(totalElement.innerText.replace('₹', ''));
 
       // Calculate the new values
       const newQuantity = currentQuantity + count;
@@ -270,9 +270,9 @@
 
       // Update the HTML elements with the new values
       cartProductQtyElement.value = newQuantity;
-      subtotalElement.innerHTML = `$${newSubtotal.toFixed(2)}`;
-      totalElement.innerHTML = `$${newTotal.toFixed(2)}`;
-      finalTotalElement.innerHTML = `$${newTotal.toFixed(2)}`;
+      subtotalElement.innerHTML = `₹${newSubtotal.toFixed(2)}`;
+      totalElement.innerHTML = `₹${newTotal.toFixed(2)}`;
+      finalTotalElement.innerHTML = `₹${newTotal.toFixed(2)}`;
 
       // Now you can send the updated data in your AJAX request
       $.ajax({

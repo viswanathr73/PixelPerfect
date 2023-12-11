@@ -4,6 +4,7 @@ const {upload}=require('../multer/multer');
 const auth = require('../middleware/userAuth');
 const nocache = require('nocache')
 router.use(nocache())
+const errorHandler=require('../middleware/errorHandler')
 
 const {aProductPage,shopProduct}=require('../controllers/productCtrl');
 const{getCart,addToCart,deleteCartItem,deleteCart,modifyCartQuantity}=require("../controllers/cartCtrl");
@@ -30,14 +31,15 @@ const {
     updateAddress,
     deleteAddress,
     searchProduct,
-    emailForgot
-    
+    emailForgot,
+    addNewAddress,
+    addUserNewAddress
 } = require('../controllers/userctrl');
 
-const {checkOut,orderPlaced,orderDetails,orderPage,allOrderDetails,cancelOrder,returnOrder}=require('../controllers/orderCtrl');
+const {checkOut,orderPlaced,orderDetails,orderPage,allOrderDetails,cancelOrder,returnOrder,verifyPayment,useWallet,buyNOw,buynowPlaceOrder}=require('../controllers/orderCtrl');
 const {addToList,Wishlist,deleteWishlistItem}=require('../controllers/wishlistCtrl');
-// const {addMoneyWallet,}=require('../controllers/walletCtrl');
-
+const {addMoneyWallet,updateMongoWallet,sumWallet,sumWalletBuynow,walletPayment}=require('../controllers/walletCtrl')
+const {validateCoupon}=require('../controllers/couponCtrl');
 const { isLogged} = require('../middleware/userAuth')
 
 
@@ -68,6 +70,8 @@ router.post('/updateProfile',isLogged,updateProfile);
 //user address ----------------------------------------------------
 router.post('/addUserAddress',isLogged,addUserAddress);
 router.get('/editAddress',isLogged,editAddress);
+router.get('/addNewAddress',isLogged,addNewAddress);
+router.post('/addNewAddress',isLogged,addUserNewAddress)
 router.post('/updateAddress',isLogged,updateAddress);
 router.get('/deleteAddress',isLogged,deleteAddress);
 
@@ -91,10 +95,21 @@ router.get('/orderPage',isLogged,orderPage);
 router.get('/allOrderDetails',isLogged,allOrderDetails);
 router.get('/cancelOrder',isLogged,cancelOrder);
 router.get('/return',isLogged,returnOrder);
+router.post('/verifyPayment',isLogged,verifyPayment)
+router.get('/buyNOw',isLogged,buyNOw);
+router.post('/buynowPlaceOrder',isLogged,buynowPlaceOrder);
 
 //wallet--------------------------------------------------
-// router.post('/addMoneyWallet',isLogged,addMoneyWallet)
+router.post('/addMoneyWallet',isLogged,addMoneyWallet)
+router.post('/updateMongoWallet',isLogged,updateMongoWallet)
+router.post('/useWallet',isLogged,useWallet)
+router.get('/sumWalletBuynow',isLogged,sumWalletBuynow)
+router.post('/walletPayment',isLogged,walletPayment)
+router.post('/sumWallet',sumWallet);
 
+//coupon----------------------------------------------------------------------------------
+
+router.post('/validateCoupon',validateCoupon);
 
 //wishlist ---------------------------------------------------------------
 

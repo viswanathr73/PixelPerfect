@@ -30,7 +30,7 @@
                         <div class="col-lg-6 col-md-6 ms-auto text-md-end">
                           
                             <a class="btn btn-primary" href="/invoice?id=<%= order._id%>">invoice</a>
-                            <a class="btn btn-secondary print ms-2" href="#"><i class="icon material-icons md-print"></i></a>
+                            <!-- <a class="btn btn-secondary print ms-2" href="#"><i class="icon material-icons md-print"></i></a> -->
                         </div>
                     </div>
                 </header> <!-- card-header end// -->
@@ -116,7 +116,7 @@
                                                    
                                                     <td><%= order.product[i].price %></td>
                                                     <td> x<%=order.product[i].quantity  %></td>
-                                                    <td>$<%= order.product[i].price *order.product[i].quantity %></td>
+                                                    <td>₹<%= order.product[i].price *order.product[i].quantity %></td>
                                                     
                                             </tr>
                                         
@@ -132,15 +132,15 @@
                                                 <article class="float-end">
                                                     <dl class="dlist">
                                                         <dt>Subtotal:</dt>
-                                                        <dd>$<%= (order.totalPrice).toFixed(2) %></dd>
+                                                        <dd>₹<%= (order.totalPrice).toFixed(2) %></dd>
                                                     </dl>
                                                     <dl class="dlist">
                                                         <dt>Shipping cost:</dt>
-                                                        <dd>$10.00</dd>
+                                                        <dd>₹10.00</dd>
                                                     </dl>
                                                     <dl class="dlist">
                                                         <dt>Grand total:</dt>
-                                                        <dd> <b class="h5">$<%= (order.totalPrice+10.00).toFixed(2) %></b> </dd>
+                                                        <dd> <b class="h5">₹<%= (order.totalPrice+10.00).toFixed(2) %></b> </dd>
                                                     </dl>
                                                     <dl class="dlist">
                                                         <dt class="text-muted">Status: </dt>

@@ -1,0 +1,110 @@
+<%- include('header') %>
+
+<section class="content-main">
+    <div class="row">
+        <div class="col-9">
+            <div class="content-header col-8">
+                <h2 class="content-title">Add New Coupon</h2>
+                <div>
+                    <form action="/admin/addCoupon" method="post" onsubmit="return validateForm();">
+
+                        <button type="submit" class="btn btn-md rounded font-sm hover-up">Add Coupon</button>
+                   
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <label for="product_title" class="form-label">Coupon name</label>
+                            <input type="text" placeholder="Type here" name="name" class="form-control" id="product_title">
+                        </div>
+                        <div class="row gx-3">
+                            <div class="mb-4">
+                                <label for="product_title" class="form-label">Description</label>
+                                <input type="text" placeholder="Type here" name="discription" class="form-control" id="product_title">
+                            </div>
+                            <div class="col-md-4  mb-3">
+                                <label for="product_color" class="form-label">Offer Price</label>
+                                <input type="number" placeholder="Type here" name="offerPrice" class="form-control" id="product_color">
+                            </div>
+                            <div class="col-md-4  mb-3">
+                                <label for="product_size" class="form-label">Minimum Amount</label>
+                                <input type="number" name="minimumAmount" placeholder="Type here" class="form-control" id="product_size">
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="product_brand" class="form-label">Expiry Date</label>
+                            <input type="date" placeholder="Type here" name="expiryDate" class="form-control" id="product_brand">
+                        </div>
+                    </div>
+                </div> <!-- card end// -->
+            </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('footer') %>
+
+<script>
+    function validateForm() {
+        // Reset any existing error messages
+        clearErrorMessages();
+
+        const name = document.getElementsByName('name')[0].value;
+        const discription = document.getElementsByName('discription')[0].value;
+        const offerPrice = document.getElementsByName('offerPrice')[0].value;
+        const minimumAmount = document.getElementsByName('minimumAmount')[0].value;
+        const expiryDate = document.getElementsByName('expiryDate')[0].value;
+
+        let isValid = true; // Assume the form is valid by default
+
+        // Check if name is empty
+        if (name.trim() === '') {
+            displayErrorMessage('name', 'Please enter a coupon name.');
+            isValid = false;
+        }
+
+        // Check if description is empty
+        if (discription.trim() === '') {
+            displayErrorMessage('description', 'Please enter a description.');
+            isValid = false;
+        }
+
+        // Check if offerPrice is a non-negative number
+        if (!/^\d+(\.\d{1,2})?$/.test(offerPrice) || parseFloat(offerPrice) < 0) {
+            displayErrorMessage('offerPrice', 'Please enter a valid non-negative offer price.');
+            isValid = false;
+        }
+
+        // Check if minimumAmount is a non-negative number
+        if (!/^\d+(\.\d{1,2})?$/.test(minimumAmount) || parseFloat(minimumAmount) < 0) {
+            displayErrorMessage('minimumAmount', 'Please enter a valid non-negative minimum amount.');
+            isValid = false;
+        }
+
+        // Check if expiryDate is empty
+        if (expiryDate.trim() === '') {
+            displayErrorMessage('expiryDate', 'Please select an expiry date.');
+            isValid = false;
+        }
+
+        return isValid; // Form is valid
+    }
+
+    function displayErrorMessage(fieldName, message) {
+        const field = document.getElementsByName(fieldName)[0];
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.innerText = message;
+        field.parentNode.appendChild(errorDiv);
+    }
+
+    function clearErrorMessages() {
+        const errorMessages = document.querySelectorAll('.error-message');
+        errorMessages.forEach((errorMessage) => {
+            errorMessage.parentNode.removeChild(errorMessage);
+        });
+    }
+</script>

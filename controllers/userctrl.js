@@ -582,6 +582,37 @@ const deleteAddress=asyncHandler(async(req,res)=>{
     }
 });
 
+//add new address in checkoout page--------------------------------------
+const addNewAddress = asyncHandler(async(req,res)=>{
+   try{
+    const userId=req.session.user;
+    const user=await User.findById(userId);
+    console.log("new address...");
+
+    res.render('addAddress',{user})
+}catch(error){
+    console.log("error in adding adress in checkout page",error);
+}
+});
+
+const addUserNewAddress=asyncHandler(async(req,res)=>{
+    try {
+        const {fullName,mobile,region,pinCode,addressLine,areaStreet,ladmark,townCity,state,addressType}=req.body;
+        const userId=req.session.user;
+        const user=await User.findById(userId);
+        const newUserAddress={ fullName,mobile,region,pinCode,addressLine,areaStreet,ladmark,townCity,state,addressType,main: false};
+        if (user.address.length === 0) {
+            newUserAddress.main = true;
+        }
+        user.address.push(newUserAddress);
+        await user.save();
+        res.redirect("/checkOut");
+
+    } catch (error) {
+        console.log("error in addUserAddress function",error);
+    }
+});
+
 
 
 // searchProduct -----------------------------------------------------
@@ -684,5 +715,7 @@ module.exports={
     updateAddress,
     deleteAddress,
     searchProduct ,
-    emailForgot
+    emailForgot,
+    addNewAddress,
+    addUserNewAddress
 }

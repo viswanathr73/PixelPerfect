@@ -4,6 +4,9 @@ const {loginAdmin, adminDashboard,adminVerifyLogin, userField, blockUser, unbloc
 const { allCategory,addCategory,editCategory, deleteCategory,updateCategory,unlistCategory, listCategory } = require("../controllers/categoryctrl");
 const {allProducts,addProduct,createProduct,editProduct,productEdited,unlistProduct,listProduct,deleteProduct}=require("../controllers/productCtrl");
 const {adminOrderDetails,changeStatusPending,changeStatusConfirmed,changeStatusShipped,changeStatusCanceled,changeStatusDelivered,changeStatusReturned, adminOrderList,allOrderDetails}=require('../controllers/orderCtrl');
+const {loadCoupon,addCoupon,coupon,editCoupon,deleteCoupon,updateCoupon}=require('../controllers/couponCtrl')
+
+const errorHandler=require('../middleware/errorHandler')
 
 router.set('view engine','ejs'); 
 router.set('views','./views/admin');
@@ -57,5 +60,12 @@ router.get('/changeStatusCanceled',changeStatusCanceled);
 router.get('/changeStatusdelivered',changeStatusDelivered);
 router.get('/changeStatusReturned',changeStatusReturned);
 
+//coupon route------------------------------------------------------------------------------
 
+router.get('/addCoupon',isAdminAuth,isAdminAuth,loadCoupon);
+router.post('/addCoupon',isAdminAuth,addCoupon);
+router.get('/coupon',isAdminAuth,coupon);
+router.get('/editCoupon',isAdminAuth,editCoupon);
+router.post('/updateCoupon',isAdminAuth,updateCoupon);
+router.get('/deleteCoupon',isAdminAuth,deleteCoupon);
 module.exports=router;

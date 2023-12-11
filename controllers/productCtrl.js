@@ -190,6 +190,9 @@ const shopProduct = asyncHandler(async (req, res) => {
         const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 4; 
 
+    const userId=req.session.user;
+    const user=await User.findById(userId);
+
     // Calculate the skip value to determine 
     const skip = (page - 1) * limit;
 
@@ -203,7 +206,7 @@ const shopProduct = asyncHandler(async (req, res) => {
     // Calculate the total number of pages based on the total products and limit
     const totalPages = Math.ceil(totalProductsCount / limit);
 
-    res.render('shop', { product, page, totalPages ,limit });
+    res.render('shop', { product, page, totalPages ,limit,user });
     } catch (error) {
         console.log('Error occured in shopProduct function', error);
     }
