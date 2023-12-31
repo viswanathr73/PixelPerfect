@@ -4,7 +4,7 @@ const Product = require("../model/productModel");
 const categoryModel = require("../model/categoryModel");
 const nodemailer=require("nodemailer");
 const Order = require("../model/orderModel");
-const bcrypt =require('bcrypt')
+const bcrypt =require('bcryptjs')
 const Banner=require('../model/bannerModel')
 const generateHashedPassword = async (password) => {
     const saltRounds = 10; // Number of salt rounds
