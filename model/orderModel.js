@@ -37,6 +37,10 @@ var orderSchema = new mongoose.Schema({
         required:true,
         type:String
     },
+    returnreason:{
+        type:String,
+        default:''
+    },
     address:{
         type:Array,
         required:true

@@ -8,7 +8,7 @@
                 <div class="breadcrumb">
                     <a href="/" rel="nofollow">Home</a>
                     <span></span> Shop
-                    <span></span> Checkout
+                    <span></span> buynow
                 </div>
             </div>
         </div>
@@ -426,7 +426,7 @@ if(!payment){
                 async:true,
                 success :function (response) {
 
-
+                  
 
 
                     if (response.method == 'cod') {
@@ -446,6 +446,8 @@ if(!payment){
 
                     
                     } else if (response.method == 'online') {
+                        console.log('first reponse');
+                    console.log(response.order._id);
     // Replace with your Razorpay API key
     var razorpayApiKey = 'rzp_test_8Yal8nXdU43qiq';
 
@@ -460,9 +462,9 @@ if(!payment){
         "name": "PixelPerfect",
         "description": "Order Payment",
         "order_id": response.razorpayOrder.id, // Replace with actual order ID
-        "handler": function (response) {
+        "handler": function (res) {
             
-            verifyPayment(response);
+            verifyPayment(res,response.order._id);
             
         },
         "prefill": {
@@ -515,12 +517,14 @@ if(!payment){
                     }
                 }
             })
-          function verifyPayment(response) {
-                
+          function verifyPayment(response,orderId) {
+           // alert(orderId)
+           
             $.ajax({
                 url: '/verifyPayment',
                 method: 'post',
                 data: {
+                    order:orderId,
                     razorpay_order_id: response.razorpay_order_id,
                     razorpay_payment_id: response.razorpay_payment_id,
                     razorpay_signature: response.razorpay_signature

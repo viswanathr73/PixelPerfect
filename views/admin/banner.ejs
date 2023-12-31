@@ -1,0 +1,72 @@
+<%- include('header') %>
+
+        <section class="content-main">
+            <div class="content-header">
+                <div>
+                    <h2 class="content-title card-title">Banner</h2>
+                    <p></p>
+                </div>
+                <div>
+                    
+                    <a href="/admin/addNewBanner" class="btn btn-primary btn-sm rounded">Create new</a>
+                </div>
+            </div>
+           
+            <div class="row">
+                <% if (banner.length > 0) { %>
+                    <% for (let i = 0; i < banner.length; i++) { %>
+
+                        
+
+                <div class="col-xl-5 col-lg-5 col-md-5">
+                    <div class="card card-product-grid">
+                        <a href="#" class="img-wrap"> <img src="/admin/assets/imgs/category/<%= banner[i].image %>" alt="Product" style="height: 14rem;"> </a>
+                        <div class="info-wrap">
+                            <div class="dropdown float-end">
+                                <a href="/admin/editBanner?id=<%= banner[i]._id %>" class="btn btn-sm btn-brand rounded">
+                                    <i class="material-icons md-edit mr-5"></i>Edit
+                                </a>
+                                <a href="/admin/deleteBanner?id=<%= banner[i]._id %>" class="btn btn-sm font-sm btn-light rounded">
+                                    <i class="material-icons md-delete_forever"></i> Delete
+                                </a>
+                            </div>
+                            <a href="#" class="title"></a>
+                            <div class="price mt-1"><%= banner[i].title %></div> 
+                            
+                            <p><%= banner[i].discription %></p><!-- price-wrap.// -->
+                        </div>
+                    </div> <!-- card-product  end// -->
+                </div> <!-- col.// -->
+                
+                <% } %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="2">Banner not found</td>
+                                    </tr>
+                                    <% } %>
+                
+               
+                
+                
+                
+            </div> <!-- row.// -->
+            <div class="pagination-area mt-15 mb-50">
+                <% if (totalpages) { %>
+                    <div class="pagination  justify-content-center">
+                      <% if (currentpage > 1) { %>
+                        <button class="btn btn-sm "  ><a href="?page=<%= currentpage - 1 %>">Previous</a></button>
+                      <% } %>
+                  
+                      <% for (let i = 1; i <= totalpages; i++) { %> <!-- Change the loop to start from 1 and go up to totalpages -->
+                        <button class="btn btn-sm "  ><a href="?page=<%= i %>" class="<%= i === currentpage ? 'active' : '' %>"><%= i %></a></button>
+                      <% } %>
+                  
+                      <% if (currentpage < totalpages) { %>
+                        <button  class="btn btn-sm " ><a href="?page=<%= currentpage + 1 %>">Next</a></button>
+                      <% } %>
+                    </div>
+                  <% } %>
+            </div>
+        </section> <!-- content-main end// -->
+        <%- include('footer') %>
+     

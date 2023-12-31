@@ -1,0 +1,161 @@
+<%- include('header') %>
+
+        <section class="content-main">
+            <div class="content-header ">
+                <br>
+                <br>
+                <div>
+                    <h2 class="content-title card-title ml-200">Invoice</h2>
+                    <p class="ml-200">Details for Order ID: <%= order.date %></p>
+                </div>
+            </div>
+            <div class="row justify-content-center" >
+                <div class="col-lg-8 col-md-12">
+                    <div class="card">
+                        <header class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6 col-md-6 mb-lg-0 mb-15">
+                                    <span>
+                                        <i class="material-icons md-calendar_today"></i> <b><%= order.createdOn.toLocaleDateString() %></b>
+                                    </span> <br>
+                                    <small class="text-muted">Order ID:<%= order.date %> </small>
+                                </div>
+                                <div class="col-lg-6 col-md-6 ms-auto text-md-end">                                   
+                                    <a class="btn btn-primary" href="/invoices?id=<%=order._id %>"> <i class="icon material-icons md-cloud_download mr-5"></i>Save PDF</a>
+
+                                </div>
+                            </div>
+                        </header> <!-- card-header end// -->
+
+                        <br><br>
+                        <div class="card-body">
+                            <div class="receipt-content">
+                                <div class="container bootstrap snippets bootdey">
+                                    <div class="row">
+                                        
+                                        
+                                            <div class="col-md-12">
+                                                <div class="invoice-wrapper">
+                                                    <div class="intro">
+                                                        Hi <strong><%= order.address[0].fullName %></strong>,
+                                                        <br>
+                                                        This is the receipt for a payment of <strong>₹<%= order.totalPrice %></strong> (INR) for your works
+                                                    </div>
+                        
+                                                    <div class="payment-info">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <span>Payment No.</span>
+                                                                <strong><%= order.date %></strong>
+                                                            </div>
+                                                            <div class="col-sm-6 text-end">
+                                                                <span>Payment Date</span>
+                                                                <strong><%= order.createdOn.toLocaleDateString() %></strong>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                        
+                                                    <div class="payment-details">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <span>Client</span>
+                                                                <strong>
+                                                                    <%= order.address[0].fullName %>
+                                                                </strong>
+                                                                <p>
+                                                                    <%= order.address[0].state %> <br>
+                                                                    City of <%= order.address[0].townCity %> <br>
+                                                                    <%= order.address[0].pinCode %><br>
+                                                                    <%= order.address[0].region %> <br>
+                                                                    <a href="#">
+                                                                        <%= user.username %>
+                                                                    </a>
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-sm-6 text-end">
+                                                                <span>Payment To</span>
+                                                                <strong>
+                                                                    <%= order.address[0].fullName %>
+                                                                </strong>
+                                                                <p>
+                                                                    <%= order.address[0].state %><br>
+                                                                    <%= order.address[0].landmark %> <br>
+                                                                    <%= order.address[0].pinCode %> <br>
+                                                                    <%= order.address[0].region %> <br>
+                                                                    <a href="#">
+                                                                        <%= user.email %>
+                                                                    </a>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                        
+                                                    <div class="line-items">
+                                                        <div class="headers clearfix">
+                                                            <div class="row">
+                                                                <div class="col-md-4">Description</div>
+                                                                <div class="col-md-3">Quantity</div>
+                                                                <div class="col-md-5 text-end">Amount</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <% for (let i=0; i < order.product.length;i++) { %>
+                                                            <div class="items">
+                                                                <div class="row item">
+                                                                    <div class="col-md-4 desc">
+                                                                        <%= order.product[i].title %>     ,
+                                                                    </div>
+                                                                    <div class="col-md-3 qty">
+                                                                        <%= order.product[i].quantity %>
+                                                                    </div>
+                                                                    <div class="col-md-5 amount text-end">
+                                                                        ₹ <%= order.product[i].price %>
+
+                                                                    </div>
+                                                                </div>
+                                                               
+
+                                                            <%}%>
+
+                                                        
+                                                            
+                                                        </div>
+                                                        <br><br><br><br><br>
+                                                        <div class="total text-end">
+                                                            <p class="extra-notes">
+                                                                <strong>Extra Notes</strong>
+                                                                Please send all items at the same time to shipping address by next week.
+                                                                Thanks a lot.
+                                                            </p>
+                                                            <div class="field">
+                                                                Subtotal <span>₹<%= order.totalPrice %>  </span>
+                                                            </div>
+                                                            <div class="field">
+                                                                Shipping <span>₹0.00</span>
+                                                            </div>
+                                                           
+                                                            <div class="field grand-total">
+                                                                Total <span>₹<%= order.totalPrice %></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                        
+                                                <div class="footer">
+                                                    @PixelPerfect
+                                                </div>
+                                            </div>
+                                        
+                                    </div>
+                                </div>
+                            </div> <!-- card-body end// -->
+                        </div> <!-- card end// -->
+
+                        
+                    </div>
+                                        </div>
+            </div>
+        </section> <!-- content-main end// -->
+        <br><br><br><br><br><br><br>
+    <%- include('footer') %>
+       

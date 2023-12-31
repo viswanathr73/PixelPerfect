@@ -52,9 +52,9 @@
                   </div>
                   <div class="product-content-wrap">
                     <div class="product-category">
-                      <a href="#"><%= product[i].category %></a>
+                      <a href="/aProduct?id=<%= product[i].id %>"><%= product[i].category %></a>
                     </div>
-                    <h2><a href="#"><%= product[i].title %></a></h2>
+                    <h2><a href="/aProduct?id=<%= product[i].id %>"><%= product[i].title %></a></h2>
                     <div class="rating-result" title="90%">
                       <span>
                         <span><%= product[i].rating %> </span>
@@ -63,8 +63,8 @@
                     <div class="product-price">
                       <span>₹<%=product[i].price %> </span>
                       <span class="old-price"
-                        >₹<%= Math.round(product[i].price+50) %></span
-                      >
+                        >₹<%= Math.round(product[i].price+50) %>
+                        </span>
                       <a
                         class="float-right"
                         onclick="addToCart('<%= product[i].id %>')"

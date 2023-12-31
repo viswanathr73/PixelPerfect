@@ -1,0 +1,268 @@
+<%-include('header')%>
+
+  
+    <main class="main">
+        <div class="page-header breadcrumb-wrap">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="/" rel="nofollow">Home</a>
+                    <span></span> Shop
+                    <span></span>  
+                </div>
+            </div>
+        </div>
+        <section class="mt-50 mb-50">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a class="shop-filter-toogle" href="#">
+                            <span class="fi-rs-filter mr-5"></span>
+                            Filters
+                            <i class="fi-rs-angle-small-down angle-down"></i>
+                            <i class="fi-rs-angle-small-up angle-up"></i>
+                        </a>
+                        <div class="shop-product-fillter-header">
+                            <div class="row">
+                                <div class="col-lg-2 col-md-4 mb-lg-0 mb-md-5 mb-sm-5">
+                                    <h5 class="mb-20">Categories</h5>
+                                    <ul class="cat-list">
+                                      
+                                        <li class="cat-item text-muted"><a href="/CategoryFilter?category=Cameras">Cameras</a></li>
+                                        <li class="cat-item text-muted"><a href="/CategoryFilter?category=Camera Lenses">Camera lenses</a></li>
+                                        <li class="cat-item text-muted"><a href="/CategoryFilter?category=Camera Accessories">Camera Accessories</a></li>
+                                        <!-- <li class="cat-item text-muted"><a href="/CategoryFilter?category=HOME">HOME</a></li> -->
+                                       
+                      
+                                    </ul>
+                                </div>
+                                <div class="col-lg-2 col-md-4 mb-lg-0 mb-md-5 mb-sm-5">
+                                    <h5 class="mb-20">Brand</h5>
+                                    <ul class="catego-list">
+                                        <li class="cat-item text-muted"><a href="/brandFilter?brand=CANON&cat=<%=cat%>">CANON</a></li>
+                                        <li class="cat-item text-muted"><a href="/brandFilter?brand=SONY&cat=<%=cat%>">SONY</a></li>
+                                        <li class="cat-item text-muted"><a href="/brandFilter?brand=NIKON&cat=<%=cat%>">NIKON</a></li>
+                                        <li class="cat-item text-muted"><a href="/brandFilter?brand=FUJIFILM&cat=<%=cat%>">FUJIFILM</a></li>
+                                        <li class="cat-item text-muted"><a href="/brandFilter?brand=PENTAX&cat=<%=cat%>">PENTAX</a></li>
+                                        <li class="cat-item text-muted"><a href="/brandFilter?brand=PANASONIC&cat=<%=cat%>">PANASONIC</a></li>
+                                        <li class="cat-item text-muted"><a href="/brandFilter?brand=KODAK&cat=<%=cat%>">KODAK</a></li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="col-lg-2 col-md-4 mb-lg-0 mb-md-5 mb-sm-5">
+                                    <h5 class="mb-20">Price range</h5>
+<ul class="categor-list">
+    <li class="cat-item text-muted"><a href="/priceFilter?maxPrice=5000&price=0&cat=<%=cat%>">₹0.00 - ₹4999.99</a></li>
+    <li class="cat-item text-muted"><a href="/priceFilter?maxPrice=10000&price=0&cat=<%=cat%>">₹5000.00 - ₹9999.99</a></li>
+    <li class="cat-item text-muted"><a href="/priceFilter?maxPrice=20000&price=1000&cat=<%=cat%>">₹10000.00 - ₹19999.99</a></li>
+    <li class="cat-item text-muted"><a href="/priceFilter?maxPrice=30000&price=2000&cat=<%=cat%>">₹20000.00 - ₹29999.99</a></li>
+    <li class="cat-item text-muted"><a href="/priceFilter?maxPrice=40000&price=3000&cat=<%=cat%>">₹30000.00 - ₹39999.99</a></li>
+    <li class="cat-item text-muted"><a href="/priceFilter?maxPrice=50000&price=4000&cat=<%=cat%>">₹40000.00 - ₹50000</a></li>
+</ul>
+
+                                </div>
+                               
+                              
+                             
+                                
+                            </div>
+                            <div class="col-lg-2 col-md-4 mb-lg-0 mb-md-5 mb-sm-5">
+                               
+                                <ul class="clear">
+                                    
+                                    <li class="text-muted"><a href="/clearFilter" >Clear Filter </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="shop-product-fillter">
+                            <div class="totall-product">
+                                <p> We found <strong class="text-brand"><%=product.length %></strong> items for you!</p>
+                            </div>
+                            <div class="sort-by-product-area">
+                                <div class="sort-by-cover mr-10">
+                                    
+                                   
+                                </div>
+                                <div class="sort-by-cover">
+                                    <div class="sort-by-product-wrap">
+                                        <div class="sort-by">
+                                            <span><i class="fi-rs-apps-sort"></i>Sort by:</span>
+                                        </div>
+                                        <div class="sort-by-dropdown-wrap">
+                                            <span> Featured <i class="fi-rs-angle-small-down"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="sort-by-dropdown">
+                                        <ul>
+                                           
+                                            <li><a href="/sortByPrice?sort=lowToHigh&cat=<%=cat%>">Price: Low to High</a></li>
+                                            <li><a href="/sortByPrice?sort=highToLow&cat=<%=cat%>">Price: High to Low</a></li>
+                                            <li><a href="#">Release Date</a></li>
+                                          
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row product-grid-3">
+                            
+
+
+                            <% if (product.length > 0) { %>
+
+                                <% for (let i = 0; i < product.length; i++) { %>
+                                    <div class="col-lg-3 col-md-4 col-12 col-sm-6">
+                                        <a href="/aProduct?id=<%= product[i].id %>">
+                                        <div class="product-cart-wrap mb-30">
+                                            <div class="product-img-action-wrap">
+                                                <div class="product-img product-img-zoom">
+                                                    <a href="/aProduct?id=<%= product[i].id %>">
+                                                        <img class="default-img" src="/admin/assets/imgs/category/<%= product[i].images[0] %>" alt="">
+                                                        <img class="hover-img" src="/admin/assets/imgs/category/<%= product[i].images[1] %>" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="product-action-1">
+                                                  
+                                                    <a
+                                                    <a aria-label="Add To Wishlist" class="action-btn hover-up" onclick="wishList('<%= product[i]._id %>')"><i class="fi-rs-heart"></i></a>
+                                                    <!-- <a aria-label="Compare" class="action-btn hover-up" href="#"><i class="fi-rs-shuffle"></i></a> -->
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="product-content-wrap">
+                                                <div class="product-category">
+                                                    <a href="#"><%= product[i].category %></a>
+                                                </div>
+                                                <h2><a href="#"><%= product[i].title %></a></h2>
+                                                <div class="rating-result" title="90%">
+                                                    <span>
+                                                        <span> </span>
+                                                    </span>
+                                                </div>
+                                                <div class="product-price">
+                                                    <span>₹<%=product[i].price  %> </span>
+                                                    <span class="old-price" >₹<%=product[i].offerprice %></span
+                          >
+                                                    <a class="float-right" onclick="addToCart('<%= product[i].id %>')" ><i class="fi-rs-shopping-bag-add "></i></a>
+                                                </div>
+                                                <div class="">
+                                                   
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    </div>
+
+
+
+
+
+
+                                    
+
+
+
+                                
+
+                                    <% } %>
+                                    <% } else { %>
+                                        <tr>
+                                            <td colspan="2">Product not found</td>
+                                        </tr>
+                                        <% } %>
+    
+                          
+                            
+
+
+                            
+                            
+                            
+                           
+                        
+                        </div>
+                        <!--pagination-->
+                        <% if (totalpages) { %>
+                            <div class="pagination">
+                              <% if (currentpage > 1) { %>
+                                <button class="btn btn-sm"><a href="?page=<%= currentpage - 1 %>">Previous</a></button>
+                              <% } %>
+                          
+                              <% for (let i = 1; i <= totalpages; i++) { %> <!-- Change the loop to start from 1 and go up to totalpages -->
+                                <button class="btn btn-sm"><a href="?page=<%= i %>" class="<%= i === currentpage ? 'active' : '' %>"><%= i %></a></button>
+                              <% } %>
+                          
+                              <% if (currentpage < totalpages) { %>
+                                <button class="btn btn-sm"><a href="?page=<%= currentpage + 1 %>">Next</a></button>
+                              <% } %>
+                            </div>
+                          <% } %>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+<script>
+    function wishList(id){
+       $.ajax({
+           url:`/addToList?id=${id}`,
+           method:"get",
+           success:(response)=>{
+               if(response.status){
+                  
+               }else{
+                   Swal.fire({
+       title: 'ALREADY SELECTED!',
+       text: 'You already selected',
+       icon: 'error',
+       timer: 3000,
+     
+   
+     })
+               }
+   
+           }
+       })
+   
+   
+   
+    }
+   
+       </script>
+       <script>
+        function addToCart(id) {
+          $.ajax({
+            url: `/addToCart?id=${id}`,
+            method: "get",
+            success: (response) => {
+              if (response.status) {
+                Swal.fire({
+                  title: "ADD TO CART",
+                  text: "Product Added to cart",
+                  icon: "success",
+                  timer: 1000,
+                  showConfirmButton: false, // This removes the button
+                });
+              } else {
+                Swal.fire({
+                  title: "OUT OFF STOCK",
+                  text: "The Product out off Stoke",
+                  icon: "error",
+                  timer: 1000,
+                  showConfirmButton: false, // This removes the button
+                });
+              }
+            },
+          });
+        }
+      </script>
+
+
+
+   
+        <%- include('footer') %>
+   

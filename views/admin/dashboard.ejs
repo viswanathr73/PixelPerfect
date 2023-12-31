@@ -1,13 +1,34 @@
 <%- include('header') %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
         <section class="content-main">
-            <div class="content-header">
+            <!-- <div class="content-header">
                 <div>
                     <h2 class="content-title card-title">Dashboard </h2>
-                   
+                    <form id="filterForm" action="/admin/dashboard" method="GET">
+                    <label for="filter">Filter:</label>
+                    <select class="form-select" id="filter" name="filter" >
+                        <option value="all">All</option>
+                        <option value="today">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                        <option value="year">This Year</option>
+                        <option value="custom">Custom</option>
+                    </select>
+
+                    <!-- Add input fields for custom date range -->
+                    <!-- <div id="customDateRange" style="display: none;">
+                        <label for="startDate">Start Date:</label>
+                        <input type="date" name="startDate" id="startDate">
+
+                        <label for="endDate">End Date:</label>
+                        <input type="date" name="endDate" id="endDate">
+                    </div>
+                    <button type="button" onclick="submitForm()">Filter</button>
+                </form>
                 </div>
                
-            </div>
+            </div> --> 
             <div class="row">
                 <div class="col-lg-3">
                     <div class="card card-body mb-4">
@@ -15,7 +36,7 @@
                             <span class="icon icon-sm rounded-circle bg-primary-light"><i class="text-primary material-icons md-monetization_on"></i></span>
                             <div class="text">
                                 <h6 class="mb-1 card-title">Revenue</h6>
-                                <span>₹1,85,45600.5</span>
+                                <span><%=totalRevenue%></span>
                                 <span class="text-sm">
                                     Shipping fees are not included
                                 </span>
@@ -28,7 +49,7 @@
                         <article class="icontext">
                             <span class="icon icon-sm rounded-circle bg-success-light"><i class="text-success material-icons md-local_shipping"></i></span>
                             <div class="text">
-                                <h6 class="mb-1 card-title">Orders</h6> <span>53,668</span>
+                                <h6 class="mb-1 card-title">Orders</h6> <span><%=orderCount%></span>
                                 <span class="text-sm">
                                     Excluding orders in transit
                                 </span>
@@ -41,135 +62,135 @@
                         <article class="icontext">
                             <span class="icon icon-sm rounded-circle bg-warning-light"><i class="text-warning material-icons md-qr_code"></i></span>
                             <div class="text">
-                                <h6 class="mb-1 card-title">Products</h6> <span>9850</span>
+                                <h6 class="mb-1 card-title">Products</h6> <span><%= productCount%></span>
                                 <span class="text-sm">
-                                    In 15 Categories
-                                </span>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="card card-body mb-4">
-                        <article class="icontext">
-                            <span class="icon icon-sm rounded-circle bg-info-light"><i class="text-info material-icons md-shopping_basket"></i></span>
-                            <div class="text">
-                                <h6 class="mb-1 card-title">Monthly Earning</h6> <span>186,982</span>
-                                <span class="text-sm">
-                                    Based in your local time.
+                                    In <%= categoryCount %> Categories
                                 </span>
                             </div>
                         </article>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xl-8 col-lg-12">
-                    <div class="card mb-4">
-                        <article class="card-body">
-                            <h5 class="card-title">Sale statistics</h5>
-                            <canvas id="myChart" height="120px"></canvas>
-                        </article>
+           <!-- <----------------------------------------------------> 
+          
+
+       
+
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Salery Summy star-->
+
+            <!-- Sales / Purchase chart end -->
+
+            <!-- Sales / Purchase Return star-->
+            <div class="col-12">
+                <div class="card o-hidden">
+
+                    <div class="card-header-title"> 
+                        <h4>Sales/Revenue Graph </h4>
                     </div>
-                   
-                            
-                                      
-                                           
-                        <div class="col-lg-7">
-                            <div class="card mb-4">
-                                <article class="card-body">
-                                    <h5 class="card-title">Recent activities</h5>
-                                    <ul class="verti-timeline list-unstyled font-sm">
-                                        <li class="event-list">
-                                            <div class="event-timeline-dot">
-                                                <i class="material-icons md-play_circle_outline font-xxl"></i>
-                                            </div>
-                                            <div class="media">
-                                                <div class="me-3">
-                                                    <h6><span>Today</span> <i class="material-icons md-trending_flat text-brand ml-15 d-inline-block"></i></h6>
-                                                </div>
-                                                <div class="media-body">
-                                                    <div>
-                                                        Lorem ipsum dolor sit amet consectetur
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="event-list active">
-                                            <div class="event-timeline-dot">
-                                                <i class="material-icons md-play_circle_outline font-xxl animation-fade-right"></i>
-                                            </div>
-                                            <div class="media">
-                                                <div class="me-3">
-                                                    <h6><span>17 May</span> <i class="material-icons md-trending_flat text-brand ml-15 d-inline-block"></i></h6>
-                                                </div>
-                                                <div class="media-body">
-                                                    <div>
-                                                        Debitis nesciunt voluptatum dicta reprehenderit
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="event-list">
-                                            <div class="event-timeline-dot">
-                                                <i class="material-icons md-play_circle_outline font-xxl"></i>
-                                            </div>
-                                            <div class="media">
-                                                <div class="me-3">
-                                                    <h6><span>13 May</span> <i class="material-icons md-trending_flat text-brand ml-15 d-inline-block"></i></h6>
-                                                </div>
-                                                <div class="media-body">
-                                                    <div>
-                                                        Accusamus voluptatibus voluptas.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="event-list">
-                                            <div class="event-timeline-dot">
-                                                <i class="material-icons md-play_circle_outline font-xxl"></i>
-                                            </div>
-                                            <div class="media">
-                                                <div class="me-3">
-                                                    <h6><span>05 April</span> <i class="material-icons md-trending_flat text-brand ml-15 d-inline-block"></i></h6>
-                                                </div>
-                                                <div class="media-body">
-                                                    <div>
-                                                        At vero eos et accusamus et iusto odio dignissi
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="event-list">
-                                            <div class="event-timeline-dot">
-                                                <i class="material-icons md-play_circle_outline font-xxl"></i>
-                                            </div>
-                                            <div class="media">
-                                                <div class="me-3">
-                                                    <h6><span>26 Mar</span> <i class="material-icons md-trending_flat text-brand ml-15 d-inline-block"></i></h6>
-                                                </div>
-                                                <div class="media-body">
-                                                    <div>
-                                                        Responded to need “Volunteer Activities
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </article>
-                            </div>
-                        </div>
+
+                    <div class="align-items-center graph-options ml-3">
+                        <button class="btn btn-white shadow border btn-sm mt-2"
+                            onclick="fetchData('monthly')">Monthly</button>
+                        <button class="btn btn-white shadow border btn-sm mt-2"
+                            onclick="fetchData('weekly')">Weekly</button>
+                        <button class="btn btn-white shadow border btn-sm mt-2"
+                            onclick="fetchData('yearly')">Yearly</button>
                     </div>
+                    <canvas id="revenueChart" width="400" height="150"></canvas>
                 </div>
-                
-                    
             </div>
+
+
+
+
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+
+
+
+
+    <script>
+
+
+
+
+        let currentInterval = 'monthly'; // Initial time interval
+
+        function fetchData(interval) {
            
-                        
-                        </div>
-                    </div>
-                </header>
-              
-            
-        </section> <!-- content-main end// -->
+            currentInterval = interval;
+            fetch(`/admin/${interval}-revenue`)
+                .then(response => response.json())
+                .then(data => {
+                    updateChart(data);
+                })
+                .catch(error => {
+                    console.error(`Error fetching ${interval} revenue:`, error);
+
+                });
+        }
+
+        function updateChart(data) {
+            const ctx = document.getElementById('revenueChart').getContext('2d');
+
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            const chartColors = [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)',
+                // Add more colors as needed
+            ];
+
+            const borderColor = [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                // Add more colors as needed
+            ];
+
+            const config = {
+                type: 'line',
+                data: {
+                    labels: data.map(item => item._id),
+                    datasets: [
+                        {
+                            label: `${currentInterval.charAt(0).toUpperCase() + currentInterval.slice(1)} Revenue`,
+
+                            data: data.map(item => item.totalRevenue),
+                            backgroundColor: chartColors.slice(0, data.length), // Using colors according to data length
+                            borderColor: borderColor.slice(0, data.length), // Using border colors according to data length
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    // Customize Chart.js options as needed
+                }
+            };
+
+            window.myChart = new Chart(ctx, config);
+        }
+
+        fetchData('weekly'); // Initial chart render with 'weekly' data
+        
+
+
+
+    </script>
+
+        
+
+      
+        
+
+
+
         <%- include('footer') %>

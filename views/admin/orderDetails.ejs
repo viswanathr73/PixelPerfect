@@ -81,7 +81,25 @@
                                 <% } else if(order.status=='canceled'){ %>
 
                                   <button class="btn btn-primary">Cancelled</button>
-                                            
+                                  
+                                  <% } else if(order.status=='returnreject'){ %>
+
+                                    <button class="btn btn-primary">Return Rejected</button>
+                                  
+                                <% } else if(order.status=='returnrequested'){ %>
+                                    <select class="form-select d-inline-block mb-lg-0 mb-15 mw-200" id="statusSelect">
+                                        <option>Accept</option>
+                                        <option>Reject</option>
+                                        
+        
+        
+                                    </select>
+                                  <button class="btn btn-primary" onclick="statusChange()">Save</button>
+
+                                    
+
+                                  
+
                                 <% } %>
                                          
                                           
@@ -131,8 +149,24 @@
                                 <div class="text">
                                     <h6 class="mb-1">Order info</h6>
                                     <p class="mb-1">
-                                        Shipping: <%= order.address[0].adressType %> <br> Pay method: <%= order.payment %> <br> Status:  <%= order.status %> 
+                                        Shipping: <%= order.address[0].adressType %> <br> Pay method: <%= order.payment %> <br> Status:  
+                                        <% if(order.status=="returned"){%>Returned<%}%>
+                                        <% if(order.status=="pending"){%>Pending<%}%>
+                                        <% if(order.status=="canceled"){%>Canceled<%}%>
+                                        <% if(order.status=="delivered"){%>Delivered<%}%>
+                                        <% if(order.status=="returnreject"){%>Return Rejected<%}%>
+                                        <% if(order.status=="shipped"){%>Shipped<%}%>
+                                        <% if(order.status=="returnrequested"){%>returnrequested<%}%>
+                                        <% if(order.status=="conformed"){%>Confirmed<%}%> 
                                     </p>
+                                    <% if(order.status=="returned" || order.status=="returnrequested"){%>
+                                        <h6 class="mb-1">Return Reason:</h6>
+                                        <p class="mb-1">
+                                            <!-- Display the return reason here -->
+                                            <%= order.returnreason %>
+                                        </p>
+                                    <%}%>
+
                                     <!-- <a href="#">Download info</a> -->
                                 </div>
                             </article>
@@ -205,7 +239,15 @@
                                                     <dl class="dlist">
                                                         <dt class="text-muted">Status:</dt>
                                                         <dd>
-                                                            <span class="badge rounded-pill alert-success text-success"><%= order.status %></span>
+                                                            <span class="badge rounded-pill alert-success text-success">
+                                                                <% if(order.status=="returned"){%>Returned<%}%>
+                                                                <% if(order.status=="pending"){%>Pending<%}%>
+                                                                <% if(order.status=="canceled"){%>Canceled<%}%>
+                                                                <% if(order.status=="delivered"){%>Delivered<%}%>
+                                                                <% if(order.status=="returnreject"){%>Return Rejected<%}%>
+                                                                <% if(order.status=="shipped"){%>Shipped<%}%>
+                                                                <% if(order.status=="conformed"){%>Confirmed<%}%>  
+                                                            </span>
                                                         </dd>
                                                     </dl>
                                                 </article>
@@ -214,7 +256,7 @@
                                     </tbody>
                                 </table>
                             </div> <!-- table-responsive// -->
-                            <a class="btn btn-primary" href="page-orders-tracking.html">View Order Tracking</a>
+                            <!-- <a class="btn btn-primary" href="page-orders-tracking.html">View Order Tracking</a> -->
                         </div> <!-- col// -->
                         <div class="col-lg-1"></div>
                         <div class="col-lg-4">
@@ -366,7 +408,38 @@ function statusChange(){
 
            
         }
+        else if(selectedStatus=='Accept'){
+            $.ajax({
+                url : '/admin/changeStatusReturned?orderId=<%=order._id%>',
+                method:"get",
+                success: (response)=>{
+                    if(response.status){
+                        location.reload()
+                    }
 
+                }
+
+            })
+
+           
+        }
+
+
+        else if(selectedStatus=='Reject'){
+            $.ajax({
+                url : '/admin/changeStatusReturnRejected?orderId=<%=order._id%>',
+                method:"get",
+                success: (response)=>{
+                    if(response.status){
+                        location.reload()
+                    }
+
+                }
+
+            })
+
+           
+        }
 
 
 

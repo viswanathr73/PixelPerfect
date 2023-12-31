@@ -1,0 +1,189 @@
+<%- include('header') %>
+
+        <section class="content-main">
+            <div class="content-header">
+                <div>
+                    <h2 class="content-title card-title"> Cancel Report </h2>
+                    <br><br>
+                    <select class="form-select d-inline-block mb-lg-0 mb-15 mw-200" id="filterOrders">
+                        <option value="all">Report</option>
+                        <option value="today">Report of Today</option>
+                        <option value="week">Report of this week</option>
+                        <option value="month">Report of this month</option>
+                        <option value="year">Report of this year</option>
+                    </select>
+                </div>
+
+                <div class="col-lg-6 col-md-6 ms-auto text-md-end">
+                    
+                    <a class="btn btn-primary" href="#" id="downloadExcel">Download Excel</a>
+                    
+                </div>
+
+               
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="card mb-4">
+                      
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Product name</th>
+                                            <th>Price</th>
+                                            <th>Status</th>
+                                            <th>Date</th>
+                                            <th class="text-end"> Action </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+
+
+
+
+     <!------------------------------------------ this is a single order data -=--------------------->
+     <% if (orders.length> 0) { %>
+        <% for (let i=0; i < orders.length;i++) { %>
+            <% for (let j=0; j < orders[i].product.length; j++) { %>
+                <tr>
+                    <td>
+                        <%=i+1%>
+                    </td>
+                    <td><b>
+                            <%= orders[i].product[j].title %>
+                        </b></td>
+
+                    <td>₹<%= orders[i].totalPrice %>
+                    </td>
+
+                    <% if (orders[i].status=='pending' ) { %>
+
+                    <td><span class="badge rounded-pill alert-warning">Pending</span></td>
+                    <% } else if(orders[i].status=='conformed'){ %>
+                        <td><span class="badge rounded-pill alert-success">conformed</span></td>
+                        <% } else if(orders[i].status=='canceled'){ %>
+                            <td><span class="badge rounded-pill alert-danger">Cancelled</span></td>
+                    <% } else if(orders[i].status=='shipped'){ %>
+                        <td><span class="badge rounded-pill alert-success">shipped</span></td>
+                        <% } else if(orders[i].status=='delivered'){ %>
+                            <td><span class="badge rounded-pill alert-success">delivered</span></td>
+                            <% } else if(orders[i].status=='returned'){ %>
+                                <td><span class="badge rounded-pill alert-danger">returned</span></td>
+                                <% } else if(orders[i].status=='returnrequested'){ %>
+                                    <td><span class="badge rounded-pill alert-danger">return requested</span></td>
+                                    <% } else if(orders[i].status=='returnreject'){ %>
+                                        <td><span class="badge rounded-pill alert-danger">return rejected</span></td>
+    
+                            <% } %>
+
+                        <td><%= orders[i].createdOn.toLocaleDateString() %></td>
+                <td class="text-end">
+                    <a href="/admin/adminOrderDetails?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>" class="btn btn-md rounded font-sm">Detail</a>
+
+
+                   
+                   
+                    
+                
+                </td>
+            </tr>
+
+            <% } %> 
+            <% } %>
+            <% } else { %>
+                <tr>
+                  <td colspan="2">No item found in Oders</td>
+                </tr>
+                <% } %>
+       
+       
+        
+       
+      
+              <!-- --------------------------end ------------------------------------ -->
+                                        
+                                        
+                                      
+                                    </tbody>
+                                </table>
+                            </div> <!-- table-responsive //end -->
+                        </div> <!-- card-body end// -->
+                        <% if (totalpages) { %>
+                            <div class="pagination justify-content-center">
+                              <% if (currentpage > 1) { %>
+                                <button class="btn btn-sm" "><a href="?page=<%= currentpage - 1 %>">Previous</a></button>
+                              <% } %>
+                          
+                              <% for (let i = 1; i <= totalpages; i++) { %> <!-- Change the loop to start from 1 and go up to totalpages -->
+                                <button class="btn btn-sm " "><a href="?page=<%= i %>" class="<%= i === currentpage ? 'active' : '' %>"><%= i %></a></button>
+                              <% } %>
+                          
+                              <% if (currentpage < totalpages) { %>
+                                <button class="btn btn-sm" ><a href="?page=<%= currentpage + 1 %>">Next</a></button>
+                              <% } %>
+                            </div>
+                          <% } %>
+                    </div> <!-- card end// -->
+                    
+                </div>
+                
+                
+              
+          
+        
+           
+        </section> <!-- content-main end// -->
+        <script>
+
+document.getElementById('filterOrders').addEventListener('change', function () {
+    const selectedValue = this.value;
+    switch (selectedValue) {
+        case 'today':
+            window.location.href = '/admin/cancelReport?date=today';
+            break;
+        case 'week':
+            window.location.href = '/admin/cancelReport?date=week';
+            break;
+        case 'month':
+            window.location.href = '/admin/cancelReport?date=month';
+            break;
+        case 'year':
+            window.location.href = '/admin/cancelReport?date=year';
+            break;
+        default:
+            window.location.href = '/admin/cancelReport?date=all';
+    }
+});
+
+
+document.getElementById('downloadExcel').addEventListener('click', function () {
+    const selectedValue = document.getElementById('filterOrders').value;
+    let url = '/admin/cancelReport?format=excel&date=';
+    
+    switch (selectedValue) {
+        case 'today':
+            url += 'today';
+            break;
+        case 'week':
+            url += 'week';
+            break;
+        case 'month':
+            url += 'month';
+            break;
+        case 'year':
+            url += 'year';
+            break;
+        default:
+            url += 'all';
+    }
+
+    window.location.href = url;
+});
+
+        </script>
+        <%- include('footer') %>
+        

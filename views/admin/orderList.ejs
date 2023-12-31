@@ -70,7 +70,10 @@
                                                                             <td><span
                                                                                     class="badge rounded-pill alert-danger">returned</span>
                                                                             </td>
-
+                                                                            <% } else if(orders[i].status=='returnrequested'){ %>
+                                                                                <td><span class="badge rounded-pill alert-danger">return requested</span></td>
+                                                                                <% } else if(orders[i].status=='returnreject'){ %>
+                                                                                    <td><span class="badge rounded-pill alert-danger">return rejected</span></td>                                   
                                                                             <% } %>
 
                                                                                 <td>

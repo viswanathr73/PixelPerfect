@@ -371,7 +371,22 @@
                                                                                                             class="badge rounded-pill alert-danger">returned</span>
                                                                                                     </td>
 
+                                                                                                    <% } else
+                                                                                                    if(orders[i].status=='returnrequested'
+                                                                                                    ){ %>
+                                                                                                    <td><span
+                                                                                                            class="badge rounded-pill alert-danger">returnrequested</span>
+                                                                                                    </td>
+
+                                                                                                    <% }  else
+                                                                                                    if(orders[i].status=='returnreject'
+                                                                                                    ){ %>
+                                                                                                    <td><span
+                                                                                                            class="badge rounded-pill alert-danger">returnreject</span>
+                                                                                                    </td>
+
                                                                                                     <% } %>
+
 
 
                                                                                                         <td>
@@ -381,7 +396,7 @@
                                                                                                         <td
                                                                                                             class="text-end">
                                                                                                             <a href="/orderDetails?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>"
-                                                                                                                class="btn btn-md rounded font-sm">Detail</a>
+                                                                                                                class="btn btn-md rounded font-sm"style= "width:95px">Detail</a>
                                                                                                             <% if
                                                                                                                 (orders[i].status=='pending'
                                                                                                                 ) { %>
@@ -417,16 +432,7 @@
                                                                                                                                     btn-md
                                                                                                                                     rounded
                                                                                                                                     font-sm">Cancel</a>
-                                                                                                                            <% } else
-                                                                                                                                if(orders[i].status=='delivered'
-                                                                                                                                ){
-                                                                                                                                %>
-                                                                                                                                <a href="/return?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>"
-                                                                                                                                    class="
-                                                                                                                                        btn
-                                                                                                                                        btn-md
-                                                                                                                                        rounded
-                                                                                                                                        font-sm">Return</a>
+                                                                                                                           
                                                                                                                                 <% } else
                                                                                                                                     if(orders[i].status=='returned'
                                                                                                                                     ){
@@ -464,35 +470,44 @@
                                                 <h5 class="mb-0">Wallet Transaction</h5>
                                             </div>
                                             <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>id</th>
-                                                    <th>Date</th>
-                                                    <th>Status</th>
-                                                    <th>Total</th>
-                                                    
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-
-                                                <% for (let i=0; i < user.history.length;i++) { %>
+                                                <thead>
                                                     <tr>
-                                                        <td><%=i+1%></td>
-                                                        <td><%= new Date(user.history[i].timestamp).toLocaleDateString() %></td>
-                                                      
-                                                        <td><%= user.history[i].status %></td>
-                                                        <td>₹<%= (user.history[i].amount ).toFixed(2)%> </td>
-                                                        
-                                                    </tr>
+                                                        <th>id</th>
+                                                        <th>Date</th>
+                                                        <th>Status</th>
+                                                        <th>Total</th>
 
-                                                    <% } %> 
-                                                   
-                                                   
-                                               
-                                               
-                                                
-                                            </tbody>
-                                        </table>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <% for (let i=0; i < user.history.length;i++) { %>
+                                                        <tr>
+                                                            <td>
+                                                                <%=i+1%>
+                                                            </td>
+                                                            <td>
+                                                                <%= new
+                                                                    Date(user.history[i].timestamp).toLocaleDateString()
+                                                                    %>
+                                                            </td>
+
+                                                            <td>
+                                                                <%= user.history[i].status %>
+                                                            </td>
+                                                            <td>₹<%= (user.history[i].amount ).toFixed(2)%>
+                                                            </td>
+
+                                                        </tr>
+
+                                                        <% } %>
+
+
+
+
+
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="address" role="tabpanel"

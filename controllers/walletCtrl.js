@@ -73,7 +73,7 @@ const updateMongoWallet = asyncHandler(async (req, res) => {
     try {
         const amount = parseFloat(req.body.amount); // Parse amount as a float
 
-    //   console.log('this si the amount ;',amount);
+  
         const userId = req.session.user;
     
 
@@ -116,7 +116,7 @@ const   sumWallet=asyncHandler(async(req,res)=>{
     
         const id = req.session.user
         const user = await User.findById(id)
-        //   console.log(user.cart);
+       
         const productIds = user.cart.map(cartItem => cartItem.ProductId);
         const product = await Product.find({ _id: { $in: productIds } });
         const transaction = {

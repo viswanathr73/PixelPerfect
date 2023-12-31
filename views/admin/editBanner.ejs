@@ -1,0 +1,60 @@
+<%- include('header') %>
+
+        <section class="content-main">
+            <div class="row">
+                <div class="col-9">
+                    <div class="content-header">
+                        <h2 class="content-title">Add New Banner</h2>
+                        <div>
+                            <form method="post" action="/admin/updateBanner" enctype="multipart/form-data">
+                           
+                                <button type="submit" class="btn btn-md rounded font-sm hover-up">Update</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6"> 
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h4>Basic</h4>
+                        </div>
+                        <div class="card-body">
+                           
+                                <div class="mb-4">
+                                    <label for="product_name" class="form-label">Banner title</label>
+                                    <input type="text" placeholder="Type here" value="<%= banner.title %>" name="title" class="form-control" id="product_name">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">Full description</label>
+                                    <textarea placeholder="Type here" value="<%= banner.discription %>"  name="discription"  class="form-control" rows="4"><%= banner.discription %></textarea>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="product_name" class="form-label">Link</label>
+                                    <input type="text" placeholder="Type here" value="<%= banner.link %>" name="link" class="form-control" id="product_name">
+                                </div>
+                                
+                                <input type="hidden" name="id" value="<%= banner._id %>">
+                               
+                           
+                        </div>
+                    </div> <!-- card end// -->
+                    
+                </div>
+                <div class="col-lg-3">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h4>Media</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="input-upload">
+                                <img src="/admin/assets/imgs/theme/upload.svg" alt="">
+                                <input class="form-control" name="image" type="file"  accept="image/*">
+                            </div>
+                        </div>
+                    </div> <!-- card end// -->
+                </form>
+                </div>
+            </div>
+        </section> <!-- content-main end// -->
+    
+
+        <%- include('footer') %>

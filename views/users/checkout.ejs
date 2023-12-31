@@ -115,6 +115,10 @@
                                                                 <td colspan="2"><em>Free Shipping</em></td>
                                                             </tr>
                                                             <tr>
+                                                                <th>Discount price</th>
+                                                                <td colspan="2" id="discountPrice">₹0</td>
+                                                            </tr>
+                                                            <tr>
                                                                 <th>Total</th>
                                                                 <td colspan="2" class="product-subtotal">
                                                                     <span id="totalValue" value="<%= sum %>"
@@ -286,16 +290,19 @@
                                         <% for (let i=0; i < user.address.length; i++) { %>
 
                                             <div class="form-check col-md-6">
+                                                
                                                 <input class="form-check-input address" type="radio"
                                                     name="flexRadioDefault" id="<%= user.address[i] %>"
                                                     value="<%= user.address[i]._id %>" />
                                                 <label class="form-check-label" for="flexRadioDefault1">
                                                     <div class="card">
                                                         <div class="card-header">
-                                                            <h5 class="mb-0">Shipping Address</h5>
+                                                            <h5 class="mb-0">Shipping Address</h5> 
+                                                            
                                                         </div>
 
                                                         <div class="card-body">
+                                                            
                                                             <address>
                                                                 Name: <%= user.address[i].fullName %><br />
                                                                     Pin: <%= user.address[i].pinCode %>
@@ -313,6 +320,8 @@
                                                             <p>
                                                                 <%= user.address[i].region %>
                                                             </p>
+                                                            <a  class=""href="/editAddress?id=<%=user.address[i]._id %>"
+                                                                    class="btn-small"> Edit</a> 
                                                         </div>
                                                     </div>
                                                 </label>
@@ -321,6 +330,7 @@
                                             <% } %>
                                                 <a class="btn btn-fill-out btn-block mt-30" href="/addNewAddress"> Add
                                                     Address</a>
+                                                   
 
                                                 <% } else { %>
                                                     <div class="card-body">
@@ -340,62 +350,64 @@
 
 
         function applyCoupon() {
-            swal({
-                text: 'Apply your coupon code here !!!',
-                content: 'input',
-                button: {
-                    text: 'Apply!',
-                    closeModal: false,
-                },
-            })
-                .then(couponCode => {
-                    if (!couponCode) {
-                        throw null; // No coupon code provided, so exit without making an AJAX request
-                    }
-
-                    // Perform an AJAX request here with the couponCode
-                    fetch('/validateCoupon', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ couponCode }), // Send the couponCode in the request body
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.isValid) {
-
-                                const displayedSum = document.getElementById('totalValue').textContent;
-                                const numericValue = parseFloat(displayedSum.replace(/[^\d.]/g, ''));
-                                const couponOfferPrice = parseFloat(data.coupon.offerPrice);
-                                const newSum = numericValue - couponOfferPrice;
-
-                                // Update the displayedSum value on the webpage
-                                const displayedSumElement = document.getElementById('totalValue');
-                                displayedSumElement.textContent = '₹' + newSum.toFixed(2);
-
-                                swal('Coupon Valid!', `Coupon code '${couponCode}' is valid.`);
-
-
-                            } else {
-                                swal('Invalid Coupon', `Coupon code '${couponCode}' is not valid.`);
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error occurred during AJAX request:', error);
-                            swal('Error', 'An error occurred while processing your request.', 'error');
-                        });
-                })
-                .catch(error => {
-                    if (error) {
-                        swal('Oh noes!', 'An error occurred!', 'error');
-                    } else {
-                        swal.stopLoading();
-                        swal.close();
-                    }
-                });
+    swal({
+        text: 'Apply your coupon code here !!!',
+        content: 'input',
+        button: {
+            text: 'Apply!',
+            closeModal: false,
+        },
+    })
+    .then(couponCode => {
+        if (!couponCode) {
+            throw null; // No coupon code provided, so exit without making an AJAX request
         }
 
+        // Perform an AJAX request here with the couponCode
+        fetch('/validateCoupon', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ couponCode }), // Send the couponCode in the request body
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.isValid) {
+                const displayedSum = document.getElementById('totalValue').textContent;
+                const numericValue = parseFloat(displayedSum.replace(/[^\d.]/g, ''));
+                const couponDiscountPrice = parseFloat(data.coupon.offerPrice);
+
+                // Calculate the new sum after applying the discount
+                const newSum = Math.max(numericValue - couponDiscountPrice, 0);
+
+                // Update the displayedSum value on the webpage
+                const displayedSumElement = document.getElementById('totalValue');
+                displayedSumElement.textContent = '₹' + newSum.toFixed(2);
+
+                // Update the displayed discount price
+                const discountPriceElement = document.getElementById('discountPrice');
+                discountPriceElement.textContent = '₹' + couponDiscountPrice.toFixed(2);
+
+                swal('Coupon Valid!', `Coupon code '${couponCode}' is valid.`);
+            } else {
+                swal('Invalid Coupon',` Coupon code '${couponCode}' is not valid.`);
+            }
+        })
+        .catch(error => {
+            console.error('Error occurred during AJAX request:', error);
+            swal('Error', 'An error occurred while processing your request.', 'error');
+        });
+    })
+    .catch(error => {
+        if (error) {
+            swal('Oh noes!', 'An error occurred!', 'error');
+        } else {
+            swal.stopLoading();
+            swal.close();
+        }
+    });
+}
 
 
     </script>
@@ -534,7 +546,7 @@
 
                         else if (response.method == 'wallet') {
 
-                            alert("wallet");
+                            // alert("wallet");
 
                             $.ajax({
                                 url: '/deleteCart',

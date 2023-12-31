@@ -1,0 +1,486 @@
+<%- include('../partials/header') %>
+    <%- include('../partials/sidebar') %>
+
+        <head>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        </head>
+
+        <!-- index body start -->
+        <div class="page-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- chart caard section start -->
+                    <div class="col-sm-6 col-xxl-3 col-lg-6">
+                        <div class="main-tiles border-5 border-0  card-hover card o-hidden">
+                            <div class="custome-1-bg b-r-4 card-body">
+                                <div class="media align-items-center static-top-widget">
+                                    <div class="media-body p-0">
+                                        <span class="m-0">Total Revenue</span>
+                                        <h4 class="mb-0 counter">₹<%=totalRevenue%>
+                                                <span class="badge badge-light-primary grow">
+                                                    <i data-feather="trending-up"></i>8.5%</span>
+                                        </h4>
+                                    </div>
+                                    <div class="align-self-center text-center">
+                                        <i class="ri-database-2-line"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-xxl-3 col-lg-6">
+                        <div class="main-tiles border-5 card-hover border-0 card o-hidden">
+                            <div class="custome-2-bg b-r-4 card-body">
+                                <div class="media static-top-widget">
+                                    <div class="media-body p-0">
+                                        <span class="m-0">Total Orders</span>
+                                        <h4 class="mb-0 counter">
+                                            <%=totalOrders%>
+                                                <span class="badge badge-light-danger grow">
+                                                    <i data-feather="trending-down"></i>8.5%</span>
+                                        </h4>
+                                    </div>
+                                    <div class="align-self-center text-center">
+                                        <i class="ri-shopping-bag-3-line"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-xxl-3 col-lg-6">
+                        <div class="main-tiles border-5 card-hover border-0  card o-hidden">
+                            <div class="custome-3-bg b-r-4 card-body">
+                                <div class="media static-top-widget">
+                                    <div class="media-body p-0">
+                                        <span class="m-0">Total Products</span>
+                                        <h4 class="mb-0 counter">
+                                            <%=totalProducts%>
+                                                <a href="add-new-product.html" class="badge badge-light-secondary grow">
+                                                    ADD NEW</a>
+                                        </h4>
+
+
+                                    </div>
+
+                                    <div class="align-self-center text-center">
+                                        <i class="ri-chat-3-line"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-xxl-3 col-lg-6">
+                        <div class="main-tiles border-5 card-hover border-0 card o-hidden">
+                            <div class="custome-4-bg b-r-4 card-body">
+                                <div class="media static-top-widget">
+                                    <div class="media-body p-0">
+                                        <span class="m-0">Total Customers</span>
+                                        <h4 class="mb-0 counter">
+                                            <%=totalCustomers%>
+                                                <span class="badge badge-light-success grow">
+                                                    <i data-feather="trending-down"></i>8.5%</span>
+                                        </h4>
+                                    </div>
+
+                                    <div class="align-self-center text-center">
+                                        <i class="ri-user-add-line"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <!-- Best Selling Product Start -->
+
+                    <div class="col-xl-6 col-md-12">
+                        <div class="card o-hidden card-hover">
+                            <div class="card-header card-header-top card-header--2 px-0 pt-0">
+
+                                <div class="card-header-title">
+                                    <h4>Best Selling Product</h4>
+                                </div>
+
+                                <div class="best-selling-box d-sm-flex d-none">
+                                    <!-- <span>Short By:</span> -->
+                                    <div class="dropdown">
+                                        <!-- <button class="btn p-0 dropdown-toggle" type="button"
+                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                data-bs-auto-close="true">Today</button> -->
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                            <li><a class="dropdown-item" href="#">Action</a></li>
+                                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="card-body p-0">
+                                <div>
+                                    <div class="table-responsive">
+                                        <table class="best-selling-table w-image
+                                            w-image
+                                            w-image table border-0">
+                                            <tbody>
+                                                <tr>
+                                                    <% bestProducts.forEach((product)=>{ %>
+
+
+
+
+
+
+                                                        <td>
+                                                            <div class="best-product-box">
+                                                                <div class="product-image">
+                                                                    <img src="/public/images/<%=product.productImages[0]%>"
+                                                                        class="img-fluid" alt="Product">
+                                                                </div>
+                                                                <div class="product-name">
+                                                                    <h5>
+                                                                        <%=product.name%>
+                                                                    </h5>
+                                                                    <h6>
+                                                                        <%=product.orderDate.toLocaleDateString()%>
+                                                                    </h6>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Price</h6>
+                                                                <h5>$<%=product.discountPrice%>
+                                                                </h5>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Stock</h6>
+                                                                <h5>
+                                                                    <%=product.quantity%>
+                                                                </h5>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Orders</h6>
+                                                                <h5>
+                                                                    <%=product.orders%>
+                                                                </h5>
+                                                            </div>
+                                                        </td>
+
+
+
+
+                                                </tr>
+                                                <% })%>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Recent orders start-->
+                    <div class="col-xl-6">
+                        <div class="card o-hidden card-hover">
+                            <div class="card-header card-header-top card-header--2 px-0 pt-0">
+                                <div class="card-header-title">
+                                    <h4>Recent Orders</h4>
+                                </div>
+
+
+                            </div>
+
+                            <div class="card-body p-0">
+                                <div>
+                                    <div class="table-responsive">
+                                        <table class="best-selling-table table border-0">
+                                            <tbody>
+                                                <tr>
+                                                    <% orderHistory.forEach((order)=>{ %>
+
+                                                        <td>
+                                                            <div class="best-product-box">
+                                                                <div class="product-name">
+                                                                    <h5>
+                                                                        <%= String(order._id).substring(0, 12) %>
+                                                                    </h5>
+
+                                                                    <h6>
+                                                                        <%= order.createdAt.toLocaleDateString()%>
+                                                                    </h6>
+
+                                                                </div>
+                                                            </div>
+                                                        </td>
+
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Total</h6>
+                                                                <h5>₹<%=order.grandTotal%>
+                                                                </h5>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Order Status</h6>
+                                                                <h5>
+                                                                    <%=order.status%>
+                                                                </h5>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Payment</h6>
+                                                                <h5 class="text-danger">
+                                                                    <%=order.paymentMethod%>
+                                                                </h5>
+                                                            </div>
+                                                        </td>
+                                                </tr>
+
+                                                <% }) %>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Recent orders end-->
+
+                    <!-- Best Selling Product End ----------------------------------------------------------------------->
+
+                    <div class="col-12">
+                        <div class="card o-hidden">
+
+                            <div class="card-header-title">
+                                <h4>Users Summary</h4>
+                            </div>
+
+                            <div class="align-items-center">
+                                <button class="btn btn-white shadow border btn-sm mt-2"
+                                    onclick="fetchUserCountData('monthly')">Monthly</button>
+                                <button class="btn btn-white shadow border btn-sm mt-2"
+                                    onclick="fetchUserCountData('weekly')">Weekly</button>
+                                <button class="btn btn-white shadow border btn-sm mt-2"
+                                    onclick="fetchUserCountData('yearly')">Yearly</button>
+                            </div>
+
+                            <canvas id="userCountChart" width="400" height="150"></canvas>
+
+                        </div>
+
+                        <div class="container-fluid">
+                            <div class="row">
+                                <!-- Salery Summy star-->
+
+                                <!-- Sales / Purchase chart end -->
+
+                                <!-- Sales / Purchase Return star-->
+                                <div class="col-12">
+                                    <div class="card o-hidden">
+
+                                        <div class="card-header-title">
+                                            <h4>Product / Sales</h4>
+                                        </div>
+
+                                        <div class="align-items-center graph-options ml-3">
+                                            <button class="btn btn-white shadow border btn-sm mt-2"
+                                                onclick="fetchData('monthly')">Monthly</button>
+                                            <button class="btn btn-white shadow border btn-sm mt-2"
+                                                onclick="fetchData('weekly')">Weekly</button>
+                                            <button class="btn btn-white shadow border btn-sm mt-2"
+                                                onclick="fetchData('yearly')">Yearly</button>
+                                        </div>
+                                        <canvas id="revenueChart" width="400" height="150"></canvas>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                        <!-- Container-fluid Ends-->
+
+
+
+
+                        <script>
+
+
+
+
+                            let currentInterval = 'monthly'; // Initial time interval
+
+                            function fetchData(interval) {
+                                currentInterval = interval;
+                                fetch(/admin/${interval}-revenue)
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        updateChart(data);
+                                    })
+                                    .catch(error => {
+                                        console.error(Error fetching ${interval} revenue:, error);
+                                    });
+                            }
+
+                            function updateChart(data) {
+                                const ctx = document.getElementById('revenueChart').getContext('2d');
+
+                                if (window.myChart) {
+                                    window.myChart.destroy();
+                                }
+
+                                const chartColors = [
+                                    'rgba(255, 99, 132, 0.5)',
+                                    'rgba(54, 162, 235, 0.5)',
+                                    'rgba(255, 206, 86, 0.5)',
+                                    // Add more colors as needed
+                                ];
+
+                                const borderColor = [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    // Add more colors as needed
+                                ];
+
+                                const config = {
+                                    type: 'bar',
+                                    data: {
+                                        labels: data.map(item => item._id),
+                                        datasets: [
+                                            {
+                                                label: ${currentInterval.charAt(0).toUpperCase() + currentInterval.slice(1)} Revenue,
+                                                data: data.map(item => item.totalRevenue),
+                                                backgroundColor: chartColors.slice(0, data.length), // Using colors according to data length
+                                                borderColor: borderColor.slice(0, data.length), // Using border colors according to data length
+                                                borderWidth: 1
+                                            }
+                                        ]
+                                    },
+                                    options: {
+                                        // Customize Chart.js options as needed
+                                    }
+                                };
+
+                                window.myChart = new Chart(ctx, config);
+                            }
+
+                            fetchData('weekly'); // Initial chart render with 'weekly' data
+                            
+
+
+
+                            let selectedInterval = 'monthly'; // Initial time interval
+                            let salesChart = null; // Variable to store the chart instance
+
+                            function changeInterval(interval) {
+                                selectedInterval = interval;
+                                retrieveData(interval);
+                            }
+
+                            function retrieveData(interval) {
+                                fetch(/admin/${interval}-sales-count)
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        renderSalesChart(data);
+                                    })
+                                    .catch(error => {
+                                        console.error(Error fetching ${interval} sales count:, error);
+                                    });
+                            }
+
+
+
+                            function fetchProductData(interval) {
+                                fetch('/admin/product-count-per-category')
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Network response was not ok.');
+                                        }
+                                        return response.json();
+                                    })
+                                    .then(data => {
+                                        console.log(data); // Log the received data
+                                        renderProductCountChart(data);
+                                    })
+                                    .catch(error => {
+                                        console.error('Error fetching product count per category:', error);
+                                    });
+                            }
+
+
+
+                            let userCountChart = null; // Store the chart instance
+
+                            function fetchUserCountData(interval) {
+                                fetch(/admin/user-counts?interval=${interval})
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        renderUserCountChart(data);
+                                    })
+                                    .catch(error => {
+                                        console.error('Error fetching user count:', error);
+                                    });
+                            }
+
+                            function renderUserCountChart(data) {
+                                const ctx = document.getElementById('userCountChart').getContext('2d');
+
+                                if (userCountChart) {
+                                    userCountChart.destroy(); // Destroy the existing chart if it exists
+                                }
+
+                                const chartConfig = {
+                                    type: 'line',
+                                    data: {
+                                        labels: data.map(item => item._id),
+                                        datasets: [
+                                            {
+                                                label: 'Number of Users',
+                                                data: data.map(item => item.userCount),
+                                                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                                                borderColor: 'rgba(54, 162, 235, 1)',
+                                                borderWidth: 1,
+                                            },
+                                        ],
+                                    },
+                                    options: {
+                                        // Customize Chart.js options as needed
+                                    },
+                                };
+
+                                userCountChart = new Chart(ctx, chartConfig);
+                            }
+
+                            // Initial fetch for 'monthly' data
+                            fetchUserCountData('weekly');
+
+                        </script>
+
+
+                    </div>
+                        <%- include('../partials/footer') %>

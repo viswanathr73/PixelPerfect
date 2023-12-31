@@ -1,0 +1,119 @@
+<%- include('header') %>
+
+    <section class="content-main">
+        <div class="content-header">
+            <div>
+                <h2 class="content-title card-title"> Stock Report </h2>
+                <br><br>
+                <!-- <select class="form-select d-inline-block mb-lg-0 mb-15 mw-200" id="filterOrders">
+                        <option value="all">Report</option>
+                        <option value="today">Report of Today</option>
+                        <option value="week">Report of this week</option>
+                        <option value="month">Report of this month</option>
+                        <option value="year">Report of this year</option>
+                    </select> -->
+            </div>
+
+            <!-- <div class="col-lg-6 col-md-6 ms-auto text-md-end">
+
+                <a class="btn btn-primary" href="#" id="downloadExcel">Download Excel</a>
+
+            </div> -->
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card mb-4">
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Product name</th>
+                                        <th>Category</th>
+                                        <th>Price</th>
+                                        <th>Stock</th>
+                                       
+                                      
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+
+
+
+                                    <!------------------------------------------ this is a single order data -=--------------------->
+                                    <% if (product.length> 0) { %>
+                                        <% for (let i=0; i < product.length;i++) { %>
+
+                                            <tr>
+                                                <td>
+                                                    <%=i+1%>
+                                                </td>
+                                                <td><b>
+                                                        <%= product[i].title %>
+                                                    </b></td>
+                                                    <td><%= product[i].category %>
+                                                    </td>
+                                                <td>₹<%= product[i].price %>
+                                                </td>
+                                                <td><b>
+                                                        <%= product[i].quantity %>
+                                                    </b></td>
+
+
+
+                    
+                                            </tr>
+
+                                            <% } %>
+
+                                                <% } else { %>
+                                                    <tr>
+                                                        <td colspan="2">No item found in Oders</td>
+                                                    </tr>
+                                                    <% } %>
+
+
+
+
+
+
+
+
+
+                                </tbody>
+                            </table>
+                        </div> <!-- table-responsive //end -->
+                        <div>
+                            <% if (page> 1) { %>
+                                <a href="/admin/loadStockReport?page=<%= page - 1 %>">Previous</a>
+                                <% } %>
+                                    <span>Page <%= page %> of <%= totalPages %></span>
+                                    <% if (page < totalPages) { %>
+                                        <a href="/admin/loadStockReport?page=<%= page + 1 %>">Next</a>
+                                        <% } %>
+                        </div>
+
+
+                    </div> <!-- card-body end// -->
+
+                </div> <!-- card end// -->
+
+            </div>
+
+           
+         </div>
+
+
+
+    </section> <!-- content-main end// -->
+
+
+
+
+    <%- include('footer') %>

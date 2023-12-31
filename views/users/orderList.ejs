@@ -48,7 +48,7 @@
                                 <thead>
                                     <tr>
                                         <!-- <th>#ID</th> -->
-                                        <th scope="col">Name</th>
+                                        <th scope="col">Products</th>
                                        
                                         <th scope="col">Total</th>
                                         <th scope="col">Status</th>
@@ -79,24 +79,28 @@
                                                         <td><span class="badge rounded-pill alert-success">delivered</span></td>
                                                         <% } else if(orders[i].status=='returned'){ %>
                                                             <td><span class="badge rounded-pill alert-danger">returned</span></td>
-                                
+                                                            <% } else if(orders[i].status=='returnrequested'){ %>
+                                                                <td><span class="badge rounded-pill alert-danger">return requested</span></td>
+
+                                                                <% } else if(orders[i].status=='returnreject'){ %>
+                                                                    <td><span class="badge rounded-pill alert-danger">return rejected</span></td>
                                                         <% } %>
                                 
 
                                                     <td><%= orders[i].createdOn.toLocaleDateString() %></td>
                                             <td class="text-end">
-                                                <a href="/orderDetails?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>" class="btn btn-md rounded font-sm">Detail</a>
+                                                <a href="/orderDetails?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>" class="btn btn-md rounded font-sm"style= "width:95px">Detail</a>
                                                 <% if (orders[i].status=='pending') { %>
-                                                <a href="/cancelOrder?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>"" class="btn btn-md rounded font-sm">Cancel</a>
+                                                <a href="/cancelOrder?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>" class="btn btn-md rounded font-sm">Cancel</a>
                                                 <% } else if(orders[i].status=='conformed'){ %>
-                                                    <a href="/cancelOrder?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>"" class="btn btn-md rounded font-sm">Cancel</a>
+                                                    <a href="/cancelOrder?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>" class="btn btn-md rounded font-sm">Cancel</a>
                                                    
 
                                                     <% } else if(orders[i].status=='canceled'){ %>
                                                         <% } else if(orders[i].status=='shipped'){ %>
                                                             <a href="/cancelOrder?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>"" class="btn btn-md rounded font-sm">Cancel</a>
                                                             <% } else if(orders[i].status=='delivered'){ %>
-                                                                <a href="/return?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>"" class="btn btn-md rounded font-sm">Return</a>
+                                                                <!-- <a href="/return?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>"" class="btn btn-md rounded font-sm">Return</a> -->
                                                                 <% } else if(orders[i].status=='returned'){ %>
 
                                                     <% } %> 

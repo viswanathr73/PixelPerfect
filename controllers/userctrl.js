@@ -5,7 +5,7 @@ const categoryModel = require("../model/categoryModel");
 const nodemailer=require("nodemailer");
 const Order = require("../model/orderModel");
 const bcrypt =require('bcrypt')
-
+const Banner=require('../model/bannerModel')
 const generateHashedPassword = async (password) => {
     const saltRounds = 10; // Number of salt rounds
     const salt = await bcrypt.genSalt(saltRounds);
@@ -20,11 +20,11 @@ const loadIndex = asyncHandler(async (req, res) => {
         const product = await Product.find({isDeleted:false,status:true});
         
 const user= await User.findById(userId)
-
+const banner= await Banner.find();
 
 const category=await categoryModel.find({status:false})
 
-res.render("index", { user, product });
+res.render("index", { user, product,banner});
 
   
 } catch (error) {
@@ -85,12 +85,12 @@ function generateotp(){
 const createUser=asyncHandler(async(req,res)=>{
     try {
      const email=req.body.email;
-     console.log("+++++++++++++++++++++++++++++++++++++=",req.body);
+     console.log("+++++++++++++++++++++++++++++++++++=",req.body);
      const findUser=await User.findOne({email:email});
      if(!findUser){
          //create a new user
         const otp=generateotp();
-        console.log("----------------------------------------",otp);
+        console.log("--------------------------------------",otp);
         const transporter=nodemailer.createTransport({
          service:"gmail",
          port:587,
@@ -114,11 +114,9 @@ const createUser=asyncHandler(async(req,res)=>{
  
          req.session.userData=req.body;
          console.log('iama here at session');
-        //  console.log('this is user data',req.session.userData);
-        //  console.log('this is req.body  data',req.session.userData);
+        
  
- 
-         res.render("emailOtp",{email:req.body.email})
+        res.render("emailOtp",{email:req.body.email})
          console.log("Message sent: %s",info.messageId);
         } 
         else{
@@ -219,8 +217,7 @@ const emailVerified=async(req,res)=>{
         console.log('this is the entered otp:',enteredOTP);
         console.log("this is the session otp:",req.session.userOTP);
         if(enteredOTP===req.session.userOTP){
-            // console.log('userdata in session');
-            // console.log(req.session.userData);
+          
             const user=req.session.userData
             console.log("this is the user data");
             console.log(user);
@@ -238,7 +235,7 @@ const emailVerified=async(req,res)=>{
 
             res.redirect('/login')
         }else{
-            console.log('hello this is ios error');
+            console.log('hello this is  error');
             res.render('emailOtp')
 
         }
@@ -281,9 +278,9 @@ const forgotEmailValid = asyncHandler(async (req, res) => {
     try {
         const { email } = req.body;
         const findUser = await User.findOne({ email:email });
-        console.log(findUser,"thie isi user");
+        console.log(findUser,"thie is user");
         if (findUser) {
-            console.log('>>>>>>>>');
+            
             const otp = generateotp();
             console.log(otp);
             const transporter = nodemailer.createTransport({
@@ -312,13 +309,13 @@ const forgotEmailValid = asyncHandler(async (req, res) => {
                
                
                res.redirect('/emailForgot')
-               console.log('??????????????????????????????');
+               
 
             } else {
                 res.json("email error");
             }
         } else {
-           console.log('<<<<<<<<<><><><><><><><><>');
+          
             res.redirect("/api/user/forgotPassword");
         }
     } catch (error) {
@@ -512,7 +509,7 @@ const editAddress=asyncHandler(async(req,res)=>{
         const userId=req.session.user;
         const user=await User.findById(userId);
         const address=user.address.id(id);
-        res.render('editAddress',{address});
+        res.render('editAddress',{address,user});
 
     } catch (error) {
         
@@ -627,11 +624,7 @@ const searchProduct = async (req, res) => {
 
         const totalProduct = await Product.countDocuments();
         const totalPages = Math.ceil(totalProduct / limit);
-        console.log("hai");
-
-
-
-
+        
         const userid = req.session.userId
         const search = req.body.search;
 

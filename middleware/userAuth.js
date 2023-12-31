@@ -1,39 +1,3 @@
-// const User = require('../model/userModel');
-
-// const isLogged = (req, res, next) => {
-//     console.log('hhhhhhh');
-//     if (req.session.user) {
-//         User.findById({ _id: req.session.user }).lean()
-//             .then((data) => {
-//                 if (!data.isBlocked) {
-//                     console.log('ghcfjhggvjkhbgjkgj');
-//                     next();
-//                 } else {
-//                     console.log('data');
-//                     console.log(data);
-//                     res.redirect('/logout');
-//                 }
-//             })
-//             .catch((error) => {
-//                 console.error(error);
-//                 res.status(500).send('Server Error');
-//             });
-//     } else {
-//         res.redirect('/index');
-//     }
-// }
-// const adminLoggedIn=(req,res,next)=>{
-//     if(req.session.adminLoggedIn){
-//         next()
-//     }else{
-//         res.redirect('/admin/login')
-//     }
-// }
-// module.exports={
-//     isLogged,
-//     adminLoggedIn
-// }
-
 
 const User = require('../model/userModel')
 
@@ -84,7 +48,38 @@ const isLoggedOut = (req, res, next) => {
 //         res.redirect('/admin/login')
 //     }
 // }
+
+
+const isBlocked = async (req,res,next)=>{
+    try {
+        const id = req.session.user
+        // console.log("this is id of user"+id)
+        if(!id){
+            next();
+        }else{
+        const user = await User.findById(id);
+        // console.log("this is user session from is blocked" ,user);
+        if(user.isBlocked == false){
+            next();
+        }else{
+            req.session.destroy(err => {
+                if (err) throw err;
+                const userSession = req.session;
+                res.render('login',{message:"your account has been blocked by administrator",userSession})
+              });
+
+            }
+        }
+
+    }catch(error){
+console.log("is Blocked error")
+    }
+}
+
+
+
 module.exports = {
     isLogged,
-    isLoggedOut
+    isLoggedOut,
+    isBlocked
 }
