@@ -1,5 +1,0 @@
---ui bdd
---growl
---colors
---recursive
-test/**/*-test.js
