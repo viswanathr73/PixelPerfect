@@ -188,7 +188,7 @@ const aProductPage = asyncHandler(async (req, res) => {
 const shopProduct = asyncHandler(async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 4; 
+    const limit = parseInt(req.query.limit) || 16; 
 
     const userId=req.session.user;
     const user=await User.findById(userId);

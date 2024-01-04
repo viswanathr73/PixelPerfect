@@ -205,7 +205,7 @@ const userId = req.session.user;
 user.cart=[]
     const updatedUser = await user.save();
    console.log('this is updated user',updatedUser);
-   res.json({status: true})
+   res.redirect('/cart')
    
     } catch (error) {
         console.log('errro happens in cart ctrl in function deletCart',error);     

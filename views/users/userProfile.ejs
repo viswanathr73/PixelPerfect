@@ -372,77 +372,80 @@
                                                                                                     </td>
 
                                                                                                     <% } else
-                                                                                                    if(orders[i].status=='returnrequested'
-                                                                                                    ){ %>
-                                                                                                    <td><span
-                                                                                                            class="badge rounded-pill alert-danger">returnrequested</span>
-                                                                                                    </td>
-
-                                                                                                    <% }  else
-                                                                                                    if(orders[i].status=='returnreject'
-                                                                                                    ){ %>
-                                                                                                    <td><span
-                                                                                                            class="badge rounded-pill alert-danger">returnreject</span>
-                                                                                                    </td>
-
-                                                                                                    <% } %>
-
-
-
-                                                                                                        <td>
-                                                                                                            <%= orders[i].createdOn.toLocaleDateString()
-                                                                                                                %>
+                                                                                                        if(orders[i].status=='returnrequested'
+                                                                                                        ){ %>
+                                                                                                        <td><span
+                                                                                                                class="badge rounded-pill alert-danger">returnrequested</span>
                                                                                                         </td>
-                                                                                                        <td
-                                                                                                            class="text-end">
-                                                                                                            <a href="/orderDetails?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>"
-                                                                                                                class="btn btn-md rounded font-sm"style= "width:95px">Detail</a>
-                                                                                                            <% if
-                                                                                                                (orders[i].status=='pending'
-                                                                                                                ) { %>
-                                                                                                                <a href="/cancelOrder?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>"
-                                                                                                                    class="
+
+                                                                                                        <% } else
+                                                                                                            if(orders[i].status=='returnreject'
+                                                                                                            ){ %>
+                                                                                                            <td><span
+                                                                                                                    class="badge rounded-pill alert-danger">returnreject</span>
+                                                                                                            </td>
+
+                                                                                                            <% } %>
+
+
+
+                                                                                                                <td>
+                                                                                                                    <%= orders[i].createdOn.toLocaleDateString()
+                                                                                                                        %>
+                                                                                                                </td>
+                                                                                                                <td
+                                                                                                                    class="text-end">
+                                                                                                                    <a href="/orderDetails?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>"
+                                                                                                                        class="btn btn-md rounded font-sm"
+                                                                                                                        style="width:95px">Detail</a>
+                                                                                                                    <% if
+                                                                                                                        (orders[i].status=='pending'
+                                                                                                                        )
+                                                                                                                        {
+                                                                                                                        %>
+                                                                                                                        <a href="/cancelOrder?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>"
+                                                                                                                            class="
                                                                                                                         btn
                                                                                                                         btn-md
                                                                                                                         rounded
                                                                                                                         font-sm">Cancel</a>
-                                                                                                                <% } else
-                                                                                                                    if(orders[i].status=='conformed'
-                                                                                                                    ){
-                                                                                                                    %>
-                                                                                                                    <a href="/cancelOrder?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>"
-                                                                                                                        class="
+                                                                                                                        <% } else
+                                                                                                                            if(orders[i].status=='conformed'
+                                                                                                                            ){
+                                                                                                                            %>
+                                                                                                                            <a href="/cancelOrder?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>"
+                                                                                                                                class="
                                                                                                                             btn
                                                                                                                             btn-md
                                                                                                                             rounded
                                                                                                                             font-sm">Cancel</a>
 
 
-                                                                                                                    <% } else
-                                                                                                                        if(orders[i].status=='canceled'
-                                                                                                                        ){
-                                                                                                                        %>
-                                                                                                                        <% } else
-                                                                                                                            if(orders[i].status=='shipped'
-                                                                                                                            ){
-                                                                                                                            %>
-                                                                                                                            <a href="/cancelOrder?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>"
-                                                                                                                                class="
+                                                                                                                            <% } else
+                                                                                                                                if(orders[i].status=='canceled'
+                                                                                                                                ){
+                                                                                                                                %>
+                                                                                                                                <% } else
+                                                                                                                                    if(orders[i].status=='shipped'
+                                                                                                                                    ){
+                                                                                                                                    %>
+                                                                                                                                    <a href="/cancelOrder?id=<%= orders[i].product[j]._id %>&orderId=<%= orders[i]._id %>"
+                                                                                                                                        class="
                                                                                                                                     btn
                                                                                                                                     btn-md
                                                                                                                                     rounded
                                                                                                                                     font-sm">Cancel</a>
-                                                                                                                           
-                                                                                                                                <% } else
-                                                                                                                                    if(orders[i].status=='returned'
-                                                                                                                                    ){
-                                                                                                                                    %>
 
-                                                                                                                                    <% }
+                                                                                                                                    <% } else
+                                                                                                                                        if(orders[i].status=='returned'
+                                                                                                                                        ){
                                                                                                                                         %>
 
+                                                                                                                                        <% }
+                                                                                                                                            %>
 
-                                                                                                        </td>
+
+                                                                                                                </td>
                                                                         </tr>
 
                                                                         <% } %>

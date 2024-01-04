@@ -33,7 +33,9 @@ const {
     searchProduct,
     emailForgot,
     addNewAddress,
-    addUserNewAddress
+    addUserNewAddress,
+    editUserNewAddress,
+    updateUserNewAddress
 } = require('../controllers/userctrl');
 
 const {checkOut,orderPlaced,orderDetails,orderPage,allOrderDetails,cancelOrder,returnOrder,verifyPayment,useWallet,buyNOw,buynowPlaceOrder}=require('../controllers/orderCtrl');
@@ -74,13 +76,15 @@ router.post('/updateProfile',isLogged,auth.isBlocked,updateProfile);
 //user address ----------------------------------------------------
 router.post('/addUserAddress',isLogged,addUserAddress);
 router.get('/editAddress',isLogged,editAddress);
+router.get('/editNewAddress',isLogged,editUserNewAddress);
 router.get('/addNewAddress',isLogged,addNewAddress);
 router.post('/addNewAddress',isLogged,addUserNewAddress)
 router.post('/updateAddress',isLogged,updateAddress);
+router.post('/updateNewAddress',isLogged,updateUserNewAddress);
 router.get('/deleteAddress',isLogged,deleteAddress);
 
 //products -------------------------------------------------------------------
-router.get('/aProduct',isLogged,auth.isBlocked,upload.single('images'),aProductPage)
+router.get('/aProduct',auth.isBlocked,upload.single('images'),aProductPage)
 router.get('/shop',isLogged,shopProduct)
 
 

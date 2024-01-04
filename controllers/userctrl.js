@@ -512,7 +512,7 @@ const editAddress=asyncHandler(async(req,res)=>{
         res.render('editAddress',{address,user});
 
     } catch (error) {
-        
+        res.status(500).send({ message: 'Internal server error.' });  
     }
 })
 
@@ -551,6 +551,7 @@ const updateAddress=asyncHandler(async(req,res)=>{
         
     } catch (error) {
         console.log("error in update address function",error);
+        res.status(500).send({ message: 'Internal server error.' });
     }
 })
 
@@ -609,6 +610,59 @@ const addUserNewAddress=asyncHandler(async(req,res)=>{
         console.log("error in addUserAddress function",error);
     }
 });
+
+//edit new address in checkout page-----------------------------------------------
+const editUserNewAddress=asyncHandler(async(req,res)=>{
+    try {
+        const id=req.query.id;
+        const userId=req.session.user;
+        const user=await User.findById(userId);
+        const address=user.address.id(id);
+        res.render('editNewAddress',{address,user});
+
+    } catch (error) {
+        res.status(500).send({ message: 'Internal server error.' });
+    }
+})
+
+
+
+//update address------------------------------------------------------------------------
+
+const updateUserNewAddress=asyncHandler(async(req,res)=>{
+    try {
+        const userId=req.session.user;
+        const {fullName,mobile,region,pinCode,addressLine,areaStreet,ladmark,townCity,state,addressType,id} = req.body;
+        const user=await User.findById(userId);
+        if(user)
+        {
+            const oldAddress=user.address.id(id);
+            if(oldAddress){
+                oldAddress.fullName=fullName;
+                oldAddress.mobile=mobile;
+                oldAddress.region=region;
+                oldAddress.pinCode=pinCode;
+                oldAddress.addressLine=addressLine;
+                oldAddress.areaStreet=areaStreet;
+                oldAddress.ladmark=ladmark;
+                oldAddress.townCity=townCity;
+                oldAddress.state=state;
+                oldAddress.addressType=addressType;
+                await user.save();
+                res.redirect('/checkout');
+                }
+                else{
+                    console.log("address not found");
+                }
+         }
+        
+        
+        
+    } catch (error) {
+        console.log("error in update new address function",error);
+    }
+})
+
 
 
 
@@ -710,5 +764,7 @@ module.exports={
     searchProduct ,
     emailForgot,
     addNewAddress,
-    addUserNewAddress
+    addUserNewAddress,
+    editUserNewAddress,
+    updateUserNewAddress
 }
